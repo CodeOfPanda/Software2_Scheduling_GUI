@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controllers.All_Customers_Controller">
+   <children>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="55.0" prefWidth="850.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="15.0">
+         <children>
+            <Label text="All Customers">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please select a customer to modify or delete.">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" spacing="15.0" AnchorPane.leftAnchor="615.0" AnchorPane.topAnchor="115.0">
+         <children>
+            <Button fx:id="allCustSearchBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustSearchBtnClicked" prefHeight="25.0" prefWidth="70.0" text="Search">
+               <font>
+                  <Font name="Bookman Old Style" size="13.0" />
+               </font>
+            </Button>
+            <TextField fx:id="allCustSearchTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+         </children>
+      </HBox>
+      <TableView fx:id="allCustTable" prefHeight="200.0" prefWidth="850.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0">
+        <columns>
+          <TableColumn fx:id="allCustID" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="103.0" text="Customer_ID" />
+          <TableColumn fx:id="allCustLName" maxWidth="1.7976931348623157E308" prefWidth="114.0" text="Last Name" />
+            <TableColumn fx:id="allCustFName" maxWidth="1.7976931348623157E308" prefWidth="106.0" text="First Name" />
+            <TableColumn fx:id="allCustStreet" maxWidth="1.7976931348623157E308" prefWidth="85.0" text="Street" />
+            <TableColumn fx:id="allCustAptNum" prefWidth="70.0" text="Apt" />
+            <TableColumn fx:id="allCustState" prefWidth="78.0" text="State" />
+            <TableColumn fx:id="allCustProv" prefWidth="77.0" text="Province" />
+            <TableColumn fx:id="allCustPostal" prefWidth="95.0" text="Postal/Zip" />
+            <TableColumn fx:id="allCustPhone" prefWidth="121.0" text="Phone Number" />
+        </columns>
+      </TableView>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="750.0" spacing="30.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="360.0">
+         <children>
+            <Button fx:id="allCustAddBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustAddBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Add">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="allCustModBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustModBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Modify">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="allCustDelBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustDelBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Delete">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefWidth="500.0" spacing="40.0" AnchorPane.leftAnchor="375.0" AnchorPane.topAnchor="425.0">
+         <children>
+            <Button fx:id="allCustBackBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustBackBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Back">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="allCustLogOutBtn" layoutX="450.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustLogOutBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Log out">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
