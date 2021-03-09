@@ -1,22 +1,20 @@
 package utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBConnection {
     // JDBC URL parts
     private static final String protocol = "jdbc";
     private static final String vendorName = ":mysql:";
     private static final String ipAddress = "//wgudb.ucertify.com/";
-    private static final String dbName = "WJ07K54";
+        private static final String dbName = "WJ07K54";
 
     //JDBC URL
     private static final String jdbcURL = protocol + vendorName + ipAddress + dbName;
 
     //Driver interface reference
     private static final String MYSQLJDBCDRIVER = "com.mysql.cj.jdbc.Driver";
-    private static Connection conn = null;
+    public static Connection conn = null;
 
     //Username and Password
     private static final String username = "U07K54";
@@ -28,6 +26,20 @@ public class DBConnection {
             Class.forName(MYSQLJDBCDRIVER);
             conn = DriverManager.getConnection(jdbcURL, username, password);
             System.out.println("Connection successful");
+
+//            String sql = "select * " +
+//                    "from " + dbName + ".customers as a " +
+//                    "inner join " + dbName + ".first_level_divisions as b on a.Division_ID=b.Division_ID " +
+//                    "where a.Division_ID = ?";
+//
+//            PreparedStatement pStmt = conn.prepareStatement(sql);
+
+//            pStmt.setInt(1, 29);
+//            ResultSet rs = pStmt.executeQuery();
+//
+//            while (rs.next()) {
+//                System.out.println(rs.getString("Customer_Name") + " " + rs.getString("Division"));
+//            }
         }
         catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error: not connecting!" + e.getMessage());

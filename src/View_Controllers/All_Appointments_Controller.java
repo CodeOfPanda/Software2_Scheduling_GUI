@@ -1,5 +1,6 @@
 package View_Controllers;
 
+import Models.Appointments;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,20 +20,21 @@ import java.util.ResourceBundle;
 public class All_Appointments_Controller implements Initializable {
 
     @FXML private TextField allApptSearch;
-    @FXML private TableView<?> allApptTable;
-    @FXML private TableColumn<?, Integer> allApptID;
-    @FXML private TableColumn<?, String> allApptTitle;
-    @FXML private TableColumn<?, String> allApptDescript;
-    @FXML private TableColumn<?, String> allApptLocale;
-    @FXML private TableColumn<?, String> allApptCont;
-    @FXML private TableColumn<?, String> allApptType;
-    @FXML private TableColumn<?, Timestamp> allApptStrtTime;
-    @FXML private TableColumn<?, Timestamp> allApptEndTime;
-    @FXML private TableColumn<?, Integer> allApptCustID;
+    @FXML private TableView<Appointments> allApptTable;
+    @FXML private TableColumn<Appointments, Integer> allApptID;
+    @FXML private TableColumn<Appointments, String> allApptTitle;
+    @FXML private TableColumn<Appointments, String> allApptDescript;
+    @FXML private TableColumn<Appointments, String> allApptLocale;
+    @FXML private TableColumn<Appointments, String> allApptCont;
+    @FXML private TableColumn<Appointments, String> allApptType;
+    @FXML private TableColumn<Appointments, Timestamp> allApptStrtTime;
+    @FXML private TableColumn<Appointments, Timestamp> allApptEndTime;
+    @FXML private TableColumn<Appointments, Integer> allApptCustID;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        allApptTable.setItems(Appointments.getAllAppts());
 
     }
 
