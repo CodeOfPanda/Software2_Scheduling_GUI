@@ -1,91 +1,89 @@
 package Models;
-import DBAccess.DBAppointments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javafx.beans.property.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 
 public class Appointments {
 
-    private static ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
-//    ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
-    private int appointmentID;
-    private String title;
-    private String description;
-    private String location;
-    private String type;
+//    private static ObservableList<Appointments> allAppointments = FXCollections.observableArrayList(); // i don't know if I actually need this
+    private IntegerProperty appointmentID;
+    private StringProperty title;
+    private StringProperty description;
+    private StringProperty location;
+    private StringProperty type;
     private LocalDateTime start;
     private LocalDateTime end;
     private LocalDateTime createDate;
-    private String createdBy;
+    private StringProperty createdBy;
     private Timestamp lastUpdate;
-    private String lastUpdatedBy;
-    private int customerID;
-    private int userID;
-    private int contactID;
+    private StringProperty lastUpdatedBy;
+    private IntegerProperty customerID;
+    private IntegerProperty userID;
+    private IntegerProperty contactID;
 
 
     public Appointments(int appointmentID, String title, String description, String location, String type
                         ,LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createdBy
                         ,Timestamp lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID)
     {
-        this.appointmentID = appointmentID;
-        this.title = title;
-        this.description = description;
-        this.location = location;
-        this.type = type;
+        this.appointmentID = new SimpleIntegerProperty(appointmentID);
+        this.title = new SimpleStringProperty(title);
+        this.description = new SimpleStringProperty(description);
+        this.location = new SimpleStringProperty(location);
+        this.type = new SimpleStringProperty(type);
         this.start = start;
         this.end = end;
         this.createDate = createDate;
-        this.createdBy = createdBy;
+        this.createdBy = new SimpleStringProperty(createdBy);
         this.lastUpdate = lastUpdate;
-        this.lastUpdatedBy = lastUpdatedBy;
-        this.customerID = customerID;
-        this.userID = userID;
-        this.contactID = contactID;
+        this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
+        this.customerID = new SimpleIntegerProperty(customerID);
+        this.userID = new SimpleIntegerProperty(userID);
+        this.contactID = new SimpleIntegerProperty(contactID);
     }
 
     // appointmentID
-    public int getAppointmentID() {
-        return this.appointmentID;
+    public IntegerProperty getAppointmentID() {
+        return appointmentID;
     }
     public void setAppointmentID(int appointmentID) {
-        this.appointmentID = appointmentID;
+        this.appointmentID = new SimpleIntegerProperty(appointmentID);
 
     }
 
     // title
-    public String getTitle() {
+    public StringProperty getTitle() {
         return this.title;
     }
     public void setTitle(String title) {
-        this.title = title;
+        this.title = new SimpleStringProperty(title);
     }
 
     // description
-    public String getDescription() {
+    public StringProperty getDescription() {
         return this.description;
     }
     public void setDescription(String description) {
-        this.description = description;
+        this.description = new SimpleStringProperty(description);
     }
 
     // location
-    public String getLocation() {
+    public StringProperty getLocation() {
         return this.location;
     }
     public void setLocation(String location) {
-        this.location = location;
+        this.location = new SimpleStringProperty(location);
     }
 
     // type
-    public String getType() {
+    public StringProperty getType() {
         return this.type;
     }
     public void setType(String type) {
-        this.type = type;
+        this.type = new SimpleStringProperty(type);
     }
 
     // start datetime
@@ -113,11 +111,11 @@ public class Appointments {
     }
 
     // created_by
-    public String getCreatedBy() {
+    public StringProperty getCreatedBy() {
         return this.createdBy;
     }
     public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+        this.createdBy = new SimpleStringProperty(createdBy);
     }
 
     // last_update timestamp
@@ -129,39 +127,41 @@ public class Appointments {
     }
 
     // last_updated_by
-    public String getLastUpdatedBy() {
+    public StringProperty getLastUpdatedBy() {
         return lastUpdatedBy;
     }
     public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
+        this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
     }
 
     // customer id
-    public int getCustomerID() {
+    public IntegerProperty getCustomerID() {
         return this.customerID;
     }
     public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+        this.customerID = new SimpleIntegerProperty(customerID);
     }
 
     // user id
-    public int getUserID() {
+    public IntegerProperty getUserID() {
         return this.userID;
     }
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
+//    public void setUserID(int userID) {
+//        this.userID = userID;
+//    }
 
     // contact id
-    public int getContactID() {
+    public IntegerProperty getContactID() {
         return this.contactID;
     }
-    public void setContactID(int contactID) {
-        this.contactID = contactID;
-    }
+//    public void setContactID(int contactID) {
+//        this.contactID = contactID;
+//    }
 
     // get all appointments method
-    public static ObservableList<Appointments> getAllAppts() {return allAppointments;}
+//    public static ObservableList<Appointments> getAllAppts() {return allAppointments;}
+
+
 }
 
 

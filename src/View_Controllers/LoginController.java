@@ -34,6 +34,9 @@ public class LoginController implements Initializable {
         loader.setLocation(getClass().getResource("../resources/All_Appointment_Records_Scene.fxml"));
         Parent allAppointmentsRoot = loader.load();
 
+        All_Appointments_Controller controller = loader.getController();
+        controller.sampleData();
+
         Stage allAppointmentsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene allAppointmentsScene = new Scene(allAppointmentsRoot);
         allAppointmentsStage.setScene(allAppointmentsScene);
