@@ -14,8 +14,9 @@ public class Appointments {
     private StringProperty description;
     private StringProperty location;
     private StringProperty type;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private ObjectProperty<LocalDateTime> start;
+    private ObjectProperty<LocalDateTime> end;
+    //    private LocalDateTime end;
     private LocalDateTime createDate;
     private StringProperty createdBy;
     private Timestamp lastUpdate;
@@ -34,8 +35,8 @@ public class Appointments {
         this.description = new SimpleStringProperty(description);
         this.location = new SimpleStringProperty(location);
         this.type = new SimpleStringProperty(type);
-        this.start = start;
-        this.end = end;
+        this.start = new SimpleObjectProperty<>(start);
+        this.end = new SimpleObjectProperty<>(end);
         this.createDate = createDate;
         this.createdBy = new SimpleStringProperty(createdBy);
         this.lastUpdate = lastUpdate;
@@ -87,19 +88,19 @@ public class Appointments {
     }
 
     // start datetime
-    public LocalDateTime getStart() {
+    public ObjectProperty<LocalDateTime> getStart() {
         return this.start;
     }
     public void setStart(LocalDateTime start) {
-        this.start = start;
+        this.start = new SimpleObjectProperty<>(start);
     }
 
     // end datetime
-    public LocalDateTime getEnd() {
+    public ObjectProperty<LocalDateTime> getEnd() {
         return this.end;
     }
     public void setEnd(LocalDateTime end) {
-        this.end = end;
+        this.end = new SimpleObjectProperty<>(end);
     }
 
     // create_date datetime

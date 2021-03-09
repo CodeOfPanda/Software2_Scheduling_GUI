@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -43,14 +42,9 @@ public class All_Appointments_Controller implements Initializable {
         allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
         allApptCont.setCellValueFactory(cellData -> cellData.getValue().getContactID().asObject());
         allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
-//        allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
-//        allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
+        allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+        allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
         allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
-    }
-
-    public void sampleData() {
-
-
     }
 
     // Search Button Action Event
