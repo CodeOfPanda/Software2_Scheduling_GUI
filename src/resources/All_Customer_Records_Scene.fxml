@@ -44,14 +44,12 @@
       <TableView fx:id="allCustTable" prefHeight="200.0" prefWidth="850.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0">
         <columns>
           <TableColumn fx:id="allCustID" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="103.0" text="Customer_ID" />
-          <TableColumn fx:id="allCustLName" maxWidth="1.7976931348623157E308" prefWidth="114.0" text="Last Name" />
-            <TableColumn fx:id="allCustFName" maxWidth="1.7976931348623157E308" prefWidth="106.0" text="First Name" />
-            <TableColumn fx:id="allCustStreet" maxWidth="1.7976931348623157E308" prefWidth="85.0" text="Street" />
-            <TableColumn fx:id="allCustAptNum" prefWidth="70.0" text="Apt" />
-            <TableColumn fx:id="allCustState" prefWidth="78.0" text="State" />
-            <TableColumn fx:id="allCustProv" prefWidth="77.0" text="Province" />
-            <TableColumn fx:id="allCustPostal" prefWidth="95.0" text="Postal/Zip" />
-            <TableColumn fx:id="allCustPhone" prefWidth="121.0" text="Phone Number" />
+          <TableColumn fx:id="allCustName" maxWidth="1.7976931348623157E308" prefWidth="135.19998168945312" text="Customer Name" />
+            <TableColumn fx:id="allCustStreet" maxWidth="1.7976931348623157E308" prefWidth="127.20001220703125" text="Street" />
+            <TableColumn fx:id="allCustState" minWidth="0.0" prefWidth="94.4000244140625" text="State" />
+            <TableColumn fx:id="allCustProv" minWidth="0.0" prefWidth="113.60000610351562" text="Province" />
+            <TableColumn fx:id="allCustPostal" prefWidth="123.199951171875" text="Postal/Zip" />
+            <TableColumn fx:id="allCustPhone" prefWidth="152.0" text="Phone Number" />
         </columns>
       </TableView>
       <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="750.0" spacing="30.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="360.0">

@@ -1,6 +1,5 @@
 package Models;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.beans.property.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -8,7 +7,6 @@ import java.time.LocalDateTime;
 
 public class Appointments {
 
-//    private static ObservableList<Appointments> allAppointments = FXCollections.observableArrayList(); // i don't know if I actually need this
     private IntegerProperty appointmentID;
     private StringProperty title;
     private StringProperty description;
@@ -16,7 +14,6 @@ public class Appointments {
     private StringProperty type;
     private ObjectProperty<LocalDateTime> start;
     private ObjectProperty<LocalDateTime> end;
-    //    private LocalDateTime end;
     private LocalDateTime createDate;
     private StringProperty createdBy;
     private Timestamp lastUpdate;
@@ -147,20 +144,17 @@ public class Appointments {
     public IntegerProperty getUserID() {
         return this.userID;
     }
-//    public void setUserID(int userID) {
-//        this.userID = userID;
-//    }
+    public void setUserID(int userID) {
+        this.userID = new SimpleIntegerProperty(userID);
+    }
 
     // contact id
     public IntegerProperty getContactID() {
         return this.contactID;
     }
-//    public void setContactID(int contactID) {
-//        this.contactID = contactID;
-//    }
-
-    // get all appointments method
-//    public static ObservableList<Appointments> getAllAppts() {return allAppointments;}
+    public void setContactID(int contactID) {
+        this.contactID = new SimpleIntegerProperty(contactID);
+    }
 
 
 }

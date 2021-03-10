@@ -1,5 +1,7 @@
 package View_Controllers;
 
+import DBAccess.DBCustomers;
+import Models.Customers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,22 +19,26 @@ import java.util.ResourceBundle;
 
 public class All_Customers_Controller implements Initializable {
 
-    @FXML private Button allCustSearchBtn;
+//    @FXML private Button allCustSearchBtn;
     @FXML private TextField allCustSearchTextField;
-    @FXML private TableView<?> allCustTable;
-    @FXML private TableColumn<?, Integer> allCustID;
-    @FXML private TableColumn<?, String> allCustLName;
-    @FXML private TableColumn<?, String> allCustFName;
-    @FXML private TableColumn<?, String> allCustStreet;
-    @FXML private TableColumn<?, Integer> allCustAptNum;
-    @FXML private TableColumn<?, String> allCustState;
-    @FXML private TableColumn<?, String> allCustProv;
-    @FXML private TableColumn<?, Integer> allCustPostal;
-    @FXML private TableColumn<?, String> allCustPhone;
+    @FXML private TableView<Customers> allCustTable;
+    @FXML private TableColumn<Customers, Integer> allCustID;
+    @FXML private TableColumn<Customers, String> allCustName;
+    @FXML private TableColumn<Customers, String> allCustStreet;
+//    @FXML private TableColumn<Customers, Integer> allCustAptNum;
+    @FXML private TableColumn<Customers, String> allCustState;
+//    @FXML private TableColumn<Customers, String> allCustProv;
+    @FXML private TableColumn<Customers, String> allCustPostal;
+    @FXML private TableColumn<Customers, String> allCustPhone;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        allCustTable.setItems(DBCustomers.getAllCust());
+        allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        allCustName.setCellValueFactory(cellData -> cellData.getValue().getCustName());
+        allCustStreet.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
+        allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
+        allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
     }
 
     // Search Button Action Event
