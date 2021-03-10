@@ -17,6 +17,12 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/*
+ * I need to figure out how I want the state/province information displayed
+ * Do I include the createDate and other information in the gui?
+ *
+ */
+
 public class All_Customers_Controller implements Initializable {
 
 //    @FXML private Button allCustSearchBtn;

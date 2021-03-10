@@ -4,6 +4,12 @@ import javafx.beans.property.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/*
+* I need to figure out how I want the state/province information displayed
+* Do I include the createDate and other information in the gui?
+*
+*/
+
 public class Customers {
 
     private IntegerProperty customerID;
