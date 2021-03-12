@@ -22,16 +22,16 @@
       </VBox>
       <VBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="380.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="95.0">
          <children>
-            <TextField fx:id="loginLocale" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Location">
+            <Label fx:id="loginLocale" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0">
                <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
+                  <Font name="Bookman Old Style" size="12.0" />
                </font>
-            </TextField>
+            </Label>
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="400.0" spacing="10.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="130.0">
          <children>
-            <Label text="User ID">
+            <Label text="User Name">
                <font>
                   <Font name="Bookman Old Style" size="13.0" />
                </font>

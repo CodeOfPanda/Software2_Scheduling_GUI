@@ -15,6 +15,14 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+/*
+* write code that enables the user to view appointment schedules by current month/current week/ & all, using a TableView & allows
+*       the user to choose between these two options using tabs or radio buttons for filtering appointments.
+*       include the follwing: Appointment_ID, Title, Description, Location, Contact --> Contact Name not ID, Type,
+*       Start Date & Time, End Date & Time, Customer_ID --> recommends including custName as well.
+*/
+
 public class Customer_Appointments_Controller implements Initializable {
 
     @FXML private TabPane custApptTablePane;

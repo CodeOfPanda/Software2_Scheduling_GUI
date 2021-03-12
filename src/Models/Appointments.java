@@ -1,28 +1,33 @@
 package Models;
 
 import javafx.beans.property.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 
 public class Appointments {
 
-    private IntegerProperty appointmentID;
-    private StringProperty title;
-    private StringProperty description;
-    private StringProperty location;
-    private StringProperty type;
-    private ObjectProperty<LocalDateTime> start;
-    private ObjectProperty<LocalDateTime> end;
-    private LocalDateTime createDate;
-    private StringProperty createdBy;
-    private Timestamp lastUpdate;
-    private StringProperty lastUpdatedBy;
-    private IntegerProperty customerID;
-    private IntegerProperty userID;
-    private IntegerProperty contactID;
+    private static int apptIDCount = 0;
+    private static IntegerProperty appointmentID;
+    private static StringProperty title;
+    private static StringProperty description;
+    private static StringProperty location;
+    private static StringProperty type;
+    private static ObjectProperty<LocalDateTime> start;
+    private static ObjectProperty<LocalDateTime> end;
+    private static LocalDateTime createDate;
+    private static StringProperty createdBy;
+    private static Timestamp lastUpdate;
+    private static StringProperty lastUpdatedBy;
+    private static IntegerProperty customerID;
+    private static IntegerProperty userID;
+    private static IntegerProperty contactID;
 
 
+    // constructor method
     public Appointments(int appointmentID, String title, String description, String location, String type
                         ,LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createdBy
                         ,Timestamp lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID)
@@ -47,115 +52,88 @@ public class Appointments {
     public IntegerProperty getAppointmentID() {
         return appointmentID;
     }
-    public void setAppointmentID(int appointmentID) {
-        this.appointmentID = new SimpleIntegerProperty(appointmentID);
-
+    public static int getApptID() {
+        return appointmentID.get();
+    }
+    // for the auto gen ID
+    public static int getApptIDCount() {
+        return apptIDCount;
+    }
+    public static void setApptIDCount() {
+        apptIDCount += 1;
     }
 
     // title
     public StringProperty getTitle() {
-        return this.title;
+        return title;
     }
-    public void setTitle(String title) {
-        this.title = new SimpleStringProperty(title);
-    }
+    public static String getApptTitle() {return title.get();}
 
     // description
     public StringProperty getDescription() {
-        return this.description;
+        return description;
     }
-    public void setDescription(String description) {
-        this.description = new SimpleStringProperty(description);
-    }
+    public static String getApptDescript() {return description.get();}
 
     // location
     public StringProperty getLocation() {
-        return this.location;
+        return location;
     }
-    public void setLocation(String location) {
-        this.location = new SimpleStringProperty(location);
-    }
+    public static String getApptLocation() {return location.get();}
 
     // type
     public StringProperty getType() {
-        return this.type;
+        return type;
     }
-    public void setType(String type) {
-        this.type = new SimpleStringProperty(type);
-    }
+    public static String getApptType() {return type.get();}
 
     // start datetime
     public ObjectProperty<LocalDateTime> getStart() {
-        return this.start;
-    }
-    public void setStart(LocalDateTime start) {
-        this.start = new SimpleObjectProperty<>(start);
+        return start;
     }
 
     // end datetime
     public ObjectProperty<LocalDateTime> getEnd() {
-        return this.end;
-    }
-    public void setEnd(LocalDateTime end) {
-        this.end = new SimpleObjectProperty<>(end);
+        return end;
     }
 
     // create_date datetime
     public LocalDateTime getCreateDate() {
-        return this.createDate;
-    }
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
+        return createDate;
     }
 
     // created_by
     public StringProperty getCreatedBy() {
-        return this.createdBy;
-    }
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = new SimpleStringProperty(createdBy);
+        return createdBy;
     }
 
     // last_update timestamp
     public Timestamp getLastUpdate() {
-        return this.lastUpdate;
-    }
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
+        return lastUpdate;
     }
 
     // last_updated_by
     public StringProperty getLastUpdatedBy() {
         return lastUpdatedBy;
     }
-    public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
-    }
 
     // customer id
     public IntegerProperty getCustomerID() {
-        return this.customerID;
+        return customerID;
     }
-    public void setCustomerID(int customerID) {
-        this.customerID = new SimpleIntegerProperty(customerID);
-    }
+    public static int getApptCustomerID() {return customerID.get();}
 
     // user id
     public IntegerProperty getUserID() {
-        return this.userID;
+        return userID;
     }
-    public void setUserID(int userID) {
-        this.userID = new SimpleIntegerProperty(userID);
-    }
+    public static int getApptUserID() {return userID.get();}
 
     // contact id
-    public IntegerProperty getContactID() {
-        return this.contactID;
+    public int getContact() {
+        return contactID.get();
     }
-    public void setContactID(int contactID) {
-        this.contactID = new SimpleIntegerProperty(contactID);
-    }
-
+    public IntegerProperty getApptContactID() { return contactID;}
 
 }
 

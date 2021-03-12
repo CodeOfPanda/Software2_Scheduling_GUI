@@ -15,6 +15,13 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/*
+* the customer data auto-populates in the form
+* country and f-l division data is also auto-populated in their combo boxes.
+* the f-l division data should be filtered by the user's selection of a country (when choosing u.s., filter so it only shows states)
+* customerID must be disabled
+*/
+
 public class Update_Customer_Controller implements Initializable{
 
     @FXML private TextField modCustID;

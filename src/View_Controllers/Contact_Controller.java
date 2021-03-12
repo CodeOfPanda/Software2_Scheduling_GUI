@@ -1,5 +1,6 @@
 package View_Controllers;
 
+import Models.Appointments;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,18 +20,19 @@ public class Contact_Controller implements Initializable {
 
     @FXML private Button contactSearchBtn;
     @FXML private TextField contactSearchText;
-    @FXML private TableView<?> contactTable;
-    @FXML private TableColumn<?, Integer> contactApptID;
-    @FXML private TableColumn<?, String> contactApptTitle;
-    @FXML private TableColumn<?, String> contactApptType;
-    @FXML private TableColumn<?, String> contactApptDescript;
-    @FXML private TableColumn<?, String> contactApptStrtTime;
-    @FXML private TableColumn<?, String> contactApptEndTime;
-    @FXML private TableColumn<?, Integer> contactApptCustID;
+    @FXML private TableView<Appointments> contactTable;
+    @FXML private TableColumn<Appointments, Integer> contactApptID;
+    @FXML private TableColumn<Appointments, String> contactApptTitle;
+    @FXML private TableColumn<Appointments, String> contactApptType;
+    @FXML private TableColumn<Appointments, String> contactApptDescript;
+    @FXML private TableColumn<Appointments, String> contactApptStrtTime;
+    @FXML private TableColumn<Appointments, String> contactApptEndTime;
+    @FXML private TableColumn<Appointments, Integer> contactApptCustID;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        contactTable.setItems(DBContacts.getContact(Appointments.getContact()));
 
     }
 

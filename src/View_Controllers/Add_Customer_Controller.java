@@ -30,6 +30,14 @@ public class Add_Customer_Controller implements Initializable {
     @FXML private TextField addCustPostal;
     @FXML private TextField addCustProvince;
 
+    /*
+    * when adding and updating a customer, text fields are used to collect: custName, address, postalCode, phone
+    *       customerID is auto-generated
+    *       first-level division & country data is collected using separate combo boxes.
+    * ex of address: 123 ABC Street, White Plains
+    *                123 ABC Street, Newmarket
+    */
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

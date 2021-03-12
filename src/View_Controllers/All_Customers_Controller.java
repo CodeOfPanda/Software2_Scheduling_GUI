@@ -18,9 +18,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /*
- * I need to figure out how I want the state/province information displayed
- * Do I include the createDate and other information in the gui?
+ * all of the customer's appointments must be deleted prior to deleting a customer.
+ *          use an error message indicating this need.
  *
+ * when deleting a customer record, a custom message should display in the user interface ("are you sure?" --> "Customer Removed")
  */
 
 public class All_Customers_Controller implements Initializable {

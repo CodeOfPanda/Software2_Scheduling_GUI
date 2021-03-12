@@ -15,6 +15,15 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/*
+* when adding/updating text fields are used to record:
+*       apptID, title, description, location, contact, type, start date & time, end date & time, custID, user.
+*       but you can use a combo box or date picker as well for the contact, type, sd&t, ed&t, custID (may want to display the name), and user.
+* all of the original appt info is displayed on the update form in the local time zone --> system default time.
+* all of the appt fields can be updated except Appointment_ID, which must be disabled.
+*/
+
+
 public class Update_Appointment_Scene implements Initializable {
 
     @FXML private TextField modApptID;
