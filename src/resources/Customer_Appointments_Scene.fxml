@@ -88,11 +88,11 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="750.0" spacing="30.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="460.0">
          <children>
-            <Button fx:id="custApptSaveBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#custApptSaveBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Save" AnchorPane.leftAnchor="25.0">
+            <Button fx:id="custApptBackBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#custApptBackBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Back" AnchorPane.leftAnchor="25.0">
                <font>
                   <Font name="Bookman Old Style" size="12.0" />
                </font></Button>
-            <Button fx:id="custApptBackBtn" layoutX="700.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#custApptBackBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Back">
+            <Button fx:id="custApptSaveBtn" layoutX="700.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#custApptSaveBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Save">
                <font>
                   <Font name="Bookman Old Style" size="12.0" />
                </font></Button>

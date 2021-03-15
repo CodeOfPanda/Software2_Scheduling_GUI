@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -67,6 +68,11 @@
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
             </Label>
+            <Label text="Customer Name">
+               <font>
+                  <Font name="Bookman Old Style" size="14.0" />
+               </font>
+            </Label>
             <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="160.0" text="User_ID">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
@@ -74,7 +80,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox prefHeight="295.0" prefWidth="143.0" spacing="10.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="95.0">
+      <VBox prefHeight="295.0" prefWidth="143.0" spacing="9.5" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="95.0">
          <children>
             <TextField fx:id="addApptID" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1">
                <font>
@@ -93,32 +99,24 @@
                   <Font name="Bookman Old Style Italic" size="11.0" />
                </font></TextField>
             <ChoiceBox fx:id="addApptContact" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
-            <TextField fx:id="addApptType" layoutX="10.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Planning Session">
-               <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
-               </font></TextField>
-            <TextField fx:id="addApptStrtTime" layoutX="10.0" layoutY="135.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="02/15/2021 12:00">
-               <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
-               </font></TextField>
-            <TextField fx:id="addApptEndTime" layoutX="10.0" layoutY="135.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="02/15/2021 1:00">
-               <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
-               </font></TextField>
-            <TextField fx:id="addApptCustID" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1">
-               <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
-               </font></TextField>
-            <TextField fx:id="addApptUserID" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1">
-               <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
-               </font></TextField>
+            <ChoiceBox fx:id="addApptType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <DatePicker fx:id="addApptStrtTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <DatePicker fx:id="addApptEndTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <ChoiceBox fx:id="addApptCustID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <ChoiceBox fx:id="addApptCustName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <ChoiceBox fx:id="addApptUserID" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
          </children>
       </VBox>
-      <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="454.0" spacing="90.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="480.0">
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="40.0" prefWidth="454.0" spacing="90.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="490.0">
          <children>
-            <Button fx:id="addApptSubmitBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addApptSubmitBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Submit" />
-            <Button fx:id="addApptCancelBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addApptCancelBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Cancel" />
+            <Button fx:id="addApptSubmitBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addApptSubmitBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Submit">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Button>
+            <Button fx:id="addApptCancelBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addApptCancelBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Cancel">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>

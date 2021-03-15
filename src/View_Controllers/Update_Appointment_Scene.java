@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 * all of the appt fields can be updated except Appointment_ID, which must be disabled.
 */
 
+// modified scene builder to fit new requirements
+
 
 public class Update_Appointment_Scene implements Initializable {
 
@@ -31,11 +33,14 @@ public class Update_Appointment_Scene implements Initializable {
     @FXML private TextField modApptDescript;
     @FXML private TextField modApptLocale;
     @FXML private ChoiceBox<?> modApptContact;
-    @FXML private TextField modApptType;
-    @FXML private TextField modApptStrtTime;
-    @FXML private TextField modApptEndTime;
-    @FXML private TextField modApptCustID;
-    @FXML private TextField modApptUserID;
+    @FXML private ChoiceBox<?> modApptType;
+    @FXML private DatePicker modApptStrtTime;
+    @FXML private DatePicker modApptEndTime;
+    @FXML private ChoiceBox<?> modApptCustID;
+    @FXML private ChoiceBox<?> modApptCustName;
+    @FXML private ChoiceBox<?> modApptUserID;
+    @FXML private Button modApptSubmitBtn;
+    @FXML private Button modApptCancelBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

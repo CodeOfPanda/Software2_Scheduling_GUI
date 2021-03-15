@@ -18,17 +18,19 @@ import java.util.ResourceBundle;
 public class Add_Customer_Controller implements Initializable {
 
     @FXML private TextField addCustID;
-    @FXML private TextField addCustFName;
-    @FXML private TextField addCustLName;
+    @FXML private TextField addCustName;
     @FXML private TextField addCustEmail;
     @FXML private TextField addCustPhone;
     @FXML private TextField addCustAddress;
-    @FXML private TextField addCustAptNum;
     @FXML private ChoiceBox<?> addCustCountry;
     @FXML private TextField addCustCity;
     @FXML private ChoiceBox<?> addCustState;
     @FXML private TextField addCustPostal;
     @FXML private TextField addCustProvince;
+    @FXML private Button addCustSubmitBtn;
+    @FXML private Button addCustCancelBtn;
+
+    // modified the scene builder to the new requirements
 
     /*
     * when adding and updating a customer, text fields are used to collect: custName, address, postalCode, phone

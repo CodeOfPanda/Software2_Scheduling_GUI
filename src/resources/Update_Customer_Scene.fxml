@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controllers.Update_Customer_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controllers.Update_Customer_Controller">
    <children>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="60.0" prefWidth="600.0">
+      <VBox alignment="BOTTOM_CENTER" prefHeight="60.0" prefWidth="600.0" AnchorPane.topAnchor="20.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Update a Customer's Account!">
                <font>
@@ -21,14 +21,14 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="500.0" spacing="12.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="75.0">
+      <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="500.0" spacing="15.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="75.0">
          <children>
             <Label contentDisplay="RIGHT" prefHeight="27.0" prefWidth="326.0" text="Customer_ID">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
                <graphic>
-                  <TextField fx:id="modCustID" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1" translateX="8.0">
+                  <TextField fx:id="modCustID" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1" translateX="27.0">
                      <font>
                         <Font name="Bookman Old Style Italic" size="11.0" />
                      </font>
@@ -38,24 +38,12 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label contentDisplay="RIGHT" text="First Name">
+            <Label contentDisplay="RIGHT" text="Customer Name">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
                <graphic>
-                  <TextField fx:id="modCustFName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Jane" translateX="7.0">
-                     <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
-                     </font>
-                  </TextField>
-               </graphic>
-            </Label>
-            <Label contentDisplay="RIGHT" text="Last Name">
-               <font>
-                  <Font name="Bookman Old Style" size="14.0" />
-               </font>
-               <graphic>
-                  <TextField fx:id="modCustLName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Doe" translateX="10.0">
+                  <TextField fx:id="modCustName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Jane Doe" translateX="7.0">
                      <font>
                         <Font name="Bookman Old Style Italic" size="11.0" />
                      </font>
@@ -67,7 +55,7 @@
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
                <graphic>
-                  <TextField fx:id="modCustEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="210.0" promptText="jdoe@wgu.edu" translateX="42.0">
+                  <TextField fx:id="modCustEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="jdoe@wgu.edu" translateX="77.0">
                      <font>
                         <Font name="Bookman Old Style Italic" size="11.0" />
                      </font>
@@ -98,21 +86,9 @@
                   </TextField>
                </graphic>
             </Label>
-            <Label contentDisplay="RIGHT" text="Apt. Number">
-               <font>
-                  <Font name="Bookman Old Style" size="14.0" />
-               </font>
-               <graphic>
-                  <TextField fx:id="modCustAptNum" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Optional" translateX="29.0">
-                     <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
-                     </font>
-                  </TextField>
-               </graphic>
-            </Label>
          </children>
       </VBox>
-      <VBox prefHeight="35.0" prefWidth="500.0" spacing="12.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="365.0">
+      <VBox prefHeight="35.0" prefWidth="500.0" spacing="12.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="335.0">
          <children>
             <Label contentDisplay="RIGHT" prefHeight="26.0" prefWidth="370.0" text="Country">
                <font>
@@ -124,7 +100,7 @@
             </Label>
          </children>
       </VBox>
-      <HBox prefHeight="40.0" prefWidth="500.0" spacing="48.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="405.0">
+      <HBox prefHeight="40.0" prefWidth="500.0" spacing="48.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="375.0">
          <children>
             <Label contentDisplay="RIGHT" text="City">
                <font>
@@ -148,7 +124,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox prefHeight="45.0" prefWidth="500.0" spacing="20.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="450.0">
+      <HBox prefHeight="45.0" prefWidth="500.0" spacing="20.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="418.0">
          <children>
             <Label contentDisplay="RIGHT" text="Postal/Zip Code">
                <font>
@@ -176,7 +152,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="300.0" spacing="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="500.0">
+      <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="300.0" spacing="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="475.0">
          <children>
             <Button fx:id="modCustSubmitBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modCustSubmitBtnClicked" prefHeight="25.0" prefWidth="70.0" text="Submit">
                <font>

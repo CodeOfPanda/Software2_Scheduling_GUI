@@ -22,20 +22,24 @@ import java.util.ResourceBundle;
 * customerID must be disabled
 */
 
+
+// modified scene builder to the new requirements.
+
+
 public class Update_Customer_Controller implements Initializable{
 
     @FXML private TextField modCustID;
-    @FXML private TextField modCustFName;
-    @FXML private TextField modCustLName;
+    @FXML private TextField modCustName;
     @FXML private TextField modCustEmail;
     @FXML private TextField modCustPhone;
     @FXML private TextField modCustAddress;
-    @FXML private TextField modCustAptNum;
     @FXML private ChoiceBox<?> modCustCountry;
     @FXML private TextField modCustCity;
     @FXML private ChoiceBox<?> modCustState;
     @FXML private TextField modCustPostal;
     @FXML private TextField modCustProvince;
+    @FXML private Button modCustSubmitBtn;
+    @FXML private Button modCustCancelBtn;
 
 
     @Override

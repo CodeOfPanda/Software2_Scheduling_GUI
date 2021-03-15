@@ -22,20 +22,26 @@ import java.util.Optional;
 *       but you can use a combo box or date picker as well for the contact, type, sd&t, ed&t, custID (may want to display name), and user.
 */
 
+// modified scene builder to fit new requirements
 
 public class Add_Appointment_Controller {
 
     ObservableList<Appointments> addingAppts = FXCollections.observableArrayList();
+
     @FXML private TextField addApptID;
     @FXML private TextField addApptTitle;
     @FXML private TextField addApptDescript;
     @FXML private TextField addApptLocale;
     @FXML private ChoiceBox<?> addApptContact;
-    @FXML private TextField addApptType;
-    @FXML private TextField addApptStrtTime;
-    @FXML private TextField addApptEndTime;
-    @FXML private TextField addApptCustID;
-    @FXML private TextField addApptUserID;
+    @FXML private ChoiceBox<?> addApptType;
+    @FXML private DatePicker addApptStrtTime;
+    @FXML private DatePicker addApptEndTime;
+    @FXML private ChoiceBox<?> addApptCustID;
+    @FXML private ChoiceBox<?> addApptCustName;
+    @FXML private ChoiceBox<?> addApptUserID;
+    @FXML private Button addApptSubmitBtn;
+    @FXML private Button addApptCancelBtn;
+
 
     // for the auto gen ID.
     // i need to start the count after the last appointment from the database.
@@ -101,55 +107,29 @@ public class Add_Appointment_Controller {
 
 
     public Boolean isValid() {
-        boolean isTrue = false;
-        // checks text fields/checkboxes to ensure each contains a value.
-        if (addApptTitle.getText().isEmpty() || addApptTitle.getText() == null) {
-            return isTrue;
-        } else if (addApptDescript.getText().isEmpty() || addApptDescript.getText() == null) {
-            return isTrue;
-        } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
-            return isTrue;
-//        } else if (addApptContact.getItems().isEmpty() || addApptContact.getItems() == null) {  // I need to populate the checkbox with contactIDs
-//            return false;
+//        boolean isTrue = false;
+//        // checks text fields/checkboxes to ensure each contains a value.
+//        if (addApptTitle.getText().isEmpty() || addApptTitle.getText() == null) {
+//            return isTrue;
+//        } else if (addApptDescript.getText().isEmpty() || addApptDescript.getText() == null) {
+//            return isTrue;
+//        } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
+//            return isTrue;
+////        } else if (addApptContact.getItems().isEmpty() || addApptContact.getItems() == null) {  // I need to populate the checkbox with contactIDs
+////            return false;
+////        }
+//        } else if (addApptType.getText().isEmpty() || addApptType.getText() == null) {
+//            return isTrue;
+//        } else if (addApptStrtTime.getText().isEmpty() || addApptStrtTime.getText() == null) {
+//            return isTrue;
+//        } else if (addApptEndTime.getText().isEmpty() || addApptEndTime.getText() == null) {
+//            return isTrue;
+//        } else if (addApptCustID.getText().isEmpty() || addApptCustID.getText() == null) {
+//            return isTrue;
+//        } else if (addApptUserID.getText().isEmpty() || addApptUserID.getText() == null) {
+//            return isTrue;
 //        }
-        } else if (addApptType.getText().isEmpty() || addApptType.getText() == null) {
-            return isTrue;
-        } else if (addApptStrtTime.getText().isEmpty() || addApptStrtTime.getText() == null) {
-            return isTrue;
-        } else if (addApptEndTime.getText().isEmpty() || addApptEndTime.getText() == null) {
-            return isTrue;
-        } else if (addApptCustID.getText().isEmpty() || addApptCustID.getText() == null) {
-            return isTrue;
-        } else if (addApptUserID.getText().isEmpty() || addApptUserID.getText() == null) {
-            return isTrue;
-        }
         return true;
-
-//        if(!isTrue) {
-//            int apptID = Appointments.getApptID();
-//            String title = Appointments.getApptTitle();
-//            String description = Appointments.getApptDescript();
-//            String location = Appointments.getApptLocation();
-//            String type = Appointments.getApptType();
-//            int custID = Appointments.getApptContactID();
-//            int userID = Appointments.getApptUserID();
-//            int contactID = Appointments.getApptContactID();
-//
-//
-//        }
     }
-
 }
 
-/*
-*   @FXML private TextField addApptID;
-    @FXML private TextField addApptTitle;
-*   @FXML private TextField addApptDescript;
-    @FXML private TextField addApptLocale;
-    @FXML private ChoiceBox<?> addApptContact;
-    @FXML private TextField addApptType;
-    @FXML private TextField addApptStrtTime;
-    @FXML private TextField addApptEndTime;
-    @FXML private TextField addApptCustID;
-    @FXML private TextField addApptUserID;
-*/
