@@ -1,6 +1,8 @@
 package View_Controllers;
 
 import DBAccess.DBAppointments;
+import DBAccess.DBContacts;
+import DBAccess.DBCustomers;
 import Models.Appointments;
 import Models.Contacts;
 import Models.Customers;
@@ -8,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +19,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 /*
 * when adding/updating text fields are used to record:
@@ -26,24 +31,41 @@ import java.util.Optional;
 
 // modified scene builder to fit new requirements
 
-public class Add_Appointment_Controller {
+public class Add_Appointment_Controller implements Initializable {
 
-    ObservableList<Appointments> addingAppts = FXCollections.observableArrayList();
+    ObservableList<String> contactNames = FXCollections.observableArrayList();
+    ObservableList<String> customerNames = FXCollections.observableArrayList();
+    ObservableList<Integer> customerIDs = FXCollections.observableArrayList();
 
     @FXML private TextField addApptID;
     @FXML private TextField addApptTitle;
     @FXML private TextField addApptDescript;
     @FXML private TextField addApptLocale;
-    @FXML private ComboBox<Contacts> addApptContact;
-    @FXML private ComboBox<Appointments> addApptType;
+    @FXML private ComboBox<String> addApptContact;
+    @FXML private ComboBox<String> addApptType;
     @FXML private DatePicker addApptStrtTime;
     @FXML private DatePicker addApptEndTime;
-    @FXML private ComboBox<Customers> addApptCustID;
-    @FXML private ComboBox<Customers> addApptCustName;
-    @FXML private ComboBox<?> addApptUserID;
+    @FXML private ComboBox<Integer> addApptCustID;
+    @FXML private ComboBox<String> addApptCustName;
+    @FXML private ComboBox<Integer> addApptUserID; // make the init data auto-generated based off of the log-in
     @FXML private Button addApptSubmitBtn;
     @FXML private Button addApptCancelBtn;
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        DBContacts.getAllContacts().forEach((contact) -> {
+            contactNames.add(contact.getName());
+        });
+        addApptContact.setItems(contactNames);
+        DBCustomers.getAllCust().forEach((customer) -> {
+            customerNames.add(customer.getName());
+            customerIDs.add(customer.getCustID());
+        });
+        addApptCustName.setItems(customerNames);
+        addApptCustID.setItems(customerIDs); // should be auto-generated based off of the customer name (make uneditable);
+        addApptType.getItems().addAll("Planning", "De-Briefing", "Timeline Check");
+    }
 
     // for the auto gen ID.
     // i need to start the count after the last appointment from the database.
@@ -108,8 +130,6 @@ public class Add_Appointment_Controller {
         }
     }
 
-
-
     public Boolean isValid() {
         boolean isTrue = false;
         // checks text fields/checkboxes to ensure each contains a value.
@@ -119,22 +139,21 @@ public class Add_Appointment_Controller {
             return false;
         } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
             return false;
-//        } else if (addApptContact.getItems().isEmpty() || addApptContact.getItems() == null) {  // I need to populate the checkbox with contactIDs
-//            return false;
-//        }
+        } else if (addApptContact.getEditor().getText().isEmpty() || addApptContact.getEditor().getText() == null) {
+            return false;
+        } else if (addApptType.getEditor().getText().isEmpty() || addApptType.getEditor().getText() == null) {
+            return false;
+        } else if (addApptStrtTime.getEditor().getText().isEmpty() || addApptStrtTime.getEditor().getText() == null) {
+            return false;
+        } else if (addApptEndTime.getEditor().getText().isEmpty() || addApptEndTime.getEditor().getText() == null) {
+            return false;
+        } else if (addApptCustID.getEditor().getText().isEmpty() || addApptCustID.getEditor().getText() == null) {
+            return false;
+        } else if (addApptUserID.getEditor().getText().isEmpty() || addApptUserID.getEditor().getText() == null) {
+            return false;
         }
-//        else if (addApptType.getText().isEmpty() || addApptType.getText() == null) {
-//            return isTrue;
-//        } else if (addApptStrtTime.getText().isEmpty() || addApptStrtTime.getText() == null) {
-//            return isTrue;
-//        } else if (addApptEndTime.getText().isEmpty() || addApptEndTime.getText() == null) {
-//            return isTrue;
-//        } else if (addApptCustID.getText().isEmpty() || addApptCustID.getText() == null) {
-//            return isTrue;
-//        } else if (addApptUserID.getText().isEmpty() || addApptUserID.getText() == null) {
-//            return isTrue;
-//        }
         return true;
     }
+
 }
 

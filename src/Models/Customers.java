@@ -43,11 +43,13 @@ public class Customers {
     public IntegerProperty getCustomerID() {
         return this.customerID;
     }
+    public Integer getCustID() {return customerID.get();}
 
     // customer name
     public StringProperty getCustName() {
         return this.custName;
     }
+    public String getName(){return custName.get();}
 
     // customer address
     public StringProperty getCustAddress() {

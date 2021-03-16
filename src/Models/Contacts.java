@@ -3,28 +3,29 @@ package Models;
 import javafx.beans.property.*;
 
 public class Contacts {
-    private static IntegerProperty contactID;
-    private static StringProperty contactName;
-    private static StringProperty contactEmail;
+    private IntegerProperty contactID;
+    private StringProperty contactName;
+    private StringProperty contactEmail;
 
     public Contacts(int contactID, String name, String email) {
-        Contacts.contactID = new SimpleIntegerProperty(contactID);
+        this.contactID = new SimpleIntegerProperty(contactID);
         contactName = new SimpleStringProperty(name);
         contactEmail = new SimpleStringProperty(email);
     }
 
     // contactID
-    public static IntegerProperty getContactID() {
+    public IntegerProperty getContactID() {
         return contactID;
     }
 
     // contact name
-    public static StringProperty getContactName() {
+    public StringProperty getContactName() {
         return contactName;
     }
+    public String getName(){return contactName.get();}
 
     // contact email
-    public static StringProperty getContactEmail() {
+    public StringProperty getContactEmail() {
         return contactEmail;
     }
 }

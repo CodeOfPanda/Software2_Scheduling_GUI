@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class DBContacts {
 
-    public static ObservableList<Contacts> getContact() {
+    public static ObservableList<Contacts> getAllContacts() {
         ObservableList<Contacts> contactAppts = FXCollections.observableArrayList();
 
         try{
