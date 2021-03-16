@@ -1,6 +1,7 @@
 package View_Controllers;
 
 import Models.Appointments;
+import Models.Contacts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,19 +21,19 @@ public class Contact_Controller implements Initializable {
 
     @FXML private Button contactSearchBtn;
     @FXML private TextField contactSearchText;
-    @FXML private TableView<Appointments> contactTable;
-    @FXML private TableColumn<Appointments, Integer> contactApptID;
-    @FXML private TableColumn<Appointments, String> contactApptTitle;
-    @FXML private TableColumn<Appointments, String> contactApptType;
-    @FXML private TableColumn<Appointments, String> contactApptDescript;
-    @FXML private TableColumn<Appointments, String> contactApptStrtTime;
-    @FXML private TableColumn<Appointments, String> contactApptEndTime;
-    @FXML private TableColumn<Appointments, Integer> contactApptCustID;
+    @FXML private TableView<Contacts> contactTable;
+    @FXML private TableColumn<Contacts, Integer> contactApptID;
+    @FXML private TableColumn<Contacts, String> contactApptTitle;
+    @FXML private TableColumn<Contacts, String> contactApptType;
+    @FXML private TableColumn<Contacts, String> contactApptDescript;
+    @FXML private TableColumn<Contacts, String> contactApptStrtTime;
+    @FXML private TableColumn<Contacts, String> contactApptEndTime;
+    @FXML private TableColumn<Contacts, Integer> contactApptCustID;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        contactTable.setItems(DBContacts.getContact(Appointments.getContact()));
+
 
     }
 
@@ -49,7 +50,6 @@ public class Contact_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
         Parent viewCustsRoot = loader.load();
-
         Stage viewCustsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene viewCustsScene = new Scene(viewCustsRoot);
         viewCustsStage.setScene(viewCustsScene);
@@ -63,7 +63,6 @@ public class Contact_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/All_Appointment_Records_Scene.fxml"));
         Parent viewApptsRoot = loader.load();
-
         Stage viewApptsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene viewApptsScene = new Scene(viewApptsRoot);
         viewApptsStage.setScene(viewApptsScene);
@@ -84,7 +83,6 @@ public class Contact_Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../resources/Login_Scene.fxml"));
             Parent loginRoot = loader.load();
-
             Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene loginScene = new Scene(loginRoot);
             loginStage.setScene(loginScene);

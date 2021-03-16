@@ -1,5 +1,8 @@
 package View_Controllers;
 
+import Models.Appointments;
+import Models.Contacts;
+import Models.Customers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,13 +35,13 @@ public class Update_Appointment_Scene implements Initializable {
     @FXML private TextField modApptTitle;
     @FXML private TextField modApptDescript;
     @FXML private TextField modApptLocale;
-    @FXML private ChoiceBox<?> modApptContact;
-    @FXML private ChoiceBox<?> modApptType;
+    @FXML private ComboBox<Contacts> modApptContact;
+    @FXML private ComboBox<Appointments> modApptType;
     @FXML private DatePicker modApptStrtTime;
     @FXML private DatePicker modApptEndTime;
-    @FXML private ChoiceBox<?> modApptCustID;
-    @FXML private ChoiceBox<?> modApptCustName;
-    @FXML private ChoiceBox<?> modApptUserID;
+    @FXML private ComboBox<Customers> modApptCustID;
+    @FXML private ComboBox<Customers> modApptCustName;
+    @FXML private ComboBox<?> modApptUserID;
     @FXML private Button modApptSubmitBtn;
     @FXML private Button modApptCancelBtn;
 

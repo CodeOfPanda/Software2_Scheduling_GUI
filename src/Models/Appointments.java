@@ -1,32 +1,43 @@
 package Models;
 
 import javafx.beans.property.*;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 
 public class Appointments {
-
+    // properties to populate the table data.
+    // for some reason these property variables can't be static and load the data correctly.
+    private IntegerProperty appointmentID;
+    private StringProperty title;
+    private StringProperty location;
+    private StringProperty description;
+    private StringProperty type;
+    private ObjectProperty<LocalDateTime> start;
+    private ObjectProperty<LocalDateTime> end;
+    private ObjectProperty<LocalDateTime> createDate;
+    private StringProperty createdBy;
+    private ObjectProperty<Timestamp> lastUpdate;
+    private StringProperty lastUpdatedBy;
+    private IntegerProperty customerID;
+    private IntegerProperty userID;
+    private IntegerProperty contactID;
+    // static methods
     private static int apptIDCount = 0;
-    private static IntegerProperty appointmentID;
-    private static StringProperty title;
-    private static StringProperty description;
-    private static StringProperty location;
-    private static StringProperty type;
-    private static ObjectProperty<LocalDateTime> start;
-    private static ObjectProperty<LocalDateTime> end;
-    private static LocalDateTime createDate;
-    private static StringProperty createdBy;
-    private static Timestamp lastUpdate;
-    private static StringProperty lastUpdatedBy;
-    private static IntegerProperty customerID;
-    private static IntegerProperty userID;
-    private static IntegerProperty contactID;
-
-
+    private static int apptID;
+    private static String apptTitle;
+    private static String apptLocation;
+    private static String apptDescription;
+    private static String apptType;
+    private static ObjectProperty<LocalDateTime> apptStart;
+    private static ObjectProperty<LocalDateTime> apptEnd;
+    private static ObjectProperty<LocalDateTime> apptCreateDate;
+    private static String apptCreatedBy;
+    private static ObjectProperty<Timestamp> apptLastUpdate;
+    private static String apptLastUpdatedBy;
+    private static int apptCustomerID;
+    private static int apptUserID;
+    private static int apptContactID;
     // constructor method
     public Appointments(int appointmentID, String title, String description, String location, String type
                         ,LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createdBy
@@ -39,9 +50,9 @@ public class Appointments {
         this.type = new SimpleStringProperty(type);
         this.start = new SimpleObjectProperty<>(start);
         this.end = new SimpleObjectProperty<>(end);
-        this.createDate = createDate;
+        this.createDate = new SimpleObjectProperty<>(createDate);
         this.createdBy = new SimpleStringProperty(createdBy);
-        this.lastUpdate = lastUpdate;
+        this.lastUpdate = new SimpleObjectProperty<>(lastUpdate);
         this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
         this.customerID = new SimpleIntegerProperty(customerID);
         this.userID = new SimpleIntegerProperty(userID);
@@ -53,13 +64,13 @@ public class Appointments {
         return appointmentID;
     }
     public static int getApptID() {
-        return appointmentID.get();
+        return Appointments.apptID;
     }
     // for the auto gen ID
     public static int getApptIDCount() {
         return apptIDCount;
     }
-    public static void setApptIDCount() {
+    public void setApptIDCount() {
         apptIDCount += 1;
     }
 
@@ -67,25 +78,25 @@ public class Appointments {
     public StringProperty getTitle() {
         return title;
     }
-    public static String getApptTitle() {return title.get();}
+    public String getApptTitle() {return title.get();}
 
     // description
     public StringProperty getDescription() {
         return description;
     }
-    public static String getApptDescript() {return description.get();}
+    public String getApptDescript() {return description.get();}
 
     // location
     public StringProperty getLocation() {
         return location;
     }
-    public static String getApptLocation() {return location.get();}
+    public String getApptLocation() {return location.get();}
 
     // type
     public StringProperty getType() {
         return type;
     }
-    public static String getApptType() {return type.get();}
+    public String getApptType() {return type.get();}
 
     // start datetime
     public ObjectProperty<LocalDateTime> getStart() {
@@ -98,7 +109,7 @@ public class Appointments {
     }
 
     // create_date datetime
-    public LocalDateTime getCreateDate() {
+    public ObjectProperty<LocalDateTime> getCreateDate() {
         return createDate;
     }
 
@@ -106,9 +117,10 @@ public class Appointments {
     public StringProperty getCreatedBy() {
         return createdBy;
     }
+    public static String getApptCreatedBy() {return apptCreatedBy;}
 
     // last_update timestamp
-    public Timestamp getLastUpdate() {
+    public ObjectProperty<Timestamp> getLastUpdate() {
         return lastUpdate;
     }
 
@@ -116,18 +128,19 @@ public class Appointments {
     public StringProperty getLastUpdatedBy() {
         return lastUpdatedBy;
     }
+    public static String getApptLastUpdatedBy() {return apptLastUpdatedBy;}
 
     // customer id
     public IntegerProperty getCustomerID() {
         return customerID;
     }
-    public static int getApptCustomerID() {return customerID.get();}
+    public int getApptCustomerID() {return customerID.get();}
 
     // user id
     public IntegerProperty getUserID() {
         return userID;
     }
-    public static int getApptUserID() {return userID.get();}
+    public int getApptUserID() {return userID.get();}
 
     // contact id
     public int getContact() {
@@ -136,19 +149,3 @@ public class Appointments {
     public IntegerProperty getApptContactID() { return contactID;}
 
 }
-
-
-//Appointment_ID int(10) AI PK
-//Title varchar(50)
-//Description varchar(50)
-//Location varchar(50)
-//Type varchar(50)
-//Start datetime
-//End datetime
-//Create_Date datetime
-//Created_By varchar(50)
-//Last_Update timestamp
-//Last_Updated_By varchar(50)
-//Customer_ID int(10)
-//User_ID int(10)
-//Contact_ID int(10)

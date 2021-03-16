@@ -76,7 +76,6 @@ public class All_Appointments_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
         Parent allCustomersRoot = loader.load();
-
         Stage allCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene allCustScene = new Scene(allCustomersRoot);
         allCustStage.setScene(allCustScene);
@@ -90,10 +89,8 @@ public class All_Appointments_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Customer_Appointments_Scene.fxml"));
         Parent custApptsRoot = loader.load();
-
         Stage custApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene custApptScene = new Scene(custApptsRoot);
-
         custApptStage.setScene(custApptScene);
         custApptStage.show();
     }
@@ -105,7 +102,6 @@ public class All_Appointments_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Contact_Dashboard_Scene.fxml"));
         Parent contDashRoot = loader.load();
-
         Stage contDashStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene contDashScene = new Scene(contDashRoot);
         contDashStage.setScene(contDashScene);

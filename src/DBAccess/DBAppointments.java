@@ -1,13 +1,12 @@
 package DBAccess;
 
 import Models.Appointments;
+import Models.Contacts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+
+import java.sql.*;
 import java.time.LocalDateTime;
 
 // dbName: WJ07K54
@@ -49,9 +48,50 @@ public class DBAppointments {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return apptList;
     }
 
+
+    // method to create an appointment
+    public static void createAppt(String title, String description, String location, String createdBy, String lastUpdatedBy) {
+
+        try {
+            // mySQL statement
+            String createAppt = "INSERT INTO WJ07K54.appointments VALUES(null, ?, ?, ?, null, null, null, null, ?, null, ?, null, null, null);";
+            PreparedStatement psCA = DBConnection.getConnection().prepareStatement(createAppt);
+            psCA.setString(1, title);
+            psCA.setString(2, description);
+            psCA.setString(3, location);
+//            psCA.setString(4, type);
+            psCA.setString(4, createdBy);
+            psCA.setString(5, lastUpdatedBy);
+
+            psCA.execute();
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+//
+//    // method to modify an appointment
+//    public static void modifyAppt() {
+//        try {
+//            // mySQL statement
+//        }
+//        catch () {
+//
+//        }
+//    }
+//
+//    // method to delete an appointment
+//    public static void deleteAppt() {
+//        try {
+//            // mySQL statement
+//        }
+//        catch () {
+//
+//        }
+//    }
 
 }

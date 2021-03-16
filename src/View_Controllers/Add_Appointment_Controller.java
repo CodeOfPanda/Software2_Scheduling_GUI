@@ -1,6 +1,9 @@
 package View_Controllers;
 
+import DBAccess.DBAppointments;
 import Models.Appointments;
+import Models.Contacts;
+import Models.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +16,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Optional;
 
 /*
@@ -32,13 +34,13 @@ public class Add_Appointment_Controller {
     @FXML private TextField addApptTitle;
     @FXML private TextField addApptDescript;
     @FXML private TextField addApptLocale;
-    @FXML private ChoiceBox<?> addApptContact;
-    @FXML private ChoiceBox<?> addApptType;
+    @FXML private ComboBox<Contacts> addApptContact;
+    @FXML private ComboBox<Appointments> addApptType;
     @FXML private DatePicker addApptStrtTime;
     @FXML private DatePicker addApptEndTime;
-    @FXML private ChoiceBox<?> addApptCustID;
-    @FXML private ChoiceBox<?> addApptCustName;
-    @FXML private ChoiceBox<?> addApptUserID;
+    @FXML private ComboBox<Customers> addApptCustID;
+    @FXML private ComboBox<Customers> addApptCustName;
+    @FXML private ComboBox<?> addApptUserID;
     @FXML private Button addApptSubmitBtn;
     @FXML private Button addApptCancelBtn;
 
@@ -57,6 +59,8 @@ public class Add_Appointment_Controller {
         // back to Customer_Appointments_Scene.
 
         if(isValid()) {
+            // inserting into database
+            DBAppointments.createAppt(addApptTitle.getText(), addApptDescript.getText(), addApptLocale.getText(), Appointments.getApptCreatedBy(), Appointments.getApptLastUpdatedBy());
 
             Alert submit = new Alert(Alert.AlertType.INFORMATION);
             submit.initModality(Modality.NONE);
@@ -107,18 +111,19 @@ public class Add_Appointment_Controller {
 
 
     public Boolean isValid() {
-//        boolean isTrue = false;
-//        // checks text fields/checkboxes to ensure each contains a value.
-//        if (addApptTitle.getText().isEmpty() || addApptTitle.getText() == null) {
-//            return isTrue;
-//        } else if (addApptDescript.getText().isEmpty() || addApptDescript.getText() == null) {
-//            return isTrue;
-//        } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
-//            return isTrue;
-////        } else if (addApptContact.getItems().isEmpty() || addApptContact.getItems() == null) {  // I need to populate the checkbox with contactIDs
-////            return false;
-////        }
-//        } else if (addApptType.getText().isEmpty() || addApptType.getText() == null) {
+        boolean isTrue = false;
+        // checks text fields/checkboxes to ensure each contains a value.
+        if (addApptTitle.getText().isEmpty() || addApptTitle.getText() == null) {
+            return false;
+        } else if (addApptDescript.getText().isEmpty() || addApptDescript.getText() == null) {
+            return false;
+        } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
+            return false;
+//        } else if (addApptContact.getItems().isEmpty() || addApptContact.getItems() == null) {  // I need to populate the checkbox with contactIDs
+//            return false;
+//        }
+        }
+//        else if (addApptType.getText().isEmpty() || addApptType.getText() == null) {
 //            return isTrue;
 //        } else if (addApptStrtTime.getText().isEmpty() || addApptStrtTime.getText() == null) {
 //            return isTrue;
