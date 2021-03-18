@@ -22,11 +22,10 @@ public class Add_Customer_Controller implements Initializable {
     @FXML private TextField addCustEmail;
     @FXML private TextField addCustPhone;
     @FXML private TextField addCustAddress;
-    @FXML private ChoiceBox<?> addCustCountry;
+    @FXML private ComboBox<String> addCustCountry;
     @FXML private TextField addCustCity;
-    @FXML private ChoiceBox<?> addCustState;
+    @FXML private ComboBox<String> addCustDivision;
     @FXML private TextField addCustPostal;
-    @FXML private TextField addCustProvince;
     @FXML private Button addCustSubmitBtn;
     @FXML private Button addCustCancelBtn;
 
@@ -42,9 +41,7 @@ public class Add_Customer_Controller implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     // Submit Button Action Event
     @FXML

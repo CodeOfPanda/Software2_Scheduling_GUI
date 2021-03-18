@@ -44,9 +44,7 @@ public class LoginController implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     // sign in button action
     public void signInBtnClicked(ActionEvent actionEvent) throws IOException {

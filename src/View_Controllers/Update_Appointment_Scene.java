@@ -46,9 +46,7 @@ public class Update_Appointment_Scene implements Initializable {
     @FXML private Button modApptCancelBtn;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     // Submit Button Action Event
     @FXML

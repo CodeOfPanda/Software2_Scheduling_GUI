@@ -33,19 +33,16 @@ public class Update_Customer_Controller implements Initializable{
     @FXML private TextField modCustEmail;
     @FXML private TextField modCustPhone;
     @FXML private TextField modCustAddress;
-    @FXML private ChoiceBox<?> modCustCountry;
+    @FXML private ComboBox<?> modCustCountry;
     @FXML private TextField modCustCity;
-    @FXML private ChoiceBox<?> modCustState;
+    @FXML private ComboBox<?> modCustDivision;
     @FXML private TextField modCustPostal;
-    @FXML private TextField modCustProvince;
     @FXML private Button modCustSubmitBtn;
     @FXML private Button modCustCancelBtn;
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     // Submit Button Action Event
     @FXML

@@ -84,19 +84,19 @@
          <children>
             <TextField fx:id="modApptID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1">
                <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
+                  <Font name="Bookman Old Style" size="11.0" />
                </font></TextField>
             <TextField fx:id="modApptTitle" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Title">
                <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
+                  <Font name="Bookman Old Style" size="11.0" />
                </font></TextField>
             <TextField fx:id="modApptDescript" layoutX="10.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Description">
                <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
+                  <Font name="Bookman Old Style" size="11.0" />
                </font></TextField>
             <TextField fx:id="modApptLocale" layoutX="10.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Location">
                <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
+                  <Font name="Bookman Old Style" size="11.0" />
                </font></TextField>
             <ComboBox fx:id="modApptContact" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />

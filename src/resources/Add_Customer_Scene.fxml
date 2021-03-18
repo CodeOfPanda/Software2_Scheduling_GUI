@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +21,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="500.0" spacing="15.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="75.0">
+      <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="500.0" spacing="20.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="75.0">
          <children>
             <Label contentDisplay="RIGHT" prefHeight="27.0" prefWidth="326.0" text="Customer_ID">
                <font>
@@ -30,7 +30,7 @@
                <graphic>
                   <TextField fx:id="addCustID" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1" translateX="27.0">
                      <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
+                        <Font name="Bookman Old Style" size="11.0" />
                      </font>
                   </TextField>
                </graphic>
@@ -45,7 +45,7 @@
                <graphic>
                   <TextField fx:id="addCustName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Jane Doe" translateX="7.0">
                      <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
+                        <Font name="Bookman Old Style" size="11.0" />
                      </font>
                   </TextField>
                </graphic>
@@ -57,7 +57,7 @@
                <graphic>
                   <TextField fx:id="addCustEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="jdoe@wgu.edu" translateX="77.0">
                      <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
+                        <Font name="Bookman Old Style" size="11.0" />
                      </font>
                   </TextField>
                </graphic>
@@ -69,7 +69,7 @@
                <graphic>
                   <TextField fx:id="addCustPhone" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="111-111-1111" translateX="14.0">
                      <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
+                        <Font name="Bookman Old Style" size="11.0" />
                      </font>
                   </TextField>
                </graphic>
@@ -81,85 +81,73 @@
                <graphic>
                   <TextField fx:id="addCustAddress" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="1 Paris Lane" translateX="57.0">
                      <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
+                        <Font name="Bookman Old Style" size="11.0" />
                      </font>
                   </TextField>
                </graphic>
             </Label>
          </children>
       </VBox>
-      <VBox prefHeight="35.0" prefWidth="500.0" spacing="12.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="335.0">
+      <VBox alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="500.0" spacing="12.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="335.0">
          <children>
             <Label contentDisplay="RIGHT" prefHeight="26.0" prefWidth="370.0" text="Country">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
                <graphic>
-                  <ChoiceBox fx:id="addCustCountry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" translateX="60.0" />
+                  <ComboBox fx:id="addCustCountry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" translateX="60.0" />
                </graphic>
             </Label>
          </children>
       </VBox>
-      <HBox prefHeight="40.0" prefWidth="500.0" spacing="48.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="375.0">
+      <HBox alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="500.0" spacing="30.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="375.0">
          <children>
             <Label contentDisplay="RIGHT" text="City">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
                <graphic>
-                  <TextField fx:id="addCustCity" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Denver" translateX="5.0">
+                  <TextField fx:id="addCustCity" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Denver" translateX="10.0">
                      <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
+                        <Font name="Bookman Old Style" size="11.0" />
                      </font>
                   </TextField>
                </graphic>
             </Label>
-            <Label contentDisplay="RIGHT" text="State">
+            <Label contentDisplay="RIGHT" text="Division">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
                <graphic>
-                  <ChoiceBox fx:id="addCustState" prefWidth="150.0" translateX="11.0" />
+                  <ComboBox fx:id="addCustDivision" prefWidth="150.0" translateX="5.0" />
                </graphic>
             </Label>
          </children>
       </HBox>
-      <HBox prefHeight="45.0" prefWidth="500.0" spacing="20.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="418.0">
+      <HBox alignment="BOTTOM_LEFT" prefHeight="32.0" prefWidth="500.0" spacing="20.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="418.0">
          <children>
             <Label contentDisplay="RIGHT" text="Postal/Zip Code">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
                <graphic>
-                  <TextField fx:id="addCustPostal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="120.0" promptText="80237" translateX="7.0">
+                  <TextField fx:id="addCustPostal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="120.0" promptText="80237" translateX="12.0">
                      <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
-                     </font>
-                  </TextField>
-               </graphic>
-            </Label>
-            <Label contentDisplay="RIGHT" text="Province">
-               <font>
-                  <Font name="Bookman Old Style" size="14.0" />
-               </font>
-               <graphic>
-                  <TextField fx:id="addCustProvince" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0" promptText="Optional" translateX="10.0">
-                     <font>
-                        <Font name="Bookman Old Style Italic" size="11.0" />
+                        <Font name="Bookman Old Style" size="11.0" />
                      </font>
                   </TextField>
                </graphic>
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="300.0" spacing="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="475.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="213.0" prefHeight="45.0" prefWidth="450.0" spacing="30.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="475.0">
          <children>
             <Button fx:id="addCustSubmitBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCustSubmitBtnClicked" prefHeight="25.0" prefWidth="70.0" text="Submit">
                <font>
                   <Font name="Bookman Old Style" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="addCustCancelBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCustCancelBtnClicked" prefHeight="25.0" prefWidth="70.0" text="Cancel" translateX="125.0">
+            <Button fx:id="addCustCancelBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCustCancelBtnClicked" prefHeight="25.0" prefWidth="70.0" text="Cancel">
                <font>
                   <Font name="Bookman Old Style" size="13.0" />
                </font>
