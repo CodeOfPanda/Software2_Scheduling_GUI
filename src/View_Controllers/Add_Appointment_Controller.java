@@ -79,19 +79,23 @@ public class Add_Appointment_Controller implements Initializable {
         // when triggered an information alert will inform the user that their changes have been saved and take them
         // back to All_Appointments_Scene.
 
-//        if(isValid()) {
+        if(isValid()) {
+
 //        addApptContact.getEditor().getText()
             // inserting into database
             DBAppointments.createAppt(addApptTitle.getText()
                     , addApptDescript.getText()
-                    , addApptLocale.getText(), addApptType.getValue()
+                    , addApptLocale.getText()
+                    , addApptType.getValue()
                     , addApptStrtTime.getValue().atStartOfDay()
-                    ,addApptEndTime.getValue().atStartOfDay()
-                    , Appointments.getApptCreateDate(), Appointments.getApptCreatedBy(),Appointments.getApptLastUpdate(),
-                    Appointments.getApptLastUpdatedBy(), addApptCustID.getValue()
+                    , addApptEndTime.getValue().atStartOfDay()
+                    , Appointments.getApptCreateDate()
+                    , Appointments.getApptCreatedBy()
+                    , Appointments.getApptLastUpdate()
+                    , Appointments.getApptLastUpdatedBy()
+                    , addApptCustID.getValue()
 //                    , addApptUserID.getValue()
-                    , Contacts.getCtID()
-                    );
+                    , Contacts.getCtID());
 
             Alert submit = new Alert(Alert.AlertType.INFORMATION);
             submit.initModality(Modality.NONE);
@@ -107,12 +111,12 @@ public class Add_Appointment_Controller implements Initializable {
                 submitApptStage.setScene(submitApptScene);
                 submitApptStage.show();
             }
-//        } else {
-//            Alert error = new Alert(Alert.AlertType.ERROR);
-//            error.setTitle("Missing Information.");
-//            error.setHeaderText("Please make sure you have filled out each text field.");
-//            Optional<ButtonType> results = error.showAndWait();
-//            }
+        } else {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Missing Information.");
+            error.setHeaderText("Please make sure you have filled out each text field.");
+            Optional<ButtonType> results = error.showAndWait();
+            }
 
 
     }
@@ -141,29 +145,34 @@ public class Add_Appointment_Controller implements Initializable {
 
     // checks to make sure each variable contains a value.
     public Boolean isValid() {
-        boolean isTrue = false;
-        // checks text fields/checkboxes to ensure each contains a value.
+        // checks text fields/combo-boxes to ensure each contains a value.
         if (addApptTitle.getText().isEmpty() || addApptTitle.getText() == null) {
             return false;
         } else if (addApptDescript.getText().isEmpty() || addApptDescript.getText() == null) {
-            return false;
+//            return false;
         } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
             return false;
         } else if (addApptContact.getEditor().getText().isEmpty() || addApptContact.getEditor().getText() == null) {
             return false;
-        } else if (addApptType.getEditor().getText().isEmpty() || addApptType.getEditor().getText() == null) {
-            return false;
-        } else if (addApptStrtTime.getEditor().getText().isEmpty() || addApptStrtTime.getEditor().getText() == null) {
-            return false;
-        } else if (addApptEndTime.getEditor().getText().isEmpty() || addApptEndTime.getEditor().getText() == null) {
-            return false;
-        } else if (addApptCustID.getEditor().getText().isEmpty() || addApptCustID.getEditor().getText() == null) {
-            return false;
-        } else if (addApptCustName.getEditor().getText().isEmpty() || addApptCustName.getEditor().getText() == null) {
-            return false;
-        } else if (addApptUserID.getEditor().getText().isEmpty() || addApptUserID.getEditor().getText() == null) {
-            return false;
         }
+
+        //FIXME: combo-boxes are not validating..
+//        else if (addApptType.getItems().isEmpty() || addApptType.getItems() == null) {
+//            System.out.println(addApptType.getItems());
+//            return false;
+//        } // was trying out different conditions in addApptType
+//        else if (addApptStrtTime.getEditor().getText().isEmpty() || addApptStrtTime.getEditor().getText() == null) {
+//            return false;
+//        } else if (addApptEndTime.getEditor().getText().isEmpty() || addApptEndTime.getEditor().getText() == null) {
+//            return false;
+//        } else if (addApptCustID.getEditor().getText().isEmpty() || addApptCustID.getEditor().getText() == null) {
+//            return false;
+//        } else if (addApptCustName.getEditor().getText().isEmpty() || addApptCustName.getEditor().getText() == null) {
+//            return false;
+//        }
+//        else if (addApptUserID.getEditor().getText().isEmpty() || addApptUserID.getEditor().getText() == null) {
+//            return false;
+//        }
             return true;
     }
 

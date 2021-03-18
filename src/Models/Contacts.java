@@ -34,7 +34,7 @@ public class Contacts {
     public StringProperty getContactName() {
         return contactName;
     }
-    public static String getName(){return ctName;}
+    public String getName(){return contactName.get();}
 
     // contact email
     public StringProperty getContactEmail() {
