@@ -48,12 +48,12 @@ public class LoginController implements Initializable {
 
     }
 
+    // sign in button action
     public void signInBtnClicked(ActionEvent actionEvent) throws IOException {
-        //when triggered this takes the user to All_Appointment_Records_Scene.
+        //when triggered this takes the user to All_Appointments_Scene.
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/All_Appointment_Records_Scene.fxml"));
+        loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
         Parent allAppointmentsRoot = loader.load();
-
         Stage allAppointmentsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene allAppointmentsScene = new Scene(allAppointmentsRoot);
         allAppointmentsStage.setScene(allAppointmentsScene);

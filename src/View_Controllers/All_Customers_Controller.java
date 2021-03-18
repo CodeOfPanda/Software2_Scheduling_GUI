@@ -2,6 +2,8 @@ package View_Controllers;
 
 import DBAccess.DBCustomers;
 import Models.Customers;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,25 +27,28 @@ import java.util.ResourceBundle;
  */
 
 public class All_Customers_Controller implements Initializable {
-
-//    @FXML private Button allCustSearchBtn;
+    ObservableList<String> customerNames = FXCollections.observableArrayList();
+    @FXML private ComboBox<String> customerNameCombo;
+    @FXML private Button allCustSearchBtn;
     @FXML private TextField allCustSearchTextField;
     @FXML private TableView<Customers> allCustTable;
     @FXML private TableColumn<Customers, Integer> allCustID;
     @FXML private TableColumn<Customers, String> allCustName;
-    @FXML private TableColumn<Customers, String> allCustStreet;
-//    @FXML private TableColumn<Customers, Integer> allCustAptNum;
-    @FXML private TableColumn<Customers, String> allCustState;
-//    @FXML private TableColumn<Customers, String> allCustProv;
+    @FXML private TableColumn<Customers, String> allCustAddress;
+    @FXML private TableColumn<Customers, String> allCustDivision;
     @FXML private TableColumn<Customers, String> allCustPostal;
     @FXML private TableColumn<Customers, String> allCustPhone;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DBCustomers.getAllCust().forEach((customer) -> {
+            customerNames.add(customer.getName());
+        });
+        customerNameCombo.setItems(customerNames);
         allCustTable.setItems(DBCustomers.getAllCust());
         allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
-        allCustName.setCellValueFactory(cellData -> cellData.getValue().getCustName());
-        allCustStreet.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
+//        allCustName.setCellValueFactory(cellData -> cellData.getValue().getCustName());
+        allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
         allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
         allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
     }
@@ -76,7 +81,6 @@ public class All_Customers_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Update_Customer_Scene.fxml"));
         Parent modCustRoot = loader.load();
-
         Stage modCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene modCustScene = new Scene(modCustRoot);
         modCustStage.setScene(modCustScene);
@@ -86,18 +90,18 @@ public class All_Customers_Controller implements Initializable {
     // Delete Button Action Event
     @FXML
     public void allCustDelBtnClicked(ActionEvent event) {
-        // when triggered this gives user a confirmation alert before deleting a customer and all their appointments.
+        // when triggered this gives user a confirmation alert before deleting a customer.
+        // it needs to ask user if they would like to also delete any appointments this customer had.
 
     }
 
     // Back Button Action Event
     @FXML
     public void allCustBackBtnClicked(ActionEvent event) throws IOException {
-        // when triggered this takes the user to All_Appointment_Records_Scene.
+        // when triggered this takes the user to All_Appointments_Scene.
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/All_Appointment_Records_Scene.fxml"));
+        loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
         Parent backCustRoot = loader.load();
-
         Stage backCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene backCustScene = new Scene(backCustRoot);
         backCustStage.setScene(backCustScene);
@@ -119,7 +123,6 @@ public class All_Customers_Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../resources/Login_Scene.fxml"));
             Parent loginRoot = loader.load();
-
             Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene loginScene = new Scene(loginRoot);
             loginStage.setScene(loginScene);

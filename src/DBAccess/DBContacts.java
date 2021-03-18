@@ -38,6 +38,29 @@ public class DBContacts {
         return contactAppts;
     }
 
+    public static ObservableList<Contacts> getContactID() {
+        ObservableList<Contacts> contactIDs = FXCollections.observableArrayList();
+
+        try{
+            // mySQL statement
+            String idSql = "select Contact_ID, Contact_Name from WJ07K54.contacts where Contact_ID=?;";
+            PreparedStatement psID = DBConnection.getConnection().prepareStatement(idSql);
+            ResultSet IDResults = psID.executeQuery();
+
+            while (IDResults.next()) {
+                int contactID = IDResults.getInt("Contact_ID");
+                String name = IDResults.getString("Contact_Name");
+                Contacts IDList = new Contacts(contactID, name);
+                contactIDs.add(IDList);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return contactIDs;
+    }
+
 }
 
 //Contact_ID int(10) AI PK

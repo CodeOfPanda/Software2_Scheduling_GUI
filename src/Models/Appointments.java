@@ -44,19 +44,33 @@ public class Appointments {
                         ,Timestamp lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID)
     {
         this.appointmentID = new SimpleIntegerProperty(appointmentID);
+        apptID = appointmentID;
         this.title = new SimpleStringProperty(title);
+        apptTitle = title;
         this.description = new SimpleStringProperty(description);
+        apptDescription = description;
         this.location = new SimpleStringProperty(location);
+        apptLocation = location;
         this.type = new SimpleStringProperty(type);
+        apptType = type;
         this.start = new SimpleObjectProperty<>(start);
+//        apptStart = start;
         this.end = new SimpleObjectProperty<>(end);
+//        apptEnd = end;
         this.createDate = new SimpleObjectProperty<>(createDate);
+//        apptCreateDate = createDate;
         this.createdBy = new SimpleStringProperty(createdBy);
+        apptCreatedBy = createdBy;
         this.lastUpdate = new SimpleObjectProperty<>(lastUpdate);
+//        apptLastUpdate = lastUpdate;
         this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
+        apptLastUpdatedBy = lastUpdatedBy;
         this.customerID = new SimpleIntegerProperty(customerID);
+        apptCustomerID = customerID;
         this.userID = new SimpleIntegerProperty(userID);
+        apptUserID = userID;
         this.contactID = new SimpleIntegerProperty(contactID);
+        apptContactID = contactID;
     }
 
     // appointmentID
@@ -112,6 +126,9 @@ public class Appointments {
     public ObjectProperty<LocalDateTime> getCreateDate() {
         return createDate;
     }
+    public static ObjectProperty<LocalDateTime> getApptCreateDate() {
+        return apptCreateDate;
+    }
 
     // created_by
     public StringProperty getCreatedBy() {
@@ -123,6 +140,7 @@ public class Appointments {
     public ObjectProperty<Timestamp> getLastUpdate() {
         return lastUpdate;
     }
+    public static ObjectProperty<Timestamp> getApptLastUpdate() {return apptLastUpdate;}
 
     // last_updated_by
     public StringProperty getLastUpdatedBy() {

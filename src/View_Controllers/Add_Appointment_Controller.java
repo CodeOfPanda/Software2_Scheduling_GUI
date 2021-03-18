@@ -5,7 +5,6 @@ import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
 import Models.Appointments;
 import Models.Contacts;
-import Models.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -78,11 +77,21 @@ public class Add_Appointment_Controller implements Initializable {
     @FXML
     void addApptSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an information alert will inform the user that their changes have been saved and take them
-        // back to Customer_Appointments_Scene.
+        // back to All_Appointments_Scene.
 
-        if(isValid()) {
+//        if(isValid()) {
+//        addApptContact.getEditor().getText()
             // inserting into database
-            DBAppointments.createAppt(addApptTitle.getText(), addApptDescript.getText(), addApptLocale.getText(), Appointments.getApptCreatedBy(), Appointments.getApptLastUpdatedBy());
+            DBAppointments.createAppt(addApptTitle.getText()
+                    , addApptDescript.getText()
+                    , addApptLocale.getText(), addApptType.getValue()
+                    , addApptStrtTime.getValue().atStartOfDay()
+                    ,addApptEndTime.getValue().atStartOfDay()
+                    , Appointments.getApptCreateDate(), Appointments.getApptCreatedBy(),Appointments.getApptLastUpdate(),
+                    Appointments.getApptLastUpdatedBy(), addApptCustID.getValue()
+//                    , addApptUserID.getValue()
+                    , Contacts.getCtID()
+                    );
 
             Alert submit = new Alert(Alert.AlertType.INFORMATION);
             submit.initModality(Modality.NONE);
@@ -91,19 +100,19 @@ public class Add_Appointment_Controller implements Initializable {
             Optional<ButtonType> results = submit.showAndWait();
             if(results.get() == ButtonType.OK) {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../resources/Customer_Appointments_Scene.fxml"));
+                loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
                 Parent submitApptRoot = loader.load();
                 Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene submitApptScene = new Scene(submitApptRoot);
                 submitApptStage.setScene(submitApptScene);
                 submitApptStage.show();
             }
-        } else {
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Missing Information.");
-            error.setHeaderText("Please make sure you have filled out each text field.");
-            Optional<ButtonType> results = error.showAndWait();
-            }
+//        } else {
+//            Alert error = new Alert(Alert.AlertType.ERROR);
+//            error.setTitle("Missing Information.");
+//            error.setHeaderText("Please make sure you have filled out each text field.");
+//            Optional<ButtonType> results = error.showAndWait();
+//            }
 
 
     }
@@ -111,7 +120,7 @@ public class Add_Appointment_Controller implements Initializable {
     // Cancel Button Action Event
     @FXML
     void addApptCancelBtnClicked(ActionEvent event) throws IOException {
-        // when triggered an alert will ask for conformation before taking them back to Customer_Appointments_Scene.
+        // when triggered an alert will ask for conformation before taking them back to All_Appointments_Scene.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
         alert.setTitle("Confirm Cancel");
@@ -120,7 +129,7 @@ public class Add_Appointment_Controller implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../resources/Customer_Appointments_Scene.fxml"));
+            loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
             Parent cancelApptRoot = loader.load();
 
             Stage cancelApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -130,6 +139,7 @@ public class Add_Appointment_Controller implements Initializable {
         }
     }
 
+    // checks to make sure each variable contains a value.
     public Boolean isValid() {
         boolean isTrue = false;
         // checks text fields/checkboxes to ensure each contains a value.
@@ -149,11 +159,16 @@ public class Add_Appointment_Controller implements Initializable {
             return false;
         } else if (addApptCustID.getEditor().getText().isEmpty() || addApptCustID.getEditor().getText() == null) {
             return false;
+        } else if (addApptCustName.getEditor().getText().isEmpty() || addApptCustName.getEditor().getText() == null) {
+            return false;
         } else if (addApptUserID.getEditor().getText().isEmpty() || addApptUserID.getEditor().getText() == null) {
             return false;
         }
-        return true;
+            return true;
     }
+
+
+
 
 }
 

@@ -2,6 +2,7 @@ package DBAccess;
 
 import Models.Appointments;
 import Models.Contacts;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
@@ -53,18 +54,32 @@ public class DBAppointments {
 
 
     // method to create an appointment
-    public static void createAppt(String title, String description, String location, String createdBy, String lastUpdatedBy) {
+    public static void createAppt(String title, String description, String location, String type
+            , LocalDateTime start
+            , LocalDateTime end
+            , ObjectProperty<LocalDateTime> createDate, String createdBy, ObjectProperty<Timestamp> lastUpdate
+            , String lastUpdatedBy, int customerID
+//            , int userID
+            , int contactID
+    ) {
 
         try {
             // mySQL statement
-            String createAppt = "INSERT INTO WJ07K54.appointments VALUES(null, ?, ?, ?, null, null, null, null, ?, null, ?, null, null, null);";
+            String createAppt = "INSERT INTO WJ07K54.appointments VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, null, ?);";
             PreparedStatement psCA = DBConnection.getConnection().prepareStatement(createAppt);
             psCA.setString(1, title);
             psCA.setString(2, description);
             psCA.setString(3, location);
-//            psCA.setString(4, type);
-            psCA.setString(4, createdBy);
-            psCA.setString(5, lastUpdatedBy);
+            psCA.setString(4, type);
+            psCA.setObject(5, start);
+            psCA.setObject(6, end);
+            psCA.setObject(7, createDate);
+            psCA.setString(8, createdBy);
+            psCA.setObject(9, lastUpdate);
+            psCA.setString(10,lastUpdatedBy);
+            psCA.setInt(11, customerID);
+//            psCA.setInt(9, userID);
+            psCA.setInt(12,contactID);
 
             psCA.execute();
 

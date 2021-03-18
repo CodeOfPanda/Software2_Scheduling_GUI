@@ -1,7 +1,10 @@
 package View_Controllers;
 
+import DBAccess.DBContacts;
 import Models.Appointments;
 import Models.Contacts;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +22,10 @@ import java.util.ResourceBundle;
 
 public class Contact_Controller implements Initializable {
 
+    ObservableList<String> contactNames = FXCollections.observableArrayList();
+
     @FXML private Button contactSearchBtn;
+    @FXML private ComboBox<String> contactNamesCombo;
     @FXML private TextField contactSearchText;
     @FXML private TableView<Contacts> contactTable;
     @FXML private TableColumn<Contacts, Integer> contactApptID;
@@ -33,8 +39,10 @@ public class Contact_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+        DBContacts.getAllContacts().forEach((contact) -> {
+            contactNames.add(contact.getName());
+        });
+        contactNamesCombo.setItems(contactNames);
     }
 
     // Search Button Action Event
@@ -61,7 +69,7 @@ public class Contact_Controller implements Initializable {
     void viewAllApptsBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to All_Appointment_Records_Scene.
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/All_Appointment_Records_Scene.fxml"));
+        loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
         Parent viewApptsRoot = loader.load();
         Stage viewApptsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene viewApptsScene = new Scene(viewApptsRoot);

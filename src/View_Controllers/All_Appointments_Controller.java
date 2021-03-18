@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 /*
 * a contact name is assigned to an appointment using a drop-down menu or combo box. --> Contact Table
-*           query the DB to fill the drop-down.
+*           query the DB to fill the drop-down. X
 * a custom message is displayed in the user interface with the Appointment_ID and type of appointment cancelled. --> on delete.
 * the Appointment_ID is auto-generated and disabled throughout the application --> get from the DB
 *           the database has an auto-gen section in the DB already.
@@ -63,15 +63,65 @@ public class All_Appointments_Controller implements Initializable {
         allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
     }
 
+
+
+    /* ******************** new scene-builder methods ************************/
+    // all radio button action event
+    @FXML
+    public void allRadioClicked(ActionEvent actionEvent) {
+    }
+
+    // monthly radio button action event
+    @FXML
+    public void monthlyRadioClicked(ActionEvent actionEvent) {
+    }
+
+    // weekly radio button action event
+    @FXML
+    public void weeklyRadioClicked(ActionEvent actionEvent) {
+    }
+
     // Search Button Action Event
     @FXML
     public void allApptSearchBtnClicked(ActionEvent event) {
 
     }
 
-    // View All Customers Button Action Event
+    // add appointment button action event
     @FXML
-    public void viewCustBtnClicked(ActionEvent event) throws IOException {
+    public void addApptBtn(ActionEvent event) throws IOException {
+        // when triggered this takes the user to the Add_Appointment_Scene.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/Add_Appointment_Scene.fxml"));
+        Parent addApptRoot = loader.load();
+        Stage addApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene addApptScene = new Scene(addApptRoot);
+        addApptStage.setScene(addApptScene);
+        addApptStage.show();
+    }
+
+    // update appointment button action event
+    @FXML
+    public void updateApptBtn(ActionEvent event) throws IOException {
+        // when triggered this takes the user to the Update_Appointment_Scene.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/Update_Appointment_Scene.fxml"));
+        Parent modApptRoot = loader.load();
+        Stage modApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene modApptScene = new Scene(modApptRoot);
+        modApptStage.setScene(modApptScene);
+        modApptStage.show();
+    }
+
+    // delete appointment action event
+    @FXML
+    public void deleteApptBtn(ActionEvent actionEvent) {
+        // when triggered this asks user for confirmation before deleting an appointment.
+    }
+
+    // customer dashboard button action event
+    @FXML
+    public void customerDashBtn(ActionEvent event) throws IOException {
         //when triggered this takes the user to All_Customer_Records_Scene.
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
@@ -82,22 +132,9 @@ public class All_Appointments_Controller implements Initializable {
         allCustStage.show();
     }
 
-    // Customer Profile Button Action Event
+    // contact dashboard button action event
     @FXML
-    public void custProfBtnClicked(ActionEvent event) throws IOException {
-        //when triggered this takes the user to Customer_Appointments_Scene.
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/Customer_Appointments_Scene.fxml"));
-        Parent custApptsRoot = loader.load();
-        Stage custApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene custApptScene = new Scene(custApptsRoot);
-        custApptStage.setScene(custApptScene);
-        custApptStage.show();
-    }
-
-    // Contact Profile Button Action Event
-    @FXML
-    public void ContProfBtnClicked(ActionEvent event) throws IOException {
+    public void contactDashBtnClicked(ActionEvent event) throws IOException {
         //when triggered this takes the user to Contact_Dashboard_Scene.
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Contact_Dashboard_Scene.fxml"));
@@ -108,9 +145,14 @@ public class All_Appointments_Controller implements Initializable {
         contDashStage.show();
     }
 
-    // Log out Button Action Event
+    // records dashboard button action event
     @FXML
-    void allApptLogOutBtnClicked(ActionEvent event) throws IOException {
+    public void recordsDashBtnClicked(ActionEvent actionEvent) {
+    }
+
+    // log out button action event
+    @FXML
+    public void apptLogOutBtnClicked(ActionEvent event) throws IOException {
         //when triggered this takes the user back to the Login_Scene.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
@@ -129,5 +171,4 @@ public class All_Appointments_Controller implements Initializable {
             loginStage.show();
         }
     }
-
 }

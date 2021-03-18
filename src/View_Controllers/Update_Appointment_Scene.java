@@ -54,7 +54,7 @@ public class Update_Appointment_Scene implements Initializable {
     @FXML
     public void modApptSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an information alert will inform the user that their changes have been saved and take them
-        // back to Customer_Appointments_Scene.
+        // back to All_Appointments_Scene.
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
         submit.initModality(Modality.NONE);
         submit.setTitle("Thank You!");
@@ -62,7 +62,7 @@ public class Update_Appointment_Scene implements Initializable {
         Optional<ButtonType> results = submit.showAndWait();
         if(results.get() == ButtonType.OK) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../resources/Customer_Appointments_Scene.fxml"));
+            loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
             Parent submitApptRoot = loader.load();
 
             Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,7 +75,7 @@ public class Update_Appointment_Scene implements Initializable {
     // Cancel Button Action Event
     @FXML
     public void modApptCancelBtnClicked(ActionEvent event) throws IOException {
-            // when triggered an alert will ask for conformation before taking them back to Customer_Appointments_Scene.
+            // when triggered an alert will ask for conformation before taking them back to All_Appointments_Scene.
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initModality(Modality.NONE);
             alert.setTitle("Confirm Cancel");
@@ -84,7 +84,7 @@ public class Update_Appointment_Scene implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == ButtonType.OK) {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../resources/Customer_Appointments_Scene.fxml"));
+                loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
                 Parent cancelApptRoot = loader.load();
 
                 Stage cancelApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
