@@ -104,13 +104,25 @@ public class All_Appointments_Controller implements Initializable {
     @FXML
     public void updateApptBtn(ActionEvent event) throws IOException {
         // when triggered this takes the user to the Update_Appointment_Scene.
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/Update_Appointment_Scene.fxml"));
-        Parent modApptRoot = loader.load();
-        Stage modApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene modApptScene = new Scene(modApptRoot);
-        modApptStage.setScene(modApptScene);
-        modApptStage.show();
+        Appointments selectedAppt = allApptTable.getSelectionModel().getSelectedItem();
+
+        if(selectedAppt != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../resources/Update_Appointment_Scene.fxml"));
+            Parent modApptRoot = loader.load();
+            Stage modApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene modApptScene = new Scene(modApptRoot);
+            modApptStage.setScene(modApptScene);
+            modApptStage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("No appointment selected");
+            alert.setHeaderText("Please select an appointment from the table to update.");
+            alert.showAndWait();
+        }
+
+
     }
 
     // delete appointment action event

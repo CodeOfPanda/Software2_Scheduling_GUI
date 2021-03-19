@@ -38,7 +38,7 @@ public class Update_Appointment_Scene implements Initializable {
     @FXML private ComboBox<Contacts> modApptContact;
     @FXML private ComboBox<Appointments> modApptType;
     @FXML private DatePicker modApptStrtTime;
-    @FXML private DatePicker modApptEndTime;
+    @FXML private ComboBox<String> modApptEndTime;
     // ask if i need to keep customer id in the GUI or if it can be auto - generated off of the name?
     @FXML private ComboBox<Customers> modApptCustID;
     @FXML private ComboBox<Customers> modApptCustName;
