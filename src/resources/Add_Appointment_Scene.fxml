@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controllers.Add_Appointment_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controllers.Add_Appointment_Controller">
    <children>
       <VBox alignment="CENTER" prefHeight="55.0" prefWidth="600.0" AnchorPane.topAnchor="15.0">
          <children>
@@ -21,13 +21,8 @@
             </Label>
          </children>
       </VBox>
-      <VBox prefHeight="295.0" prefWidth="143.0" spacing="19.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="100.0">
+      <VBox prefHeight="295.0" prefWidth="143.0" spacing="22.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="100.0">
          <children>
-            <Label contentDisplay="RIGHT" text="Appointment_ID">
-               <font>
-                  <Font name="Bookman Old Style" size="14.0" />
-               </font>
-            </Label>
             <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="35.0" text="Title">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
@@ -53,17 +48,22 @@
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
             </Label>
-            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="262.0" text="Start Date and Time">
+            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="262.0" text="Start Date">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
             </Label>
-            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="262.0" text="End Date and Time">
+            <Label text="Start Time">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
             </Label>
-            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" text="Customer_ID">
+            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="262.0" text="End Date">
+               <font>
+                  <Font name="Bookman Old Style" size="14.0" />
+               </font>
+            </Label>
+            <Label text="End Time">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
@@ -80,12 +80,8 @@
             </Label>
          </children>
       </VBox>
-      <VBox prefHeight="295.0" prefWidth="143.0" spacing="9.5" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="95.0">
+      <VBox prefHeight="295.0" prefWidth="143.0" spacing="13.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="95.0">
          <children>
-            <TextField fx:id="addApptID" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1">
-               <font>
-                  <Font name="Bookman Old Style" size="11.0" />
-               </font></TextField>
             <TextField fx:id="addApptTitle" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Title">
                <font>
                   <Font name="Bookman Old Style" size="11.0" />
@@ -100,14 +96,15 @@
                </font></TextField>
             <ComboBox fx:id="addApptContact" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="addApptType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
-            <DatePicker fx:id="addApptStrtTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
-            <DatePicker fx:id="addApptEndTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
-            <ComboBox fx:id="addApptCustID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <DatePicker fx:id="addApptStartDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <ComboBox fx:id="addApptStartTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <DatePicker fx:id="addApptEndDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <ComboBox fx:id="addApptEndTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="addApptCustName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="addApptUserID" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
          </children>
       </VBox>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="40.0" prefWidth="454.0" spacing="90.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="490.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="454.0" spacing="90.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="545.0">
          <children>
             <Button fx:id="addApptSubmitBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addApptSubmitBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Submit">
                <font>

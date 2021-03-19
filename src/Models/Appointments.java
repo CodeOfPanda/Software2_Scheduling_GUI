@@ -29,9 +29,9 @@ public class Appointments {
     private static String apptLocation;
     private static String apptDescription;
     private static String apptType;
-    private static ObjectProperty<LocalDateTime> apptStart;
-    private static ObjectProperty<LocalDateTime> apptEnd;
-    private static ObjectProperty<LocalDateTime> apptCreateDate;
+    private static LocalDateTime apptStart;
+    private static LocalDateTime apptEnd;
+    private static LocalDateTime apptCreateDate;
     private static String apptCreatedBy;
     private static ObjectProperty<Timestamp> apptLastUpdate;
     private static String apptLastUpdatedBy;
@@ -54,15 +54,14 @@ public class Appointments {
         this.type = new SimpleStringProperty(type);
         apptType = type;
         this.start = new SimpleObjectProperty<>(start);
-//        apptStart = start;
+        apptStart = start;
         this.end = new SimpleObjectProperty<>(end);
-//        apptEnd = end;
+        apptEnd = end;
         this.createDate = new SimpleObjectProperty<>(createDate);
-//        apptCreateDate = createDate;
+        apptCreateDate = createDate;
         this.createdBy = new SimpleStringProperty(createdBy);
         apptCreatedBy = createdBy;
         this.lastUpdate = new SimpleObjectProperty<>(lastUpdate);
-//        apptLastUpdate = lastUpdate;
         this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
         apptLastUpdatedBy = lastUpdatedBy;
         this.customerID = new SimpleIntegerProperty(customerID);
@@ -77,8 +76,8 @@ public class Appointments {
     public IntegerProperty getAppointmentID() {
         return appointmentID;
     }
-    public static int getApptID() {
-        return Appointments.apptID;
+    public static String getApptID() {
+        return String.valueOf(apptID);
     }
     // for the auto gen ID
     public static int getApptIDCount() {
@@ -92,41 +91,43 @@ public class Appointments {
     public StringProperty getTitle() {
         return title;
     }
-    public String getApptTitle() {return title.get();}
+    public static String getApptTitle() {return apptTitle;}
 
     // description
     public StringProperty getDescription() {
         return description;
     }
-    public String getApptDescript() {return description.get();}
+    public static String getApptDescript() {return apptDescription;}
 
     // location
     public StringProperty getLocation() {
         return location;
     }
-    public String getApptLocation() {return location.get();}
+    public static String getApptLocation() {return apptLocation;}
 
     // type
     public StringProperty getType() {
         return type;
     }
-    public String getApptType() {return type.get();}
+    public static String getApptType() {return apptType;}
 
     // start datetime
     public ObjectProperty<LocalDateTime> getStart() {
         return start;
     }
+    public static LocalDateTime getApptStart() {return apptStart;}
 
     // end datetime
     public ObjectProperty<LocalDateTime> getEnd() {
         return end;
     }
+    public static LocalDateTime getApptEnd() {return apptEnd;}
 
     // create_date datetime
     public ObjectProperty<LocalDateTime> getCreateDate() {
         return createDate;
     }
-    public static ObjectProperty<LocalDateTime> getApptCreateDate() {
+    public static LocalDateTime getApptCreateDate() {
         return apptCreateDate;
     }
 

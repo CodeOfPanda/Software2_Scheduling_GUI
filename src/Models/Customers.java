@@ -22,11 +22,13 @@ public class Customers {
     private Timestamp lastUpdate;
     private StringProperty lastUpdatedBy;
     private IntegerProperty divisionID;
+    private static int custID;
 
     public Customers(int customerID, String name, String address, String postalCode, String phone, LocalDateTime createDate
                     ,String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionID)
     {
         this.customerID = new SimpleIntegerProperty(customerID);
+        custID = customerID;
         this.custName = new SimpleStringProperty(name);
         this.custAddress = new SimpleStringProperty(address);
         this.custPostal = new SimpleStringProperty(postalCode);
@@ -43,7 +45,7 @@ public class Customers {
     public IntegerProperty getCustomerID() {
         return this.customerID;
     }
-    public Integer getCustID() {return customerID.get();}
+    public static int getCustID() {return custID;}
 
     // customer name
     public StringProperty getCustName() {

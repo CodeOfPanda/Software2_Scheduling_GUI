@@ -2,6 +2,7 @@ package DBAccess;
 
 import Models.Appointments;
 import Models.Contacts;
+import Models.Customers;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,19 +55,25 @@ public class DBAppointments {
 
 
     // method to create an appointment
-    public static void createAppt(String title, String description, String location, String type
+    public static void createAppt(String title
+            , String description
+            , String location
+            , String type
             , LocalDateTime start
             , LocalDateTime end
-            , ObjectProperty<LocalDateTime> createDate, String createdBy, ObjectProperty<Timestamp> lastUpdate
-            , String lastUpdatedBy, int customerID
+            , LocalDateTime createDate
+            , String createdBy
+            , String lastUpdatedBy
+            , int customerID
 //            , int userID
             , int contactID
-    ) {
-
+    )
+    {
         try {
             // mySQL statement
-            String createAppt = "INSERT INTO WJ07K54.appointments VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, null, ?);";
+            String createAppt = "INSERT INTO WJ07K54.appointments VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, ?, null, ?);";
             PreparedStatement psCA = DBConnection.getConnection().prepareStatement(createAppt);
+            // appointment_id is null here
             psCA.setString(1, title);
             psCA.setString(2, description);
             psCA.setString(3, location);
@@ -75,11 +82,11 @@ public class DBAppointments {
             psCA.setObject(6, end);
             psCA.setObject(7, createDate);
             psCA.setString(8, createdBy);
-            psCA.setObject(9, lastUpdate);
-            psCA.setString(10,lastUpdatedBy);
-            psCA.setInt(11, customerID);
+            //last_update is null here
+            psCA.setString(9,lastUpdatedBy);
+            psCA.setInt(10, customerID);
 //            psCA.setInt(9, userID);
-            psCA.setInt(12,contactID);
+            psCA.setInt(11, contactID);
 
             psCA.execute();
 
@@ -88,16 +95,43 @@ public class DBAppointments {
             e.printStackTrace();
         }
     }
-//
-//    // method to modify an appointment
-//    public static void modifyAppt() {
-//        try {
-//            // mySQL statement
-//        }
-//        catch () {
-//
-//        }
-//    }
+
+    // method to modify an appointment
+    public static void modifyAppt(int Appt_ID
+            , String title
+            , String description
+            , String location
+            , String type
+            , LocalDateTime start
+            , LocalDateTime end
+            , LocalDateTime createDate
+            , String createdBy
+            , String lastUpdatedBy
+            , int customerID
+//            , int userID
+            , int contactID)
+    {
+        try {
+            // mySQL statement
+            String sqlUpdate = "update WJ07K54.appointments " +
+                    "set Title=?, Description=?, Location=?, Type=?, Start=?, End=?, /*Customer_ID=?, User_ID=?, Contact_ID=?*/ " +
+                    "where Appointment_ID=?";
+            PreparedStatement psUpdate = DBConnection.getConnection().prepareStatement(sqlUpdate);
+            psUpdate.setString(1, title);
+            psUpdate.setString(2, description);
+            psUpdate.setString(3, location);
+            psUpdate.setObject(4, type);
+            psUpdate.setObject(5, start);
+            psUpdate.setObject(6, end);
+//            psUpdate.setInt(7, customerID);
+//            psUpdate.setInt(8, userID);
+//            psUpdate.setInt(9, contactID);
+            psUpdate.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 //
 //    // method to delete an appointment
 //    public static void deleteAppt() {

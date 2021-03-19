@@ -5,6 +5,7 @@ import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
 import Models.Appointments;
 import Models.Contacts;
+import Models.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -41,9 +42,11 @@ public class Add_Appointment_Controller implements Initializable {
     @FXML private TextField addApptDescript;
     @FXML private TextField addApptLocale;
     @FXML private ComboBox<String> addApptContact;
+    @FXML private DatePicker addApptStartDate;
+    @FXML private DatePicker addApptEndDate;
     @FXML private ComboBox<String> addApptType;
-    @FXML private DatePicker addApptStrtTime;
-    @FXML private DatePicker addApptEndTime;
+    @FXML private ComboBox<String> addApptStartTime;
+    @FXML private ComboBox<String> addApptEndTime;
     @FXML private ComboBox<Integer> addApptCustID;
     @FXML private ComboBox<String> addApptCustName;
     @FXML private ComboBox<Integer> addApptUserID; // make the init data auto-generated based off of the log-in
@@ -53,6 +56,7 @@ public class Add_Appointment_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         DBContacts.getAllContacts().forEach((contact) -> {
             contactNames.add(contact.getName());
         });
@@ -62,7 +66,7 @@ public class Add_Appointment_Controller implements Initializable {
             customerIDs.add(customer.getCustID());
         });
         addApptCustName.setItems(customerNames);
-        addApptCustID.setItems(customerIDs); // should be auto-generated based off of the customer name (make uneditable);
+//        addApptCustID.setItems(customerIDs); // should be auto-generated based off of the customer name (make uneditable);
         addApptType.getItems().addAll("Planning", "De-Briefing", "Timeline Check");
     }
 
@@ -79,7 +83,7 @@ public class Add_Appointment_Controller implements Initializable {
         // when triggered an information alert will inform the user that their changes have been saved and take them
         // back to All_Appointments_Scene.
 
-        if(isValid()) {
+//        if(isValid()) {
 
 //        addApptContact.getEditor().getText()
             // inserting into database
@@ -87,15 +91,16 @@ public class Add_Appointment_Controller implements Initializable {
                     , addApptDescript.getText()
                     , addApptLocale.getText()
                     , addApptType.getValue()
-                    , addApptStrtTime.getValue().atStartOfDay()
-                    , addApptEndTime.getValue().atStartOfDay()
+                    , addApptStartDate.getValue().atStartOfDay()
+                    , addApptEndDate.getValue().atStartOfDay()
                     , Appointments.getApptCreateDate()
                     , Appointments.getApptCreatedBy()
-                    , Appointments.getApptLastUpdate()
                     , Appointments.getApptLastUpdatedBy()
-                    , addApptCustID.getValue()
+                    , Customers.getCustID()
+//                    , addApptCustID.getValue()
 //                    , addApptUserID.getValue()
-                    , Contacts.getCtID());
+                    , Contacts.getCtID()
+                    );
 
             Alert submit = new Alert(Alert.AlertType.INFORMATION);
             submit.initModality(Modality.NONE);
@@ -111,12 +116,12 @@ public class Add_Appointment_Controller implements Initializable {
                 submitApptStage.setScene(submitApptScene);
                 submitApptStage.show();
             }
-        } else {
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Missing Information.");
-            error.setHeaderText("Please make sure you have filled out each text field.");
-            Optional<ButtonType> results = error.showAndWait();
-            }
+//        } else {
+//            Alert error = new Alert(Alert.AlertType.ERROR);
+//            error.setTitle("Missing Information.");
+//            error.setHeaderText("Please make sure you have filled out each text field.");
+//            Optional<ButtonType> results = error.showAndWait();
+//            }
 
 
     }
@@ -149,14 +154,15 @@ public class Add_Appointment_Controller implements Initializable {
         if (addApptTitle.getText().isEmpty() || addApptTitle.getText() == null) {
             return false;
         } else if (addApptDescript.getText().isEmpty() || addApptDescript.getText() == null) {
-//            return false;
+           return false;
         } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
             return false;
-        } else if (addApptContact.getEditor().getText().isEmpty() || addApptContact.getEditor().getText() == null) {
-            return false;
         }
-
-        //FIXME: combo-boxes are not validating..
+//        else if (addApptContact.getEditor().getText().isEmpty() || addApptContact.getEditor().getText() == null) {
+//            return false;
+//        }
+//
+//        Fix: combo-boxes are not validating..
 //        else if (addApptType.getItems().isEmpty() || addApptType.getItems() == null) {
 //            System.out.println(addApptType.getItems());
 //            return false;

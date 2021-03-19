@@ -39,6 +39,7 @@ public class Update_Appointment_Scene implements Initializable {
     @FXML private ComboBox<Appointments> modApptType;
     @FXML private DatePicker modApptStrtTime;
     @FXML private DatePicker modApptEndTime;
+    // ask if i need to keep customer id in the GUI or if it can be auto - generated off of the name?
     @FXML private ComboBox<Customers> modApptCustID;
     @FXML private ComboBox<Customers> modApptCustName;
     @FXML private ComboBox<?> modApptUserID;
@@ -46,7 +47,10 @@ public class Update_Appointment_Scene implements Initializable {
     @FXML private Button modApptCancelBtn;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        modApptID.setText(Appointments.getApptID());
+
+    }
 
     // Submit Button Action Event
     @FXML
