@@ -1,11 +1,13 @@
 package View_Controllers;
 
+import DBAccess.DBAppointments;
+import DBAccess.DBContacts;
+import DBAccess.DBCustomers;
 import Models.Appointments;
 import Models.Contacts;
 import Models.Customers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,9 +16,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /*
 * when adding/updating text fields are used to record:
@@ -29,27 +30,42 @@ import java.util.ResourceBundle;
 // modified scene builder to fit new requirements
 
 
-public class Update_Appointment_Scene implements Initializable {
+public class Update_Appointment_Scene {
 
     @FXML private TextField modApptID;
     @FXML private TextField modApptTitle;
     @FXML private TextField modApptDescript;
     @FXML private TextField modApptLocale;
-    @FXML private ComboBox<Contacts> modApptContact;
-    @FXML private ComboBox<Appointments> modApptType;
-    @FXML private DatePicker modApptStrtTime;
-    @FXML private ComboBox<String> modApptEndTime;
+    @FXML private ComboBox<String> modApptContact;
+    @FXML private ComboBox<String> modApptType;
+    @FXML private DatePicker modApptStartDate;
+    @FXML private ComboBox<?> modApptStartTime;
+    @FXML private DatePicker modApptEndDate;
+    @FXML private ComboBox<?> modApptEndTime;
     // ask if i need to keep customer id in the GUI or if it can be auto - generated off of the name?
-    @FXML private ComboBox<Customers> modApptCustID;
-    @FXML private ComboBox<Customers> modApptCustName;
-    @FXML private ComboBox<?> modApptUserID;
+//    @FXML private ComboBox<Integer> modApptCustID;
+    @FXML private ComboBox<String> modApptCustName;
+    @FXML private ComboBox<Integer> modApptUserID;
     @FXML private Button modApptSubmitBtn;
     @FXML private Button modApptCancelBtn;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        modApptID.setText(Appointments.getApptID());
-
+    // my initialize method to pre-populate the update appointment page.
+    @FXML
+    public void startApptUpdate(Appointments appt) {
+        modApptID.setText(appt.getApptID());
+        modApptID.setEditable(false);
+        modApptTitle.setText(appt.getApptTitle());
+        modApptDescript.setText(appt.getApptDescript());
+        modApptLocale.setText(appt.getApptLocation());
+//        modApptContact.getItems().clear();
+        modApptContact.setItems(Appointments.getContactNames());
+        modApptContact.setValue(DBContacts.getContactName(appt.getContact()));
+        modApptType.setItems(Appointments.getAllApptTypes());
+        modApptType.setValue(appt.getApptType());
+        modApptCustName.setItems(Appointments.getCustomerNames());
+        modApptCustName.setValue(DBCustomers.getCustomerName(appt.getApptCustomerID()));
+        modApptStartDate.setValue(appt.getApptStart().toLocalDate());
+        modApptEndDate.setValue(appt.getApptEnd().toLocalDate());
     }
 
     // Submit Button Action Event
@@ -57,6 +73,15 @@ public class Update_Appointment_Scene implements Initializable {
     public void modApptSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an information alert will inform the user that their changes have been saved and take them
         // back to All_Appointments_Scene.
+        String appt_ID = String.valueOf(modApptID.getText());
+
+        if(isValid()){
+            DBAppointments.modifyAppt(Integer.parseInt(appt_ID), modApptTitle.getText(), modApptDescript.getText()
+                    ,modApptLocale.getText(), modApptType.getValue(),modApptStartDate.getValue().atStartOfDay()
+                    ,modApptEndDate.getValue().atStartOfDay(), Appointments.getApptCreatedBy(), Appointments.getCurrentDateTime()
+                    ,Appointments.getApptLastUpdatedBy(),Customers.getCustID(), /*UserID, */ Contacts.getCtID());
+        }
+
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
         submit.initModality(Modality.NONE);
         submit.setTitle("Thank You!");
@@ -96,4 +121,9 @@ public class Update_Appointment_Scene implements Initializable {
             }
     }
 
+
+    public Boolean isValid() {
+
+        return true;
+    }
 }

@@ -44,9 +44,28 @@ public class DBCustomers {
         catch (SQLException e) {
             e.printStackTrace();
         }
-
-
         return custList;
+    }
+
+
+    public static String getCustomerName(int ID) {
+        String customerName = null;
+        try{
+            // mySQL statement
+            String nameSql = "select Customer_Name from WJ07K54.customers where Customer_ID=?;";
+            PreparedStatement psName = DBConnection.getConnection().prepareStatement(nameSql);
+            psName.setInt(1, ID);
+            ResultSet nameResults = psName.executeQuery();
+
+            while (nameResults.next()) {
+                customerName = nameResults.getString("Customer_Name");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customerName;
     }
 }
 

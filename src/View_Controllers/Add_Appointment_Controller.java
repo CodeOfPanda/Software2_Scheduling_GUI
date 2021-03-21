@@ -33,9 +33,7 @@ import java.util.ResourceBundle;
 
 public class Add_Appointment_Controller implements Initializable {
 
-    ObservableList<String> contactNames = FXCollections.observableArrayList();
-    ObservableList<String> customerNames = FXCollections.observableArrayList();
-    ObservableList<Integer> customerIDs = FXCollections.observableArrayList();
+
 
     @FXML private TextField addApptID;
     @FXML private TextField addApptTitle;
@@ -56,25 +54,9 @@ public class Add_Appointment_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        DBContacts.getAllContacts().forEach((contact) -> {
-            contactNames.add(contact.getName());
-        });
-        addApptContact.setItems(contactNames);
-        DBCustomers.getAllCust().forEach((customer) -> {
-            customerNames.add(customer.getName());
-            customerIDs.add(customer.getCustID());
-        });
-        addApptCustName.setItems(customerNames);
-//        addApptCustID.setItems(customerIDs); // should be auto-generated based off of the customer name (make uneditable);
-        addApptType.getItems().addAll("Planning", "De-Briefing", "Timeline Check");
-    }
-
-    // for the auto gen ID.
-    // i need to start the count after the last appointment from the database.
-    public void initApptID() {
-        addApptID.setText(String.valueOf(Appointments.getApptIDCount() + 1));
-        addApptID.setEditable(false);
+        addApptContact.setItems(Appointments.getContactNames());
+        addApptCustName.setItems(Appointments.getCustomerNames());
+        addApptType.setItems(Appointments.getAllApptTypes());
     }
 
     // Submit Button Action Event
@@ -93,13 +75,14 @@ public class Add_Appointment_Controller implements Initializable {
                     , addApptType.getValue()
                     , addApptStartDate.getValue().atStartOfDay()
                     , addApptEndDate.getValue().atStartOfDay()
-                    , Appointments.getApptCreateDate()
-                    , Appointments.getApptCreatedBy()
-                    , Appointments.getApptLastUpdatedBy()
-                    , Customers.getCustID()
+                    , Appointments.getCurrentDateTime()
+                    , Appointments.getApptCreatedBy() // needs to be the user
+                    , Appointments.getCurrentDateTime()
+                    , Appointments.getApptLastUpdatedBy() // needs to be the user
+                    , Customers.getCustID() // link cust_ID with the cust_name in the combobox in the form.
 //                    , addApptCustID.getValue()
 //                    , addApptUserID.getValue()
-                    , Contacts.getCtID()
+                    , Contacts.getContactID()  // link cust_ID with the cust_name in the combobox in the form.
                     );
 
             Alert submit = new Alert(Alert.AlertType.INFORMATION);

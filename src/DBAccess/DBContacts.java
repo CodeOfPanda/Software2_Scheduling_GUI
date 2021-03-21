@@ -38,27 +38,24 @@ public class DBContacts {
         return contactAppts;
     }
 
-    public static ObservableList<Contacts> getContactID() {
-        ObservableList<Contacts> contactIDs = FXCollections.observableArrayList();
-
+    public static String getContactName(int ID) {
+        String contactName = null;
         try{
             // mySQL statement
-            String idSql = "select Contact_ID, Contact_Name from WJ07K54.contacts where Contact_ID=?;";
-            PreparedStatement psID = DBConnection.getConnection().prepareStatement(idSql);
-            ResultSet IDResults = psID.executeQuery();
+            String nameSql = "select Contact_Name from WJ07K54.contacts where Contact_ID=?;";
+            PreparedStatement psName = DBConnection.getConnection().prepareStatement(nameSql);
+            psName.setInt(1, ID);
+            ResultSet nameResults = psName.executeQuery();
 
-            while (IDResults.next()) {
-                int contactID = IDResults.getInt("Contact_ID");
-                String name = IDResults.getString("Contact_Name");
-                Contacts IDList = new Contacts(contactID, name);
-                contactIDs.add(IDList);
+            while (nameResults.next()) {
+                contactName = nameResults.getString("Contact_Name");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return contactIDs;
+        return contactName;
     }
 
 }

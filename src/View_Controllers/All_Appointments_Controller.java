@@ -105,15 +105,8 @@ public class All_Appointments_Controller implements Initializable {
     public void updateApptBtn(ActionEvent event) throws IOException {
         // when triggered this takes the user to the Update_Appointment_Scene.
         Appointments selectedAppt = allApptTable.getSelectionModel().getSelectedItem();
-
         if(selectedAppt != null) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../resources/Update_Appointment_Scene.fxml"));
-            Parent modApptRoot = loader.load();
-            Stage modApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene modApptScene = new Scene(modApptRoot);
-            modApptStage.setScene(modApptScene);
-            modApptStage.show();
+            updateAppt(event, selectedAppt);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
@@ -121,8 +114,21 @@ public class All_Appointments_Controller implements Initializable {
             alert.setHeaderText("Please select an appointment from the table to update.");
             alert.showAndWait();
         }
+    }
+    // this method makes it possible for me to pass in the selected appointment and use that data in my update appt controller.
+    public void updateAppt(ActionEvent event, Appointments selectedAppt) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/Update_Appointment_Scene.fxml"));
+        Parent modApptRoot = loader.load();
 
+        Stage modApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene modApptScene = new Scene(modApptRoot);
 
+        Update_Appointment_Scene controller = loader.getController();
+        controller.startApptUpdate(selectedAppt);
+
+        modApptStage.setScene(modApptScene);
+        modApptStage.show();
     }
 
     // delete appointment action event

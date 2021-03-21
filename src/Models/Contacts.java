@@ -16,18 +16,11 @@ public class Contacts {
         contactEmail = new SimpleStringProperty(email);
     }
 
-    public Contacts(int ID, String name) { // going to use this to match the name and id for populating combo boxes
-        contactID = new SimpleIntegerProperty(ID);
-        ctID = ID;
-        contactName = new SimpleStringProperty(name);
-        ctName = name;
-    }
-
     // contactID
-    public IntegerProperty getContactID() {
-        return contactID;
-    }
-    public static int getCtID() {
+//    public IntegerProperty getContactID() {
+//        return contactID;
+//    }
+    public static int getContactID() {
         return ctID;
     }
     // contact name
