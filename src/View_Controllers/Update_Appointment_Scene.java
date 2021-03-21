@@ -79,7 +79,7 @@ public class Update_Appointment_Scene {
             DBAppointments.modifyAppt(Integer.parseInt(appt_ID), modApptTitle.getText(), modApptDescript.getText()
                     ,modApptLocale.getText(), modApptType.getValue(),modApptStartDate.getValue().atStartOfDay()
                     ,modApptEndDate.getValue().atStartOfDay(), Appointments.getApptCreatedBy(), Appointments.getCurrentDateTime()
-                    ,Appointments.getApptLastUpdatedBy(),Customers.getCustID(), /*UserID, */ Contacts.getCtID());
+                    ,Appointments.getApptLastUpdatedBy(),Customers.getCustID(), /*UserID, */ Contacts.getContactID());
         }
 
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
