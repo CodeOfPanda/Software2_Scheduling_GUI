@@ -37,9 +37,9 @@ public class Update_Appointment_Scene {
     @FXML private ComboBox<String> modApptContact;
     @FXML private ComboBox<String> modApptType;
     @FXML private DatePicker modApptStartDate;
-    @FXML private ComboBox<?> modApptStartTime;
+    @FXML private ComboBox<String> modApptStartTime;
     @FXML private DatePicker modApptEndDate;
-    @FXML private ComboBox<?> modApptEndTime;
+    @FXML private ComboBox<String> modApptEndTime;
     // ask if i need to keep customer id in the GUI or if it can be auto - generated off of the name?
 //    @FXML private ComboBox<Integer> modApptCustID;
     @FXML private ComboBox<String> modApptCustName;
@@ -65,6 +65,8 @@ public class Update_Appointment_Scene {
         modApptEndDate.setValue(appt.getApptEnd().toLocalDate());
         modApptUserID.setItems(Appointments.getUserIDs());
         modApptUserID.setValue(appt.getApptUserID());
+        modApptStartTime.setItems(Appointments.getWorkHours());
+//        modApptStartTime.setValue();
     }
 
     // Submit Button Action Event

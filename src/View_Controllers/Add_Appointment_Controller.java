@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -53,6 +55,8 @@ public class Add_Appointment_Controller implements Initializable {
         addApptCustName.setItems(Appointments.getCustomerNames());
         addApptType.setItems(Appointments.getAllApptTypes());
         addApptUserID.setItems(Appointments.getUserIDs());
+        addApptStartTime.setItems(Appointments.getWorkHours());
+        addApptEndTime.setItems(Appointments.getWorkHours());
     }
 
     // Submit Button Action Event
@@ -69,8 +73,10 @@ public class Add_Appointment_Controller implements Initializable {
                     , addApptDescript.getText()
                     , addApptLocale.getText()
                     , addApptType.getValue()
-                    , addApptStartDate.getValue().atStartOfDay()
-                    , addApptEndDate.getValue().atStartOfDay()
+                    , LocalDateTime.of(addApptStartDate.getValue(),
+                            LocalTime.parse(addApptStartTime.getValue()))
+                    , LocalDateTime.of(addApptEndDate.getValue(),
+                            LocalTime.parse(addApptEndTime.getValue()))
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(addApptUserID.getValue())
                     , Appointments.getCurrentDateTime()
