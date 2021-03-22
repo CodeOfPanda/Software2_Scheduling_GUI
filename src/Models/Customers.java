@@ -16,7 +16,8 @@ import java.time.LocalDateTime;
 
 public class Customers {
 
-    private static ObservableList<String> divisionIDs = FXCollections.observableArrayList();
+    private static ObservableList<String> divisionNames = FXCollections.observableArrayList();
+
     private IntegerProperty customerID;
     private StringProperty custName;
     private StringProperty custAddress;
@@ -27,7 +28,6 @@ public class Customers {
     private Timestamp lastUpdate;
     private StringProperty lastUpdatedBy;
     private IntegerProperty divisionID;
-    private int dvsnID;
     private static int custID;
 
     public Customers(int customerID, String name, String address, String postalCode, String phone, LocalDateTime createDate
@@ -44,7 +44,6 @@ public class Customers {
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
         this.divisionID = new SimpleIntegerProperty(divisionID);
-        dvsnID = divisionID;
     }
 
     // customerID
@@ -95,8 +94,14 @@ public class Customers {
     }
 
     // divisionID
-    public IntegerProperty getDivisionID() {
-        return this.divisionID;
+    public int getDivisionID() {
+        return divisionID.get();
+    }
+
+    public StringProperty getDivName() {
+        String name = DBFirst_Level_Divisions.getDivisionName(getDivisionID());
+        StringProperty divName = new SimpleStringProperty(name);
+        return divName;
     }
 
 }

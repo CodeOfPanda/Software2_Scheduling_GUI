@@ -57,13 +57,13 @@ public class DBFirst_Level_Divisions {
         return divisionID;
     }
 
-    public static String getDivisionName() {
+    public static String getDivisionName(int ID) {
         String divisionName = null;
         try{
             //mySQL statement
             String dnSql = "select Division from WJ07K54.first_level_divisions where Division_ID=?;";
             PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(dnSql);
-
+            pStmt.setInt(1, ID);
             ResultSet rs = pStmt.executeQuery();
             while (rs.next()) {
                 divisionName = rs.getString("Division");

@@ -1,6 +1,7 @@
 package View_Controllers;
 
 import DBAccess.DBCustomers;
+import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Customers;
 import Models.First_Level_Divisions;
@@ -35,22 +36,19 @@ public class All_Customers_Controller implements Initializable {
     @FXML private TextField allCustSearchTextField;
     @FXML private TableView<Customers> allCustTable;
     @FXML private TableColumn<Customers, Integer> allCustID;
-    @FXML private TableColumn<Customers, String> allCustName;
     @FXML private TableColumn<Customers, String> allCustAddress;
-    @FXML private TableColumn<First_Level_Divisions, String> allCustDivision;
+    @FXML private TableColumn<Customers, String> allCustDivision;
     @FXML private TableColumn<Customers, String> allCustPostal;
     @FXML private TableColumn<Customers, String> allCustPhone;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        customerNameCombo.setItems(Appointments.getCustomerNames());// dont think i need this
         allCustTable.setItems(DBCustomers.getAllCust());
         allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
-//        allCustName.setCellValueFactory(cellData -> cellData.getValue().getCustName());
         allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
         allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
         allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
-
+        allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivName());
     }
 
     // Search Button Action Event
