@@ -20,7 +20,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="500.0" spacing="25.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="120.0">
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="500.0" spacing="20.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="130.0">
          <children>
             <Label contentDisplay="RIGHT" text="Customer Name">
                <font>
@@ -77,7 +77,7 @@
                         <Font name="Bookman Old Style" size="14.0" />
                      </font>
                      <graphic>
-                        <ComboBox fx:id="addCustDivision" prefWidth="150.0" translateX="60.0" />
+                        <ComboBox fx:id="addCustDivision" prefWidth="175.0" translateX="60.0" />
                      </graphic>
                   </Label>
                </children>
@@ -89,7 +89,7 @@
                         <Font name="Bookman Old Style" size="14.0" />
                      </font>
                      <graphic>
-                        <TextField fx:id="addCustPostal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="120.0" promptText="80237" translateX="5.0">
+                        <TextField fx:id="addCustPostal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="80237" translateX="5.0">
                            <font>
                               <Font name="Bookman Old Style" size="11.0" />
                            </font>

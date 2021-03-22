@@ -25,15 +25,20 @@ public class Countries {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
-    public String getCountries() {
+    public int getCountryID() {
+        return countryID;
+    }
+
+    public String getCountryNs() {
         return country;
     }
 
     public static ObservableList<String> getCountryNames() {
         countryNames.clear();
         DBCountries.getAllCountries().forEach((country) -> {
-            countryNames.add(country.getCountries());
+            countryNames.add(country.getCountryNs());
         });
         return countryNames;
     }
+
 }

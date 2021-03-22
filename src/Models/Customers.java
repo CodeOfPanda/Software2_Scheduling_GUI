@@ -1,5 +1,6 @@
 package Models;
 
+import DBAccess.DBCountries;
 import DBAccess.DBFirst_Level_Divisions;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -50,7 +51,8 @@ public class Customers {
     public IntegerProperty getCustomerID() {
         return customerID;
     }
-    public static int getCustID() {return custID;}
+    public int getCustID() {return custID;}
+    public String getCstmrID() {return String.valueOf(custID);}
 
     // customer name
     public StringProperty getCustName() {
@@ -62,16 +64,19 @@ public class Customers {
     public StringProperty getCustAddress() {
         return this.custAddress;
     }
+    public String getAddress() {return custAddress.get();}
 
     // customer postal code
     public StringProperty getCustPostal() {
         return this.custPostal;
     }
+    public String getPostal() {return custPostal.get();}
 
     // customer phone
     public StringProperty getCustPhone() {
         return this.custPhone;
     }
+    public String getPhone(){return custPhone.get();}
 
     // create_date datetime
     public ObjectProperty<LocalDateTime> getCreateDate() {
@@ -98,10 +103,13 @@ public class Customers {
         return divisionID.get();
     }
 
-    public StringProperty getDivName() {
+    public StringProperty getDivNameProperty() {
         String name = DBFirst_Level_Divisions.getDivisionName(getDivisionID());
         StringProperty divName = new SimpleStringProperty(name);
         return divName;
+    }
+    public String getDivName() {
+        return DBFirst_Level_Divisions.getDivisionName(getDivisionID());
     }
 
 }

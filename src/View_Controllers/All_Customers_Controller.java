@@ -48,7 +48,7 @@ public class All_Customers_Controller implements Initializable {
         allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
         allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
         allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
-        allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivName());
+        allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivNameProperty());
     }
 
     // Search Button Action Event
@@ -76,11 +76,27 @@ public class All_Customers_Controller implements Initializable {
     @FXML
     public void allCustModBtnClicked(ActionEvent event) throws IOException {
         // when triggered this takes the user to Update_Customer_Scene.
+        Customers selectedCustomer = allCustTable.getSelectionModel().getSelectedItem();
+
+        if (selectedCustomer != null) {
+            modifyCustomer(event, selectedCustomer);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("No record selected");
+            alert.setHeaderText("Please select a customer from the table to update.");
+            alert.showAndWait();
+        }
+    }
+
+    public void modifyCustomer(ActionEvent event, Customers selectedCustomer) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Update_Customer_Scene.fxml"));
         Parent modCustRoot = loader.load();
         Stage modCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene modCustScene = new Scene(modCustRoot);
+        Update_Customer_Controller controller = loader.getController();
+        controller.updateCustomer(selectedCustomer);
         modCustStage.setScene(modCustScene);
         modCustStage.show();
     }

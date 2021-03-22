@@ -39,4 +39,22 @@ public class DBCountries {
         return countriesList;
     }
 
+    public static String getCountryNames(int ID) {
+        String countryNames = null;
+        try{
+            //mySql statement
+            String sql = "select Country from WJ07K54.countries where Country_ID=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setInt(1, ID);
+            ResultSet rs = pStmt.executeQuery();
+
+            while (rs.next()) {
+                countryNames = rs.getString("Country");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countryNames;
+    }
+
 }

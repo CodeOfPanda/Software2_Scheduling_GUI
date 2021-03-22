@@ -1,5 +1,10 @@
 package View_Controllers;
 
+import DBAccess.DBCountries;
+import DBAccess.DBCustomers;
+import Models.Countries;
+import Models.Customers;
+import Models.First_Level_Divisions;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,23 +31,31 @@ import java.util.ResourceBundle;
 // modified scene builder to the new requirements.
 
 
-public class Update_Customer_Controller implements Initializable{
+public class Update_Customer_Controller{
 
     @FXML private TextField modCustID;
     @FXML private TextField modCustName;
-    @FXML private TextField modCustEmail;
     @FXML private TextField modCustPhone;
     @FXML private TextField modCustAddress;
-    @FXML private ComboBox<?> modCustCountry;
-    @FXML private TextField modCustCity;
-    @FXML private ComboBox<?> modCustDivision;
+    @FXML private ComboBox<String> modCustCountry;
+    @FXML private ComboBox<String> modCustDivision;
     @FXML private TextField modCustPostal;
     @FXML private Button modCustSubmitBtn;
     @FXML private Button modCustCancelBtn;
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    // my initialize method to pre-populate the modify customer page.
+    @FXML
+    public void updateCustomer(Customers selectedCustomer) {
+        modCustID.setText(selectedCustomer.getCstmrID());
+        modCustName.setText(selectedCustomer.getName());
+        modCustPhone.setText(selectedCustomer.getPhone());
+        modCustAddress.setText(selectedCustomer.getAddress());
+        modCustCountry.setItems(Countries.getCountryNames());
+        modCustCountry.setValue(DBCustomers.getCountryName(selectedCustomer.getCustID()));
+        modCustDivision.setItems(First_Level_Divisions.getDivisionNames());
+        modCustDivision.setValue(selectedCustomer.getDivName());
+        modCustPostal.setText(selectedCustomer.getPostal());
+    }
 
     // Submit Button Action Event
     @FXML

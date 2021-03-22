@@ -118,6 +118,35 @@ public class DBCustomers {
         }
     }
 
+    public static void modifyCustomer()
+    {
+
+    }
+
+    public static String getCountryName(int ID) {
+        String countryName = null;
+        try{
+            // mySQL statement
+            String nameSql = "select c.Country \n" +
+                    "from WJ07K54.customers a\n" +
+                    "join WJ07K54.first_level_divisions b on a.Division_ID=b.Division_ID\n" +
+                    "join WJ07K54.countries c on b.COUNTRY_ID=c.Country_ID " +
+                    "where a.Customer_ID=?;";
+            PreparedStatement psName = DBConnection.getConnection().prepareStatement(nameSql);
+            psName.setInt(1, ID);
+            ResultSet nameResults = psName.executeQuery();
+
+            while (nameResults.next()) {
+                countryName = nameResults.getString("Country");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return countryName;
+    }
+
 }
 
 //Customer_ID int(10) AI PK
