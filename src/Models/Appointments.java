@@ -2,6 +2,7 @@ package Models;
 
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
+import DBAccess.DBUsers;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ public class Appointments {
     private static ObservableList<String> customerNames = FXCollections.observableArrayList();
     private static ObservableList<String> allApptTypes = FXCollections.observableArrayList();
     private static ObservableList<Integer> customerIDs = FXCollections.observableArrayList();
+    private static ObservableList<Integer> userIDs = FXCollections.observableArrayList();
 
     private final IntegerProperty appointmentID;
     private final StringProperty title;
@@ -34,22 +36,9 @@ public class Appointments {
     private final IntegerProperty customerID;
     private final IntegerProperty userID;
     private final IntegerProperty contactID;
-    // static variables
-//    private static int apptIDCount = 0;
-//    private static int apptID;
-//    private static String apptTitle;
-//    private static String apptLocation;
-//    private static String apptDescription;
-//    private static String apptType;
-//    private static LocalDateTime apptStart;
-//    private static LocalDateTime apptEnd;
     private static LocalDateTime apptCreateDate;
     private static String apptCreatedBy;
     private static String apptLastUpdatedBy;
-//    private static int apptCustomerID;
-//    private static int apptUserID;
-//    private static int apptContactID;
-
 
     // constructor method
     public Appointments(int appointmentID, String title, String description, String location, String type
@@ -70,20 +59,9 @@ public class Appointments {
         this.customerID = new SimpleIntegerProperty(customerID);
         this.userID = new SimpleIntegerProperty(userID);
         this.contactID = new SimpleIntegerProperty(contactID);
-        // static variables
-//        apptContactID = contactID;
-//        apptType = type;
-//        apptDescription = description;
-//        apptLocation = location;
-//        apptTitle = title;
-//        apptStart = start;
-//        apptEnd = end;
         apptCreateDate = createDate;
         apptCreatedBy = createdBy;
         apptLastUpdatedBy = lastUpdatedBy;
-//        apptCustomerID = customerID;
-//        apptUserID = userID;
-//        apptID = appointmentID;
     }
 
     // appointmentID
@@ -206,5 +184,13 @@ public class Appointments {
             customerIDs.add(customer.getCustID());
         });
         return customerIDs;
+    }
+
+    public static ObservableList<Integer> getUserIDs() {
+        userIDs.clear();
+        DBUsers.getAllUsers().forEach((user) -> {
+            userIDs.add(user.getUserID());
+        });
+        return userIDs;
     }
 }

@@ -3,6 +3,7 @@ package View_Controllers;
 import DBAccess.DBAppointments;
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
+import DBAccess.DBUsers;
 import Models.Appointments;
 import Models.Contacts;
 import Models.Customers;
@@ -18,6 +19,8 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import utils.DBConnection;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -32,8 +35,6 @@ import java.util.ResourceBundle;
 // modified scene builder to fit new requirements
 
 public class Add_Appointment_Controller implements Initializable {
-
-
 
     @FXML private TextField addApptID;
     @FXML private TextField addApptTitle;
@@ -57,6 +58,7 @@ public class Add_Appointment_Controller implements Initializable {
         addApptContact.setItems(Appointments.getContactNames());
         addApptCustName.setItems(Appointments.getCustomerNames());
         addApptType.setItems(Appointments.getAllApptTypes());
+        addApptUserID.setItems(Appointments.getUserIDs());
     }
 
     // Submit Button Action Event
@@ -76,13 +78,13 @@ public class Add_Appointment_Controller implements Initializable {
                     , addApptStartDate.getValue().atStartOfDay()
                     , addApptEndDate.getValue().atStartOfDay()
                     , Appointments.getCurrentDateTime()
-                    , Appointments.getApptCreatedBy() // needs to be the user
+                    , DBUsers.getUserName(addApptUserID.getValue())
                     , Appointments.getCurrentDateTime()
-                    , Appointments.getApptLastUpdatedBy() // needs to be the user
+                    , DBUsers.getUserName(addApptUserID.getValue())
                     , Customers.getCustID() // link cust_ID with the cust_name in the combobox in the form.
 //                    , addApptCustID.getValue()
-//                    , addApptUserID.getValue()
-                    , Contacts.getContactID()  // link cust_ID with the cust_name in the combobox in the form.
+                    , addApptUserID.getValue()
+                    , DBContacts.getContactID(addApptContact.getValue())
                     );
 
             Alert submit = new Alert(Alert.AlertType.INFORMATION);

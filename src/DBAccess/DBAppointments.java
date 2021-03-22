@@ -66,13 +66,13 @@ public class DBAppointments {
             , LocalDateTime lastUpdate
             , String lastUpdatedBy
             , int customerID
-//            , int userID
+            , int userID
             , int contactID
     )
     {
         try {
             // mySQL statement
-            String createAppt = "INSERT INTO WJ07K54.appointments VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, null, ?);";
+            String createAppt = "INSERT INTO WJ07K54.appointments VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement psCA = DBConnection.getConnection().prepareStatement(createAppt);
             // appointment_id is null here
             psCA.setString(1, title);
@@ -86,8 +86,8 @@ public class DBAppointments {
             psCA.setObject(9, lastUpdate);
             psCA.setString(10,lastUpdatedBy);
             psCA.setInt(11, customerID);
-//            psCA.setInt(9, userID);
-            psCA.setInt(12, contactID);
+            psCA.setInt(12, userID);
+            psCA.setInt(13, contactID);
 
             psCA.execute();
 
@@ -105,17 +105,17 @@ public class DBAppointments {
             , String type
             , LocalDateTime start
             , LocalDateTime end
-            , String createdBy
             , LocalDateTime lastUpdate
             , String lastUpdatedBy
             , int customerID
-//            , int userID
+            , int userID
             , int contactID)
     {
         try {
             // mySQL statement
             String sqlUpdate = "update WJ07K54.appointments " +
-                    "set Title=?, Description=? ,Location=?, Type=?, Start=?, End=?, Last_Update=?, Customer_ID=?/*, User_ID=?, Contact_ID=?*/ " +
+                    "set Title=?, Description=? ,Location=?, Type=?, Start=?, End=?, Last_Update=?" +
+                    ", Last_Updated_By=?, Customer_ID=?, User_ID=?, Contact_ID=? " +
                     "where Appointment_ID=?;";
             PreparedStatement psUpdate = DBConnection.getConnection().prepareStatement(sqlUpdate);
             psUpdate.setString(1, title);
@@ -125,10 +125,11 @@ public class DBAppointments {
             psUpdate.setObject(5, start);
             psUpdate.setObject(6, end);
             psUpdate.setObject(7, lastUpdate);
-            psUpdate.setInt(8, customerID);
-//            psUpdate.setInt(8, userID);
-//            psUpdate.setInt(9, contactID);
-            psUpdate.setInt(9, appt_ID);
+            psUpdate.setString(8, lastUpdatedBy);
+            psUpdate.setInt(9, customerID);
+            psUpdate.setInt(10, userID);
+            psUpdate.setInt(11, contactID);
+            psUpdate.setInt(12, appt_ID);
 
             psUpdate.execute();
         }

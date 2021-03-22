@@ -3,6 +3,7 @@ package View_Controllers;
 import DBAccess.DBAppointments;
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
+import DBAccess.DBUsers;
 import Models.Appointments;
 import Models.Contacts;
 import Models.Customers;
@@ -57,7 +58,6 @@ public class Update_Appointment_Scene {
         modApptTitle.setText(appt.getApptTitle());
         modApptDescript.setText(appt.getApptDescript());
         modApptLocale.setText(appt.getApptLocation());
-//        modApptContact.getItems().clear();
         modApptContact.setItems(Appointments.getContactNames());
         modApptContact.setValue(DBContacts.getContactName(appt.getContact()));
         modApptType.setItems(Appointments.getAllApptTypes());
@@ -66,6 +66,8 @@ public class Update_Appointment_Scene {
         modApptCustName.setValue(DBCustomers.getCustomerName(appt.getApptCustomerID()));
         modApptStartDate.setValue(appt.getApptStart().toLocalDate());
         modApptEndDate.setValue(appt.getApptEnd().toLocalDate());
+        modApptUserID.setItems(Appointments.getUserIDs());
+        modApptUserID.setValue(appt.getApptUserID());
     }
 
     // Submit Button Action Event
@@ -76,10 +78,18 @@ public class Update_Appointment_Scene {
         String appt_ID = String.valueOf(modApptID.getText());
 
         if(isValid()){
-            DBAppointments.modifyAppt(Integer.parseInt(appt_ID), modApptTitle.getText(), modApptDescript.getText()
-                    ,modApptLocale.getText(), modApptType.getValue(),modApptStartDate.getValue().atStartOfDay()
-                    ,modApptEndDate.getValue().atStartOfDay(), Appointments.getApptCreatedBy(), Appointments.getCurrentDateTime()
-                    ,Appointments.getApptLastUpdatedBy(),Customers.getCustID(), /*UserID, */ Contacts.getContactID());
+            DBAppointments.modifyAppt(Integer.parseInt(appt_ID)
+                    , modApptTitle.getText()
+                    , modApptDescript.getText()
+                    , modApptLocale.getText()
+                    , modApptType.getValue()
+                    , modApptStartDate.getValue().atStartOfDay()
+                    , modApptEndDate.getValue().atStartOfDay()
+                    , Appointments.getCurrentDateTime()
+                    , DBUsers.getUserName(modApptUserID.getValue())
+                    , Customers.getCustID()
+                    , modApptUserID.getValue()
+                    , DBContacts.getContactID(modApptContact.getValue()));
         }
 
         Alert submit = new Alert(Alert.AlertType.INFORMATION);

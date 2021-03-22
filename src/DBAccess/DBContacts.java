@@ -58,6 +58,24 @@ public class DBContacts {
         return contactName;
     }
 
+    public static int getContactID(String name) {
+        int contactID = 0;
+        try {
+            // mySQL statement
+            String idSql = "select Contact_ID from WJ07K54.contacts where Contact_Name=?;";
+            PreparedStatement psID = DBConnection.getConnection().prepareStatement(idSql);
+            psID.setString(1, name);
+            ResultSet idResults = psID.executeQuery();
+
+            while (idResults.next()) {
+                contactID = idResults.getInt("Contact_ID");
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return contactID;
+    }
+
 }
 
 //Contact_ID int(10) AI PK

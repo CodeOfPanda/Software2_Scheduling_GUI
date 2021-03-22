@@ -42,6 +42,26 @@ public class DBUsers {
         return userList;
     }
 
+    public static String getUserName(int ID) {
+        String userNames = null;
+        try {
+            // mySQL statement
+            String userNameSql = "select User_Name from WJ07K54.users where User_ID=?;";
+            PreparedStatement psUserName = DBConnection.getConnection().prepareStatement(userNameSql);
+            psUserName.setInt(1, ID);
+            ResultSet nameResults = psUserName.executeQuery();
+
+            while (nameResults.next()) {
+                userNames = nameResults.getString("User_Name");
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userNames;
+    }
+
 }
 
 
