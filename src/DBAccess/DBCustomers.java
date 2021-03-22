@@ -85,6 +85,7 @@ public class DBCustomers {
         return customerID;
     }
 
+    // adding a customer
     public static void createCustomer(String customerName
             , String address
             , String postalCode
@@ -93,12 +94,12 @@ public class DBCustomers {
 //            , String createdBy
             , LocalDateTime lastUpdate
 //            , String lastUpdatedBy
-//            , int divisionID
+            , int divisionID
             )
     {
         try {
             // mySQL statement
-            String sql = "insert into WJ07K54.customers values(null, ?, ?, ?, ?, ?, null, ?, null, null);";
+            String sql = "insert into WJ07K54.customers values(null, ?, ?, ?, ?, ?, null, ?, null, ?);";
             PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
 
             pStmt.setString(1, customerName);
@@ -109,7 +110,7 @@ public class DBCustomers {
 //            pStmt.setString(6, createdBy);
             pStmt.setObject(6, lastUpdate);
 //            pStmt.setString(8, lastUpdatedBy);
-//            pStmt.setInt(9, divisionID); // can't be null
+            pStmt.setInt(7, divisionID); // can't be null
 
             pStmt.execute();
         } catch (SQLException e) {

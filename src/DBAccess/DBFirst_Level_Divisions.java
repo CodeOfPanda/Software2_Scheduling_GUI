@@ -39,4 +39,38 @@ public class DBFirst_Level_Divisions {
         return divisionsList;
     }
 
+    public static int getDivisionID(String name) {
+        int divisionID = 0;
+        try{
+            //mySQL statement
+            String idSql = "select Division_ID from WJ07K54.first_level_divisions where Division=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(idSql);
+            pStmt.setString(1, name);
+
+            ResultSet rs = pStmt.executeQuery();
+            while(rs.next()) {
+                divisionID = rs.getInt("Division_ID");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return divisionID;
+    }
+
+    public static String getDivisionName() {
+        String divisionName = null;
+        try{
+            //mySQL statement
+            String dnSql = "select Division from WJ07K54.first_level_divisions where Division_ID=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(dnSql);
+
+            ResultSet rs = pStmt.executeQuery();
+            while (rs.next()) {
+                divisionName = rs.getString("Division");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return divisionName;
+    }
 }

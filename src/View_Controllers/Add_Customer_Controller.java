@@ -1,6 +1,7 @@
 package View_Controllers;
 
 import DBAccess.DBCustomers;
+import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Countries;
 import Models.First_Level_Divisions;
@@ -61,12 +62,13 @@ public class Add_Customer_Controller implements Initializable {
 //                , // created by
                 , Appointments.getCurrentDateTime()
 //                , // lastupdatedby
+                , DBFirst_Level_Divisions.getDivisionID(addCustDivision.getValue())
                  );
 
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
         submit.initModality(Modality.NONE);
         submit.setTitle("Thank You!");
-        submit.setHeaderText("Your appointment has been saved.");
+        submit.setHeaderText("Your customer has been saved.");
         Optional<ButtonType> results = submit.showAndWait();
         if(results.get() == ButtonType.OK) {
             FXMLLoader loader = new FXMLLoader();

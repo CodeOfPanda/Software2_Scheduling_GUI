@@ -1,6 +1,10 @@
 package Models;
 
+import DBAccess.DBFirst_Level_Divisions;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -12,6 +16,7 @@ import java.time.LocalDateTime;
 
 public class Customers {
 
+    private static ObservableList<String> divisionIDs = FXCollections.observableArrayList();
     private IntegerProperty customerID;
     private StringProperty custName;
     private StringProperty custAddress;
@@ -22,6 +27,7 @@ public class Customers {
     private Timestamp lastUpdate;
     private StringProperty lastUpdatedBy;
     private IntegerProperty divisionID;
+    private int dvsnID;
     private static int custID;
 
     public Customers(int customerID, String name, String address, String postalCode, String phone, LocalDateTime createDate
@@ -38,7 +44,7 @@ public class Customers {
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
         this.divisionID = new SimpleIntegerProperty(divisionID);
-
+        dvsnID = divisionID;
     }
 
     // customerID

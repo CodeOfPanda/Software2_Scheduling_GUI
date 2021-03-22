@@ -1,7 +1,9 @@
 package View_Controllers;
 
 import DBAccess.DBCustomers;
+import Models.Appointments;
 import Models.Customers;
+import Models.First_Level_Divisions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,22 +37,20 @@ public class All_Customers_Controller implements Initializable {
     @FXML private TableColumn<Customers, Integer> allCustID;
     @FXML private TableColumn<Customers, String> allCustName;
     @FXML private TableColumn<Customers, String> allCustAddress;
-    @FXML private TableColumn<Customers, String> allCustDivision;
+    @FXML private TableColumn<First_Level_Divisions, String> allCustDivision;
     @FXML private TableColumn<Customers, String> allCustPostal;
     @FXML private TableColumn<Customers, String> allCustPhone;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DBCustomers.getAllCust().forEach((customer) -> {
-            customerNames.add(customer.getName());
-        });
-        customerNameCombo.setItems(customerNames);
+//        customerNameCombo.setItems(Appointments.getCustomerNames());// dont think i need this
         allCustTable.setItems(DBCustomers.getAllCust());
         allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
 //        allCustName.setCellValueFactory(cellData -> cellData.getValue().getCustName());
         allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
         allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
         allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
+
     }
 
     // Search Button Action Event
