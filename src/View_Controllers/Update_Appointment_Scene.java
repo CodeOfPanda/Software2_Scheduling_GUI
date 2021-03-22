@@ -5,8 +5,6 @@ import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
 import DBAccess.DBUsers;
 import Models.Appointments;
-import Models.Contacts;
-import Models.Customers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,7 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 /*

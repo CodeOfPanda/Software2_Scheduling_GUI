@@ -1,7 +1,6 @@
 package View_Controllers;
 
 import DBAccess.DBContacts;
-import Models.Appointments;
 import Models.Contacts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
