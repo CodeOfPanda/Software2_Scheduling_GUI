@@ -1,9 +1,9 @@
 package View_Controllers;
 
 import DBAccess.DBCustomers;
-import DBAccess.DBUsers;
 import Models.Appointments;
-import Models.Customers;
+import Models.Countries;
+import Models.First_Level_Divisions;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,8 +14,6 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-
-import java.awt.desktop.AppReopenedEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -23,12 +21,10 @@ import java.util.ResourceBundle;
 
 public class Add_Customer_Controller implements Initializable {
 
-    @FXML private TextField addCustID;
     @FXML private TextField addCustName;
-        @FXML private TextField addCustPhone;
+    @FXML private TextField addCustPhone;
     @FXML private TextField addCustAddress;
     @FXML private ComboBox<String> addCustCountry;
-    @FXML private TextField addCustCity;
     @FXML private ComboBox<String> addCustDivision;
     @FXML private TextField addCustPostal;
     @FXML private Button addCustSubmitBtn;
@@ -47,7 +43,8 @@ public class Add_Customer_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        addCustCountry.setItems(Countries.getCountryNames());
+        addCustDivision.setItems(First_Level_Divisions.getDivisionNames());
     }
 
     // Submit Button Action Event
@@ -63,7 +60,7 @@ public class Add_Customer_Controller implements Initializable {
                 , Appointments.getCurrentDateTime()
 //                , // created by
                 , Appointments.getCurrentDateTime()
-//                , // lastupdated by
+//                , // lastupdatedby
                  );
 
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
