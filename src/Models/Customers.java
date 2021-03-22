@@ -43,7 +43,7 @@ public class Customers {
 
     // customerID
     public IntegerProperty getCustomerID() {
-        return this.customerID;
+        return customerID;
     }
     public static int getCustID() {return custID;}
 

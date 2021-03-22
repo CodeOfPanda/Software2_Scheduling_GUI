@@ -28,8 +28,6 @@ import java.util.ResourceBundle;
 *       but you can use a combo box or date picker as well for the contact, type, sd&t, ed&t, custID (may want to display name), and user.
 */
 
-// modified scene builder to fit new requirements
-
 public class Add_Appointment_Controller implements Initializable {
 
     @FXML private TextField addApptID;
@@ -42,9 +40,8 @@ public class Add_Appointment_Controller implements Initializable {
     @FXML private ComboBox<String> addApptType;
     @FXML private ComboBox<String> addApptStartTime;
     @FXML private ComboBox<String> addApptEndTime;
-    @FXML private ComboBox<Integer> addApptCustID;
     @FXML private ComboBox<String> addApptCustName;
-    @FXML private ComboBox<Integer> addApptUserID; // make the init data auto-generated based off of the log-in
+    @FXML private ComboBox<Integer> addApptUserID;
     @FXML private Button addApptSubmitBtn;
     @FXML private Button addApptCancelBtn;
 
@@ -142,11 +139,10 @@ public class Add_Appointment_Controller implements Initializable {
         } else if (addApptLocale.getText().isEmpty() || addApptLocale.getText() == null) {
             return false;
         }
+//        //        Fix: combo-boxes are not validating..
 //        else if (addApptContact.getEditor().getText().isEmpty() || addApptContact.getEditor().getText() == null) {
 //            return false;
 //        }
-//
-//        Fix: combo-boxes are not validating..
 //        else if (addApptType.getItems().isEmpty() || addApptType.getItems() == null) {
 //            System.out.println(addApptType.getItems());
 //            return false;

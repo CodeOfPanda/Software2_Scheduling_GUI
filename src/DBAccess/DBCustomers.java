@@ -85,6 +85,38 @@ public class DBCustomers {
         return customerID;
     }
 
+    public static void createCustomer(String customerName
+            , String address
+            , String postalCode
+            , String phone
+            , LocalDateTime createDate
+//            , String createdBy
+            , LocalDateTime lastUpdate
+//            , String lastUpdatedBy
+//            , int divisionID
+            )
+    {
+        try {
+            // mySQL statement
+            String sql = "insert into WJ07K54.customers values(null, ?, ?, ?, ?, ?, null, ?, null, null);";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+
+            pStmt.setString(1, customerName);
+            pStmt.setString(2, address);
+            pStmt.setString(3, postalCode);
+            pStmt.setString(4, phone);
+            pStmt.setObject(5, createDate);
+//            pStmt.setString(6, createdBy);
+            pStmt.setObject(6, lastUpdate);
+//            pStmt.setString(8, lastUpdatedBy);
+//            pStmt.setInt(9, divisionID); // can't be null
+
+            pStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 //Customer_ID int(10) AI PK

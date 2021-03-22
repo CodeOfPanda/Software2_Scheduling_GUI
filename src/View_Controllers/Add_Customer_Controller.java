@@ -1,5 +1,9 @@
 package View_Controllers;
 
+import DBAccess.DBCustomers;
+import DBAccess.DBUsers;
+import Models.Appointments;
+import Models.Customers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+
+import java.awt.desktop.AppReopenedEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -19,8 +25,7 @@ public class Add_Customer_Controller implements Initializable {
 
     @FXML private TextField addCustID;
     @FXML private TextField addCustName;
-    @FXML private TextField addCustEmail;
-    @FXML private TextField addCustPhone;
+        @FXML private TextField addCustPhone;
     @FXML private TextField addCustAddress;
     @FXML private ComboBox<String> addCustCountry;
     @FXML private TextField addCustCity;
@@ -41,13 +46,26 @@ public class Add_Customer_Controller implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 
     // Submit Button Action Event
     @FXML
     void addCustSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an informational window will pop up, indicating the information was saved,
         // then take the user to All_Customer_Records_Scene.
+
+        DBCustomers.createCustomer(addCustName.getText()
+                , addCustAddress.getText()
+                , addCustPostal.getText()
+                , addCustPhone.getText()
+                , Appointments.getCurrentDateTime()
+//                , // created by
+                , Appointments.getCurrentDateTime()
+//                , // lastupdated by
+                 );
+
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
         submit.initModality(Modality.NONE);
         submit.setTitle("Thank You!");
