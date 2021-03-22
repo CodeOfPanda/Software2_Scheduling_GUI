@@ -87,7 +87,7 @@ public class Update_Appointment_Scene {
                     , modApptEndDate.getValue().atStartOfDay()
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(modApptUserID.getValue())
-                    , Customers.getCustID()
+                    , DBCustomers.getCustomerID(modApptCustName.getValue())
                     , modApptUserID.getValue()
                     , DBContacts.getContactID(modApptContact.getValue()));
         }

@@ -67,6 +67,25 @@ public class DBCustomers {
 
         return customerName;
     }
+
+    public static int getCustomerID(String name) {
+        int customerID = 0;
+        try {
+            // mySQL statement
+            String idSql = "select Customer_ID from WJ07K54.customers where Customer_Name=?;";
+            PreparedStatement psID = DBConnection.getConnection().prepareStatement(idSql);
+            psID.setString(1, name);
+            ResultSet idResults = psID.executeQuery();
+
+            while (idResults.next()) {
+                customerID = idResults.getInt("Customer_ID");
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return customerID;
+    }
+
 }
 
 //Customer_ID int(10) AI PK

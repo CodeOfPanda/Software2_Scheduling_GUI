@@ -81,8 +81,7 @@ public class Add_Appointment_Controller implements Initializable {
                     , DBUsers.getUserName(addApptUserID.getValue())
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(addApptUserID.getValue())
-                    , Customers.getCustID() // link cust_ID with the cust_name in the combobox in the form.
-//                    , addApptCustID.getValue()
+                    , DBCustomers.getCustomerID(addApptCustName.getValue())
                     , addApptUserID.getValue()
                     , DBContacts.getContactID(addApptContact.getValue())
                     );
