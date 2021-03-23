@@ -119,9 +119,35 @@ public class DBCustomers {
     }
 
     // modifying a customer
-    public static void modifyCustomer()
+    public static void modifyCustomer(int customerID
+            , String customerName
+            , String address
+            , String postalCode
+            , String phone
+//            , String createdBy
+            , LocalDateTime lastUpdate
+//            , String lastUpdatedBy
+            , int divisionID)
     {
-
+        try{
+            //mySql statement
+            String sql = "update WJ07K54.customers " +
+                    "set Customer_Name=?, Address=?, Postal_Code=?, Phone=?, Last_Update=?, Division_ID=? " +
+                    "where Customer_ID=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setString(1, customerName);
+            pStmt.setString(2, address);
+            pStmt.setString(3, postalCode);
+            pStmt.setString(4, phone);
+            //pStmt.setString(, createdBy);
+            pStmt.setObject(5, lastUpdate);
+            //pStmt.setString(, lastUpdatedBy);
+            pStmt.setInt(6, divisionID); // can't be null
+            pStmt.setInt(7, customerID);
+            pStmt.execute();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getCountryName(int ID) {

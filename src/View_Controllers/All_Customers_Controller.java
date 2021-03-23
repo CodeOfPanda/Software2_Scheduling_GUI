@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  */
 
 public class All_Customers_Controller implements Initializable {
-    ObservableList<String> customerNames = FXCollections.observableArrayList();
+
     @FXML private ComboBox<String> customerNameCombo;
     @FXML private Button allCustSearchBtn;
     @FXML private TextField allCustSearchTextField;
@@ -43,6 +43,7 @@ public class All_Customers_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerNameCombo.setItems(Appointments.getCustomerNames());
         allCustTable.setItems(DBCustomers.getAllCust());
         allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
         allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
@@ -64,7 +65,6 @@ public class All_Customers_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Add_Customer_Scene.fxml"));
         Parent addCustRoot = loader.load();
-
         Stage addCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene addCustScene = new Scene(addCustRoot);
         addCustStage.setScene(addCustScene);

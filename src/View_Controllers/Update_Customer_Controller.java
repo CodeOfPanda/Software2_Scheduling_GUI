@@ -2,6 +2,7 @@ package View_Controllers;
 
 import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
+import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Countries;
 import Models.Customers;
@@ -48,6 +49,7 @@ public class Update_Customer_Controller{
     // my initialize method to pre-populate the modify customer page.
     @FXML
     public void updateCustomer(Customers selectedCustomer) {
+
         modCustID.setText(selectedCustomer.getCstmrID());
         modCustName.setText(selectedCustomer.getName());
         modCustPhone.setText(selectedCustomer.getPhone());
@@ -66,6 +68,15 @@ public class Update_Customer_Controller{
     void modCustSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an informational window will pop up, indicating the information was saved,
         // then take the user to All_Customer_Records_Scene.
+        String customerID = String.valueOf(modCustID.getText());
+        DBCustomers.modifyCustomer(Integer.parseInt(customerID)
+                , modCustName.getText()
+                , modCustAddress.getText()
+                , modCustPostal.getText()
+                , modCustPhone.getText()
+                , Appointments.getCurrentDateTime()
+                , DBFirst_Level_Divisions.getDivisionID(modCustDivision.getValue()));
+
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
         submit.initModality(Modality.NONE);
         submit.setTitle("Thank You!");
