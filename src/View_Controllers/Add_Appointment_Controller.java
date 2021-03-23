@@ -52,8 +52,8 @@ public class Add_Appointment_Controller implements Initializable {
         addApptCustName.setItems(Appointments.getCustomerNames());
         addApptType.setItems(Appointments.getAllApptTypes());
         addApptUserID.setItems(Appointments.getUserIDs());
-        addApptStartTime.setItems(Appointments.getWorkHours());
-        addApptEndTime.setItems(Appointments.getWorkHours());
+        addApptStartTime.setItems(Appointments.getStartWorkHours());
+        addApptEndTime.setItems(Appointments.getEndWorkHours());
     }
 
     // Submit Button Action Event
@@ -70,10 +70,8 @@ public class Add_Appointment_Controller implements Initializable {
                     , addApptDescript.getText()
                     , addApptLocale.getText()
                     , addApptType.getValue()
-                    , LocalDateTime.of(addApptStartDate.getValue(),
-                            LocalTime.parse(addApptStartTime.getValue()))
-                    , LocalDateTime.of(addApptEndDate.getValue(),
-                            LocalTime.parse(addApptEndTime.getValue()))
+                    , LocalDateTime.of(addApptStartDate.getValue(),LocalTime.parse(addApptStartTime.getValue()))
+                    , LocalDateTime.of(addApptEndDate.getValue(),LocalTime.parse(addApptEndTime.getValue()))
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(addApptUserID.getValue())
                     , Appointments.getCurrentDateTime()

@@ -106,7 +106,7 @@
             <ComboBox fx:id="modApptContact" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <DatePicker fx:id="modApptStartDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
-            <ComboBox fx:id="modApptStartTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <ComboBox fx:id="modStartTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <DatePicker fx:id="modApptEndDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptEndTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptCustName" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />

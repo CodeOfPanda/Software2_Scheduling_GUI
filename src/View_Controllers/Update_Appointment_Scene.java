@@ -15,6 +15,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 /*
@@ -37,7 +40,7 @@ public class Update_Appointment_Scene {
     @FXML private ComboBox<String> modApptContact;
     @FXML private ComboBox<String> modApptType;
     @FXML private DatePicker modApptStartDate;
-    @FXML private ComboBox<String> modApptStartTime;
+    @FXML private ComboBox<String> modStartTime;
     @FXML private DatePicker modApptEndDate;
     @FXML private ComboBox<String> modApptEndTime;
     // ask if i need to keep customer id in the GUI or if it can be auto - generated off of the name?
@@ -65,8 +68,11 @@ public class Update_Appointment_Scene {
         modApptEndDate.setValue(appt.getApptEnd().toLocalDate());
         modApptUserID.setItems(Appointments.getUserIDs());
         modApptUserID.setValue(appt.getApptUserID());
-        modApptStartTime.setItems(Appointments.getWorkHours());
-//        modApptStartTime.setValue();
+        modStartTime.setItems(Appointments.getStartWorkHours());
+        modStartTime.setValue(appt.getApptStart().format(DateTimeFormatter.ofPattern("HH:mm")));
+        modApptEndTime.setItems(Appointments.getEndWorkHours());
+        modApptEndTime.setValue(appt.getApptEnd().format(DateTimeFormatter.ofPattern("HH:mm")));
+
     }
 
     // Submit Button Action Event
@@ -82,8 +88,8 @@ public class Update_Appointment_Scene {
                     , modApptDescript.getText()
                     , modApptLocale.getText()
                     , modApptType.getValue()
-                    , modApptStartDate.getValue().atStartOfDay()
-                    , modApptEndDate.getValue().atStartOfDay()
+                    , LocalDateTime.of(modApptStartDate.getValue(), LocalTime.parse(modStartTime.getValue()))
+                    , LocalDateTime.of(modApptEndDate.getValue(), LocalTime.parse(modApptEndTime.getValue()))
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(modApptUserID.getValue())
                     , DBCustomers.getCustomerID(modApptCustName.getValue())
