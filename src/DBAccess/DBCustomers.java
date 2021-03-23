@@ -118,6 +118,7 @@ public class DBCustomers {
         }
     }
 
+    // modifying a customer
     public static void modifyCustomer()
     {
 
@@ -148,6 +149,8 @@ public class DBCustomers {
     }
 
 }
+
+
 
 //Customer_ID int(10) AI PK
 //Customer_Name varchar(50)

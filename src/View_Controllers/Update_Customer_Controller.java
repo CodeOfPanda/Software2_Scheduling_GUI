@@ -2,6 +2,7 @@ package View_Controllers;
 
 import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
+import Models.Appointments;
 import Models.Countries;
 import Models.Customers;
 import Models.First_Level_Divisions;
@@ -40,6 +41,7 @@ public class Update_Customer_Controller{
     @FXML private ComboBox<String> modCustCountry;
     @FXML private ComboBox<String> modCustDivision;
     @FXML private TextField modCustPostal;
+    @FXML private ComboBox<Integer> modCustUserID;
     @FXML private Button modCustSubmitBtn;
     @FXML private Button modCustCancelBtn;
 
@@ -55,6 +57,8 @@ public class Update_Customer_Controller{
         modCustDivision.setItems(First_Level_Divisions.getDivisionNames());
         modCustDivision.setValue(selectedCustomer.getDivName());
         modCustPostal.setText(selectedCustomer.getPostal());
+        modCustUserID.setItems(Appointments.getUserIDs());
+//        modCustUserID.setValue(selectedCustomer.);
     }
 
     // Submit Button Action Event
