@@ -30,7 +30,6 @@ public class Add_Customer_Controller implements Initializable {
     @FXML private ComboBox<String> addCustCountry;
     @FXML private ComboBox<String> addCustDivision;
     @FXML private TextField addCustPostal;
-    @FXML private ComboBox<Integer> addCustUserID;
     @FXML private Button addCustSubmitBtn;
     @FXML private Button addCustCancelBtn;
 
@@ -49,7 +48,6 @@ public class Add_Customer_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addCustCountry.setItems(Countries.getCountryNames());
         addCustDivision.setItems(First_Level_Divisions.getDivisionNames());
-        addCustUserID.setItems(Appointments.getUserIDs());
     }
 
     // Submit Button Action Event
