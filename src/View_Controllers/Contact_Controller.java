@@ -1,6 +1,8 @@
 package View_Controllers;
 
+import DBAccess.DBAppointments;
 import DBAccess.DBContacts;
+import Models.Appointments;
 import Models.Contacts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -26,22 +29,53 @@ public class Contact_Controller implements Initializable {
     @FXML private Button contactSearchBtn;
     @FXML private ComboBox<String> contactNamesCombo;
     @FXML private TextField contactSearchText;
-    @FXML private TableView<Contacts> contactTable;
-    @FXML private TableColumn<Contacts, Integer> contactApptID;
-    @FXML private TableColumn<Contacts, String> contactApptTitle;
-    @FXML private TableColumn<Contacts, String> contactApptType;
-    @FXML private TableColumn<Contacts, String> contactApptDescript;
-    @FXML private TableColumn<Contacts, String> contactApptStrtTime;
-    @FXML private TableColumn<Contacts, String> contactApptEndTime;
-    @FXML private TableColumn<Contacts, Integer> contactApptCustID;
+    @FXML private TableView<Appointments> contactTable;
+    @FXML private TableColumn<Appointments, Integer> contactApptID;
+    @FXML private TableColumn<Appointments, String> contactApptTitle;
+    @FXML private TableColumn<Appointments, String> contactApptType;
+    @FXML private TableColumn<Appointments, String> contactApptDescript;
+    @FXML private TableColumn<Appointments, LocalDateTime> contactApptStrtTime;
+    @FXML private TableColumn<Appointments, LocalDateTime> contactApptEndTime;
+    @FXML private TableColumn<Appointments, Integer> contactApptCustID;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DBContacts.getAllContacts().forEach((contact) -> {
-            contactNames.add(contact.getName());
-        });
-        contactNamesCombo.setItems(contactNames);
+        ObservableList<String> newContactNames = Appointments.getContactNames();
+        newContactNames.add("All Contacts");
+        contactNamesCombo.setItems(newContactNames.sorted());
+        contactNamesCombo.setValue("All Contacts");
+        contactTable.setItems(DBAppointments.getAllAppts());
+        contactApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
+        contactApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
+        contactApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+        contactApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+        contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+        contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
+        contactApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+    }
+
+    @FXML
+    void changeContactName(ActionEvent event) {
+        if(contactNamesCombo.getValue() == "All Contacts") {
+            contactTable.setItems(DBAppointments.getAllAppts());
+            contactApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
+            contactApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
+            contactApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+            contactApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
+            contactApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        } else {
+            contactTable.setItems(DBAppointments.getSpecificAppt(contactNamesCombo.getValue()));
+            contactApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
+            contactApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
+            contactApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+            contactApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
+            contactApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        }
     }
 
     // Search Button Action Event

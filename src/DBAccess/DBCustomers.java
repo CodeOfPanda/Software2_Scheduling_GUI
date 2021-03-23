@@ -46,6 +46,38 @@ public class DBCustomers {
         return custList;
     }
 
+    public static ObservableList<Customers> getSpecificCustomer(String custName) {
+        ObservableList<Customers> custList = FXCollections.observableArrayList();
+
+        try{
+            // mySQL statement
+            String sql = "select * from WJ07K54.customers where Customer_Name=?;";
+            PreparedStatement pstmt = DBConnection.getConnection().prepareStatement(sql);
+            pstmt.setString(1, custName);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                int customerID = rs.getInt("Customer_ID");
+                String name = rs.getString("Customer_Name");
+                String address = rs.getString("Address");
+                String postalCode = rs.getString("Postal_Code");
+                String phone = rs.getString("Phone");
+                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                String createdBy = rs.getString("Created_By");
+                Timestamp lastUpdate = rs.getTimestamp("Last_Update");
+                String lastUpdatedBy = rs.getString("Last_Updated_By");
+                int divisionID = rs.getInt("Division_ID");
+                Customers list = new Customers(customerID, name, address, postalCode, phone, createDate, createdBy, lastUpdate
+                        ,lastUpdatedBy, divisionID);
+                custList.add(list);
+            }
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return custList;
+    }
 
     public static String getCustomerName(int ID) {
         String customerName = null;

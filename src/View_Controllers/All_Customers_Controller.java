@@ -43,7 +43,10 @@ public class All_Customers_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerNameCombo.setItems(Appointments.getCustomerNames());
+        ObservableList<String> newCustNames = Appointments.getCustomerNames();
+        newCustNames.add("All Customers");
+        customerNameCombo.setItems(newCustNames.sorted());
+        customerNameCombo.setValue("All Customers");
         allCustTable.setItems(DBCustomers.getAllCust());
         allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
         allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
@@ -51,6 +54,26 @@ public class All_Customers_Controller implements Initializable {
         allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
         allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivNameProperty());
     }
+
+    @FXML
+    void changeCustName(ActionEvent event) {
+        if(customerNameCombo.getValue() == "All Customers") {
+            allCustTable.setItems(DBCustomers.getAllCust());
+            allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+            allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
+            allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
+            allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
+            allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivNameProperty());
+        } else {
+            allCustTable.setItems(DBCustomers.getSpecificCustomer(customerNameCombo.getValue()));
+            allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+            allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
+            allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
+            allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
+            allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivNameProperty());
+        }
+    }
+
 
     // Search Button Action Event
     @FXML
