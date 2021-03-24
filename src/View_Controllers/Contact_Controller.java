@@ -1,9 +1,7 @@
 package View_Controllers;
 
 import DBAccess.DBAppointments;
-import DBAccess.DBContacts;
 import Models.Appointments;
-import Models.Contacts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,8 +21,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Contact_Controller implements Initializable {
-
-    ObservableList<String> contactNames = FXCollections.observableArrayList();
 
     @FXML private Button contactSearchBtn;
     @FXML private ComboBox<String> contactNamesCombo;

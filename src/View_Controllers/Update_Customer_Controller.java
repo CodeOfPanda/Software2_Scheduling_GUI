@@ -24,10 +24,6 @@ import java.util.Optional;
 * customerID must be disabled (done)
 */
 
-
-// modified scene builder to the new requirements.
-
-
 public class Update_Customer_Controller{
 
     @FXML private TextField modCustID;

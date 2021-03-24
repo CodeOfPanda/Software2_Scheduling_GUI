@@ -4,8 +4,6 @@ import Models.Appointments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
-
-import javax.swing.text.WrappedPlainView;
 import java.sql.*;
 import java.time.LocalDateTime;
 
@@ -253,14 +251,14 @@ public class DBAppointments {
             e.printStackTrace();
         }
     }
-//
-//    // method to delete an appointment
+
+    // method to delete an appointment
 //    public static void deleteAppt() {
 //        try {
 //            // mySQL statement
 //        }
-//        catch () {
-//
+//        catch (SQLException e) {
+//            e.printStackTrace();
 //        }
 //    }
 

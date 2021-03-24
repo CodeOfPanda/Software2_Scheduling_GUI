@@ -160,8 +160,5 @@ public class Add_Appointment_Controller implements Initializable {
             return true;
     }
 
-
-
-
 }
 

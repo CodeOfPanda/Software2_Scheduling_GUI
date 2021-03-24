@@ -1,11 +1,8 @@
 package View_Controllers;
 
 import DBAccess.DBCustomers;
-import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Customers;
-import Models.First_Level_Divisions;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

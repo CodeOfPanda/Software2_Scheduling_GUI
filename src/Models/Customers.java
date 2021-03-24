@@ -1,6 +1,5 @@
 package Models;
 
-import DBAccess.DBCountries;
 import DBAccess.DBFirst_Level_Divisions;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -8,12 +7,6 @@ import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-
-/*
-* I need to figure out how I want the state/province information displayed
-* Do I include the createDate and other information in the gui?
-*
-*/
 
 public class Customers {
 

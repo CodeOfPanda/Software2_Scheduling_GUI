@@ -16,10 +16,6 @@ public class Contacts {
         contactEmail = new SimpleStringProperty(email);
     }
 
-    // contactID
-//    public IntegerProperty getContactID() {
-//        return contactID;
-//    }
     public static int getContactID() {
         return ctID;
     }

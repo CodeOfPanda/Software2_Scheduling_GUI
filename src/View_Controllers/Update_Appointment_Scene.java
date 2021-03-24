@@ -136,7 +136,6 @@ public class Update_Appointment_Scene {
             }
     }
 
-
     public Boolean isValid() {
 
         return true;

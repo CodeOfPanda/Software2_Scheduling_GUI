@@ -20,10 +20,10 @@ import java.util.ResourceBundle;
 
 /*
 * a contact name is assigned to an appointment using a drop-down menu or combo box. --> Contact Table
-*           query the DB to fill the drop-down. X
+*           query the DB to fill the drop-down. (done)
 * a custom message is displayed in the user interface with the Appointment_ID and type of appointment cancelled. --> on delete.
 * the Appointment_ID is auto-generated and disabled throughout the application --> get from the DB
-*           the database has an auto-gen section in the DB already.
+*           the database has an auto-gen section in the DB already. (done)
 *
 * write code that enables the user to adjust appt times.
 *       appt times should be stored in Coordinated Universal Time (UTC)
@@ -67,11 +67,7 @@ public class All_Appointments_Controller implements Initializable {
         allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
     }
 
-
-
-    /* ******************** new scene-builder methods ************************/
     // all radio button action event
-
     @FXML
     void toggleAppts(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) apptToggleGroup.getSelectedToggle();
@@ -112,7 +108,6 @@ public class All_Appointments_Controller implements Initializable {
         }
 
     }
-
 
     // Search Button Action Event
     @FXML
