@@ -57,9 +57,7 @@ public class Update_Customer_Controller{
 
     @FXML
     void changeCountry(ActionEvent event) {
-        if(modCustCountry.getValue() == modCustCountry.getValue()) {
-            modCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(modCustCountry.getValue()));
-        }
+        modCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(modCustCountry.getValue()));
     }
 
     // Submit Button Action Event

@@ -53,9 +53,7 @@ public class Add_Customer_Controller implements Initializable {
 
     @FXML
     void changeCountry(ActionEvent event) {
-        if(addCustCountry.getValue() == addCustCountry.getValue()) {
-            addCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(addCustCountry.getValue()));
-        }
+        addCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(addCustCountry.getValue()));
     }
 
     // Submit Button Action Event
