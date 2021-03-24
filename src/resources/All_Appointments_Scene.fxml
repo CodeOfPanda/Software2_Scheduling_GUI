@@ -95,7 +95,7 @@
                   <Font name="Bookman Old Style" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="recordsDashBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#recordsDashBtnClicked" prefHeight="25.0" prefWidth="150.0" text="Records Dashboard">
+            <Button fx:id="reportsDashBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#reportsDashBtnClicked" prefHeight="25.0" prefWidth="150.0" text="Reports Dashboard">
                <font>
                   <Font name="Bookman Old Style" size="12.0" />
                </font>

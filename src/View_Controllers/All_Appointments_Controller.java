@@ -191,9 +191,17 @@ public class All_Appointments_Controller implements Initializable {
         contDashStage.show();
     }
 
-    // records dashboard button action event
+    // reports dashboard button action event
     @FXML
-    public void recordsDashBtnClicked(ActionEvent actionEvent) {
+    public void reportsDashBtnClicked(ActionEvent event) throws IOException {
+        // when triggered this takes the user to the Reports_Dashboard_Scene.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/Reports_Dashboard_Scene.fxml"));
+        Parent repoDashRoot = loader.load();
+        Stage repoDashStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene repoDashScene = new Scene(repoDashRoot);
+        repoDashStage.setScene(repoDashScene);
+        repoDashStage.show();
     }
 
     // log out button action event

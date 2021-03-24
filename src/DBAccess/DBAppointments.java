@@ -1,6 +1,7 @@
 package DBAccess;
 
 import Models.Appointments;
+import Models.Report_CustomerAppointments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
@@ -261,5 +262,31 @@ public class DBAppointments {
 //            e.printStackTrace();
 //        }
 //    }
+
+    // method to get customer appointments by type and month
+    public static ObservableList<Report_CustomerAppointments> getApptsByMonthType() {
+        ObservableList<Report_CustomerAppointments> apptsByMonthType = FXCollections.observableArrayList();
+
+        try {
+            // mySQL statement
+            String sql = "select Monthname(Start) as Month, count(Type) as Count, Type\n" +
+                    "from WJ07K54.appointments\n" +
+                    "where YEAR(Start) = YEAR(CURRENT_DATE())\n" +
+                    "group by 1,3;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+
+            ResultSet rs = pStmt.executeQuery();
+            while (rs.next()) {
+                String month = rs.getString("Month");
+                int count = rs.getInt("Count");
+                String type = rs.getString("Type");
+                Report_CustomerAppointments list = new Report_CustomerAppointments(month, count, type);
+                apptsByMonthType.add(list);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return apptsByMonthType;
+    }
 
 }
