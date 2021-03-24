@@ -1,7 +1,6 @@
 package View_Controllers;
 
 import DBAccess.DBAppointments;
-import Models.Appointments;
 import Models.Report_CustomerAppointments;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 
 public class Reports_Controller implements Initializable {
     // Customer Appointments
@@ -35,36 +33,18 @@ public class Reports_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Customer Appointments Table
         custApptsTable.setItems(DBAppointments.getApptsByMonthType());
         monthCol.setCellValueFactory(cellData -> cellData.getValue().getReportCustMonth());
         custTypeCol.setCellValueFactory(cellData -> cellData.getValue().getReportType());
         custCountCol.setCellValueFactory(cellData -> cellData.getValue().getReportCustCount().asObject());
+        // Appointments by Country Table
+        
     }
 
+    // log out button action event
     @FXML
-    public void reportsBackBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void reportsLogOutBtnClicked(ActionEvent event) {
-
-    }
-
-
-    public void reportsBackBtnClicked(javafx.event.ActionEvent event) throws IOException {
-        // when triggered this takes the user to All_Appointments_Scene.
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
-        Parent backRepoRoot = loader.load();
-        Stage backRepoStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene backRepoScene = new Scene(backRepoRoot);
-        backRepoStage.setScene(backRepoScene);
-        backRepoStage.show();
-
-    }
-
-    public void reportsLogOutBtnClicked(javafx.event.ActionEvent event) throws IOException {
+    public void reportsLogOutBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to Login_Scene.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
@@ -81,5 +61,18 @@ public class Reports_Controller implements Initializable {
             loginStage.setScene(loginScene);
             loginStage.show();
         }
+    }
+
+    // back button action event
+    @FXML
+    public void reportsBackBtnClicked(ActionEvent event) throws IOException {
+        // when triggered this takes the user to All_Appointments_Scene.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
+        Parent backRepoRoot = loader.load();
+        Stage backRepoStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene backRepoScene = new Scene(backRepoRoot);
+        backRepoStage.setScene(backRepoScene);
+        backRepoStage.show();
     }
 }
