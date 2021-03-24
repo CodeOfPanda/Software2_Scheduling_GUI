@@ -1,15 +1,12 @@
 package View_Controllers;
 
-import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
 import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Countries;
 import Models.Customers;
-import Models.First_Level_Divisions;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,15 +15,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /*
-* the customer data auto-populates in the form
-* country and f-l division data is also auto-populated in their combo boxes.
-* the f-l division data should be filtered by the user's selection of a country (when choosing u.s., filter so it only shows states)
-* customerID must be disabled
+* the customer data auto-populates in the form (done)
+* country and f-l division data is also auto-populated in their combo boxes. (done)
+* the f-l division data should be filtered by the user's selection of a country (when choosing u.s., filter so it only shows states) (done)
+* customerID must be disabled (done)
 */
 
 
@@ -55,9 +50,16 @@ public class Update_Customer_Controller{
         modCustAddress.setText(selectedCustomer.getAddress());
         modCustCountry.setItems(Countries.getCountryNames());
         modCustCountry.setValue(DBCustomers.getCountryName(selectedCustomer.getCustID()));
-        modCustDivision.setItems(First_Level_Divisions.getDivisionNames());
+        modCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(modCustCountry.getValue()));
         modCustDivision.setValue(selectedCustomer.getDivName());
         modCustPostal.setText(selectedCustomer.getPostal());
+    }
+
+    @FXML
+    void changeCountry(ActionEvent event) {
+        if(modCustCountry.getValue() == modCustCountry.getValue()) {
+            modCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(modCustCountry.getValue()));
+        }
     }
 
     // Submit Button Action Event
