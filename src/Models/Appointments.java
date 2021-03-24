@@ -9,12 +9,7 @@ import javafx.collections.ObservableList;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-
 public class Appointments {
-    // properties to populate the table data.
-    // for some reason these property variables can't be static and load the data correctly.
-    private static ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
-
     // for populating combo-boxes.
     private static ObservableList<String> contactNames = FXCollections.observableArrayList();
     private static ObservableList<String> customerNames = FXCollections.observableArrayList();
@@ -31,16 +26,10 @@ public class Appointments {
     private final StringProperty type;
     private final ObjectProperty<LocalDateTime> start;
     private final ObjectProperty<LocalDateTime> end;
-    private final ObjectProperty<LocalDateTime> createDate;
-    private final StringProperty createdBy;
-    private final ObjectProperty<Timestamp> lastUpdate;
     private final StringProperty lastUpdatedBy;
     private final IntegerProperty customerID;
     private final IntegerProperty userID;
     private final IntegerProperty contactID;
-    private static LocalDateTime apptCreateDate;
-    private static String apptCreatedBy;
-    private static String apptLastUpdatedBy;
 
     // constructor method
     public Appointments(int appointmentID, String title, String description, String location, String type
@@ -54,16 +43,10 @@ public class Appointments {
         this.type = new SimpleStringProperty(type);
         this.start = new SimpleObjectProperty<>(start);
         this.end = new SimpleObjectProperty<>(end);
-        this.createDate = new SimpleObjectProperty<>(createDate);
-        this.createdBy = new SimpleStringProperty(createdBy);
-        this.lastUpdate = new SimpleObjectProperty<>(lastUpdate);
         this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
         this.customerID = new SimpleIntegerProperty(customerID);
         this.userID = new SimpleIntegerProperty(userID);
         this.contactID = new SimpleIntegerProperty(contactID);
-        apptCreateDate = createDate;
-        apptCreatedBy = createdBy;
-        apptLastUpdatedBy = lastUpdatedBy;
     }
 
     // appointmentID
@@ -110,34 +93,16 @@ public class Appointments {
     }
     public LocalDateTime getApptEnd() {return end.get();}
 
-    // create_date datetime
-    public ObjectProperty<LocalDateTime> getCreateDate() {
-        return createDate;
-    }
-    public static LocalDateTime getApptCreateDate() {
-        return apptCreateDate;
-    }
+    // current date and time
     public static LocalDateTime getCurrentDateTime() {
         LocalDateTime dateTime = LocalDateTime.now();
         return dateTime;
-    }
-
-    // created_by
-    public StringProperty getCreatedBy() {
-        return createdBy;
-    }
-    public static String getApptCreatedBy() {return apptCreatedBy;}
-
-    // last_update timestamp
-    public ObjectProperty<Timestamp> getLastUpdate() {
-        return lastUpdate;
     }
 
     // last_updated_by
     public StringProperty getLastUpdatedBy() {
         return lastUpdatedBy;
     }
-    public static String getApptLastUpdatedBy() {return apptLastUpdatedBy;}
 
     // customer id
     public IntegerProperty getCustomerID() {
