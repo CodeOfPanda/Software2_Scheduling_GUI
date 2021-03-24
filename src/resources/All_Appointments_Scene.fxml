@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -24,17 +25,20 @@
       </VBox>
       <HBox alignment="BOTTOM_LEFT" layoutX="598.0" prefHeight="35.0" prefWidth="850.0" spacing="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="105.0">
          <children>
-            <RadioButton fx:id="allRadio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allRadioClicked" prefHeight="15.0" prefWidth="40.0" text="All">
+            <RadioButton fx:id="allRadio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleAppts" prefHeight="15.0" prefWidth="40.0" selected="true" text="All">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="apptToggleGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="monthlyRadio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleAppts" prefHeight="15.0" prefWidth="70.0" text="Monthly" toggleGroup="$apptToggleGroup">
                <font>
                   <Font name="Bookman Old Style" size="12.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="monthlyRadio" layoutX="518.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#monthlyRadioClicked" prefHeight="15.0" prefWidth="70.0" text="Monthly">
-               <font>
-                  <Font name="Bookman Old Style" size="12.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="weeklyRadio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#weeklyRadioClicked" prefHeight="15.0" prefWidth="70.0" text="Weekly">
+            <RadioButton fx:id="weeklyRadio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleAppts" prefHeight="15.0" prefWidth="70.0" text="Weekly" toggleGroup="$apptToggleGroup">
                <font>
                   <Font name="Bookman Old Style" size="12.0" />
                </font>

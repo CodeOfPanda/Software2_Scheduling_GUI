@@ -38,6 +38,10 @@ import java.util.ResourceBundle;
 public class All_Appointments_Controller implements Initializable {
 
     @FXML private TextField allApptSearch;
+    @FXML private RadioButton allRadio;
+    @FXML private ToggleGroup apptToggleGroup;
+    @FXML private RadioButton monthlyRadio;
+    @FXML private RadioButton weeklyRadio;
     @FXML private TableView<Appointments> allApptTable;
     @FXML private TableColumn<Appointments, Integer> allApptID;
     @FXML private TableColumn<Appointments, String> allApptTitle;
@@ -67,19 +71,48 @@ public class All_Appointments_Controller implements Initializable {
 
     /* ******************** new scene-builder methods ************************/
     // all radio button action event
+
     @FXML
-    public void allRadioClicked(ActionEvent actionEvent) {
+    void toggleAppts(ActionEvent event) {
+        RadioButton selectedRadioButton = (RadioButton) apptToggleGroup.getSelectedToggle();
+        String radioButtonText = selectedRadioButton.getText();
+        if (radioButtonText.equals("All")) {
+            allApptTable.setItems(DBAppointments.getAllAppts());
+            allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
+            allApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
+            allApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+            allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
+            allApptCont.setCellValueFactory(cellData -> cellData.getValue().getApptContactID().asObject());
+            allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
+            allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        } else if (radioButtonText.equals("Monthly")) {
+            allApptTable.setItems(DBAppointments.getApptsThisMonth());
+            allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
+            allApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
+            allApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+            allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
+            allApptCont.setCellValueFactory(cellData -> cellData.getValue().getApptContactID().asObject());
+            allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
+            allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        } else if (radioButtonText.equals("Weekly")) {
+            allApptTable.setItems(DBAppointments.getApptsThisWeek());
+            allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
+            allApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
+            allApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+            allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
+            allApptCont.setCellValueFactory(cellData -> cellData.getValue().getApptContactID().asObject());
+            allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
+            allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        }
+
     }
 
-    // monthly radio button action event
-    @FXML
-    public void monthlyRadioClicked(ActionEvent actionEvent) {
-    }
-
-    // weekly radio button action event
-    @FXML
-    public void weeklyRadioClicked(ActionEvent actionEvent) {
-    }
 
     // Search Button Action Event
     @FXML
