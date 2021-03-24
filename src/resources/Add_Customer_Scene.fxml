@@ -65,7 +65,7 @@
                         <Font name="Bookman Old Style" size="14.0" />
                      </font>
                      <graphic>
-                        <ComboBox fx:id="addCustCountry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" translateX="60.0" />
+                        <ComboBox fx:id="addCustCountry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#changeCountry" prefHeight="25.0" prefWidth="175.0" translateX="60.0" />
                      </graphic>
                   </Label>
                </children>

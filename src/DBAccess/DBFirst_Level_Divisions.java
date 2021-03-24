@@ -39,6 +39,30 @@ public class DBFirst_Level_Divisions {
         return divisionsList;
     }
 
+    public static ObservableList<String> getSpecificDivisions(String countryName) {
+        ObservableList<String> divisionNames = FXCollections.observableArrayList();
+
+        try {
+            // mySQL statement
+            String sql = "select a.Division\n" +
+                    "from WJ07K54.first_level_divisions a \n" +
+                    "join WJ07K54.countries b on a.Country_ID=b.COUNTRY_ID\n" +
+                    "where b.Country=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setString(1, countryName);
+            ResultSet rs = pStmt.executeQuery();
+
+            while (rs.next()) {
+                String divisions = rs.getString("Division");
+                divisionNames.add(divisions);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return divisionNames;
+    }
+
     public static int getDivisionID(String name) {
         int divisionID = 0;
         try{

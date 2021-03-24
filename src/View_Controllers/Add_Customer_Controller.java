@@ -5,6 +5,7 @@ import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Countries;
 import Models.First_Level_Divisions;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,6 +49,13 @@ public class Add_Customer_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addCustCountry.setItems(Countries.getCountryNames());
         addCustDivision.setItems(First_Level_Divisions.getDivisionNames());
+    }
+
+    @FXML
+    void changeCountry(ActionEvent event) {
+        if(addCustCountry.getValue() == addCustCountry.getValue()) {
+            addCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(addCustCountry.getValue()));
+        }
     }
 
     // Submit Button Action Event
