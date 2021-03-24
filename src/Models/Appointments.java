@@ -176,7 +176,7 @@ public class Appointments {
 
     public static ObservableList<String> getAllApptTypes() {
         allApptTypes.clear();
-        allApptTypes.addAll("Planning", "De-Briefing", "Timeline Check");
+        allApptTypes.addAll("Planning Session", "De-Briefing", "Timeline Check");
         return allApptTypes;
     }
 
