@@ -1,6 +1,7 @@
 package View_Controllers;
 
 import DBAccess.DBAppointments;
+import Models.Report_AppointmentsByCountry;
 import Models.Report_CustomerAppointments;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,10 +25,10 @@ public class Reports_Controller implements Initializable {
     @FXML private TableColumn<Report_CustomerAppointments, String> custTypeCol;
     @FXML private TableColumn<Report_CustomerAppointments, Integer> custCountCol;
     // Appointments by Country
-    @FXML private TableView<?> apptsByCountryTable;
-    @FXML private TableColumn<?, ?> countryCol;
-    @FXML private TableColumn<?, ?> apptsTypeCol;
-    @FXML private TableColumn<?, ?> apptsCountCol;
+    @FXML private TableView<Report_AppointmentsByCountry> apptsByCountryTable;
+    @FXML private TableColumn<Report_AppointmentsByCountry, String> countryCol;
+    @FXML private TableColumn<Report_AppointmentsByCountry, String> apptsTypeCol;
+    @FXML private TableColumn<Report_AppointmentsByCountry, Integer> apptsCountCol;
     @FXML private Button reportsBackBtn;
     @FXML private Button reportsLogOutBtn;
 
@@ -39,7 +40,10 @@ public class Reports_Controller implements Initializable {
         custTypeCol.setCellValueFactory(cellData -> cellData.getValue().getReportType());
         custCountCol.setCellValueFactory(cellData -> cellData.getValue().getReportCustCount().asObject());
         // Appointments by Country Table
-        
+        apptsByCountryTable.setItems(DBAppointments.getApptsByCountry());
+        countryCol.setCellValueFactory(cellData -> cellData.getValue().getReportApptCountry());
+        apptsTypeCol.setCellValueFactory(cellData -> cellData.getValue().getReportApptType());
+        apptsCountCol.setCellValueFactory(cellData -> cellData.getValue().getReportApptCount().asObject());
     }
 
     // log out button action event

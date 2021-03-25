@@ -1,6 +1,7 @@
 package DBAccess;
 
 import Models.Appointments;
+import Models.Report_AppointmentsByCountry;
 import Models.Report_CustomerAppointments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -287,6 +288,33 @@ public class DBAppointments {
             e.printStackTrace();
         }
         return apptsByMonthType;
+    }
+
+    public static ObservableList<Report_AppointmentsByCountry> getApptsByCountry() {
+        ObservableList<Report_AppointmentsByCountry> apptsByCountry = FXCollections.observableArrayList();
+
+        try {
+            // mySQL statement
+            String sql = "select d.Country, count(a.Type) as Count, a.Type\n" +
+                    "from WJ07K54.appointments a\n" +
+                    "\tjoin WJ07K54.customers b on a.Customer_ID=b.Customer_ID\n" +
+                    "    join WJ07K54.first_level_divisions c on b.Division_ID=c.Division_ID\n" +
+                    "    join WJ07K54.countries d on c.Country_ID=d.Country_ID\n" +
+                    "group by 1, 3;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+
+            ResultSet rs = pStmt.executeQuery();
+            while (rs.next()) {
+                String country = rs.getString("Country");
+                int count = rs.getInt("Count");
+                String type = rs.getString("Type");
+                Report_AppointmentsByCountry list = new Report_AppointmentsByCountry(country, type, count);
+                apptsByCountry.add(list);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return apptsByCountry;
     }
 
 }
