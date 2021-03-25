@@ -41,6 +41,7 @@ public class Update_Customer_Controller{
     public void updateCustomer(Customers selectedCustomer) {
 
         modCustID.setText(selectedCustomer.getCstmrID());
+        modCustID.setEditable(false);
         modCustName.setText(selectedCustomer.getName());
         modCustPhone.setText(selectedCustomer.getPhone());
         modCustAddress.setText(selectedCustomer.getAddress());

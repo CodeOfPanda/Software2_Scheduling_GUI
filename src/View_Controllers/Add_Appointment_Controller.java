@@ -48,6 +48,7 @@ public class Add_Appointment_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addApptID.setEditable(false);
         addApptContact.setItems(Appointments.getContactNames());
         addApptCustName.setItems(Appointments.getCustomerNames());
         addApptType.setItems(Appointments.getAllApptTypes());

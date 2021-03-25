@@ -23,6 +23,11 @@
       </VBox>
       <VBox prefHeight="295.0" prefWidth="143.0" spacing="22.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="100.0">
          <children>
+            <Label text="Appointment ID">
+               <font>
+                  <Font name="Bookman Old Style" size="14.0" />
+               </font>
+            </Label>
             <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="35.0" text="Title">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
@@ -82,6 +87,11 @@
       </VBox>
       <VBox prefHeight="295.0" prefWidth="143.0" spacing="13.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="95.0">
          <children>
+            <TextField fx:id="addApptID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="Auto-generated">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+            </TextField>
             <TextField fx:id="addApptTitle" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Title">
                <font>
                   <Font name="Bookman Old Style" size="11.0" />

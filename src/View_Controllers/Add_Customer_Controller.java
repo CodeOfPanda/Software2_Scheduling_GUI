@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class Add_Customer_Controller implements Initializable {
 
+    @FXML private TextField addCustID;
     @FXML private TextField addCustName;
     @FXML private TextField addCustPhone;
     @FXML private TextField addCustAddress;
@@ -43,6 +44,7 @@ public class Add_Customer_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addCustID.setEditable(false);
         addCustCountry.setItems(Countries.getCountryNames());
         addCustDivision.setItems(First_Level_Divisions.getDivisionNames());
     }
