@@ -123,15 +123,15 @@ public class DBCustomers {
             , String postalCode
             , String phone
             , LocalDateTime createDate
-//            , String createdBy
+            , String createdBy
             , LocalDateTime lastUpdate
-//            , String lastUpdatedBy
+            , String lastUpdatedBy
             , int divisionID
             )
     {
         try {
             // mySQL statement
-            String sql = "insert into WJ07K54.customers values(null, ?, ?, ?, ?, ?, null, ?, null, ?);";
+            String sql = "insert into WJ07K54.customers values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
 
             pStmt.setString(1, customerName);
@@ -139,10 +139,10 @@ public class DBCustomers {
             pStmt.setString(3, postalCode);
             pStmt.setString(4, phone);
             pStmt.setObject(5, createDate);
-//            pStmt.setString(6, createdBy);
-            pStmt.setObject(6, lastUpdate);
-//            pStmt.setString(8, lastUpdatedBy);
-            pStmt.setInt(7, divisionID); // can't be null
+            pStmt.setString(6, createdBy);
+            pStmt.setObject(7, lastUpdate);
+            pStmt.setString(8, lastUpdatedBy);
+            pStmt.setInt(9, divisionID); // can't be null
 
             pStmt.execute();
         } catch (SQLException e) {
@@ -156,26 +156,24 @@ public class DBCustomers {
             , String address
             , String postalCode
             , String phone
-//            , String createdBy
             , LocalDateTime lastUpdate
-//            , String lastUpdatedBy
+            , String lastUpdatedBy
             , int divisionID)
     {
         try{
             //mySql statement
             String sql = "update WJ07K54.customers " +
-                    "set Customer_Name=?, Address=?, Postal_Code=?, Phone=?, Last_Update=?, Division_ID=? " +
+                    "set Customer_Name=?, Address=?, Postal_Code=?, Phone=?, Last_Update=?, Last_Updated_By=?, Division_ID=? " +
                     "where Customer_ID=?;";
             PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
             pStmt.setString(1, customerName);
             pStmt.setString(2, address);
             pStmt.setString(3, postalCode);
             pStmt.setString(4, phone);
-            //pStmt.setString(, createdBy);
             pStmt.setObject(5, lastUpdate);
-            //pStmt.setString(, lastUpdatedBy);
-            pStmt.setInt(6, divisionID); // can't be null
-            pStmt.setInt(7, customerID);
+            pStmt.setString(6, lastUpdatedBy);
+            pStmt.setInt(7, divisionID); // can't be null
+            pStmt.setInt(8, customerID);
             pStmt.execute();
         }catch (SQLException e) {
             e.printStackTrace();

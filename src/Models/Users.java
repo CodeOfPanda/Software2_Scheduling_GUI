@@ -12,6 +12,7 @@ public class Users {
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
+    private static String loggedInUser = null;
 
     public Users(int userID, String name, String password, LocalDateTime createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy) {
         this.userID = userID;
@@ -53,4 +54,9 @@ public class Users {
     public String getLastUpdatedBy() {
         return lastUpdatedBy;
     }
+
+    public static void setLoggedInUser(String name) {
+        loggedInUser = name;
+    }
+    public static String getLoggedInUser() {return loggedInUser;}
 }

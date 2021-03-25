@@ -6,6 +6,7 @@ import Models.Appointments;
 import Models.Countries;
 
 import Models.First_Level_Divisions;
+import Models.Users;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,9 +66,9 @@ public class Add_Customer_Controller implements Initializable {
                 , addCustPostal.getText()
                 , addCustPhone.getText()
                 , Appointments.getCurrentDateTime()
-//                , // created by
+                , Users.getLoggedInUser()
                 , Appointments.getCurrentDateTime()
-//                , // lastupdatedby
+                , Users.getLoggedInUser()
                 , DBFirst_Level_Divisions.getDivisionID(addCustDivision.getValue())
                  );
 

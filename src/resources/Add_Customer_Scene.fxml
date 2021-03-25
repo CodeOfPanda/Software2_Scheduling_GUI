@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addCustID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controllers.Add_Customer_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controllers.Add_Customer_Controller">
    <children>
       <VBox alignment="BOTTOM_CENTER" prefHeight="60.0" prefWidth="600.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -24,7 +24,7 @@
          <children>
             <Label contentDisplay="RIGHT" text="Customer ID">
                <graphic>
-                  <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="Auto-generated" translateX="30.0">
+                  <TextField fx:id="addCustID" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="Auto-generated" translateX="30.0">
                      <font>
                         <Font name="Bookman Old Style" size="12.0" />
                      </font>

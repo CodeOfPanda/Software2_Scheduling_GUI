@@ -5,6 +5,7 @@ import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Countries;
 import Models.Customers;
+import Models.Users;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -69,6 +70,7 @@ public class Update_Customer_Controller{
                 , modCustPostal.getText()
                 , modCustPhone.getText()
                 , Appointments.getCurrentDateTime()
+                , Users.getLoggedInUser()
                 , DBFirst_Level_Divisions.getDivisionID(modCustDivision.getValue()));
 
         Alert submit = new Alert(Alert.AlertType.INFORMATION);
