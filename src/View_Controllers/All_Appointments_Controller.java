@@ -148,21 +148,39 @@ public class All_Appointments_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Update_Appointment_Scene.fxml"));
         Parent modApptRoot = loader.load();
-
         Stage modApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene modApptScene = new Scene(modApptRoot);
-
         Update_Appointment_Scene controller = loader.getController();
         controller.startApptUpdate(selectedAppt);
-
         modApptStage.setScene(modApptScene);
         modApptStage.show();
     }
 
     // delete appointment action event
     @FXML
-    public void deleteApptBtn(ActionEvent actionEvent) {
+    public void deleteApptBtn(ActionEvent event) throws IOException {
         // when triggered this asks user for confirmation before deleting an appointment.
+        Appointments selectedAppt = allApptTable.getSelectionModel().getSelectedItem();
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        if (selectedAppt != null) {
+            confirmation.setHeaderText("Please confirm your action.");
+            confirmation.setContentText("Select OK if you wish to delete.");
+            Optional<ButtonType> result = confirmation.showAndWait();
+            if(result.get() == ButtonType.OK) {
+                DBAppointments.deleteAppt(selectedAppt.getApptID());
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
+                Parent allApptRoot = loader.load();
+                Stage allApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene allApptScene = new Scene(allApptRoot);
+                allApptStage.setScene(allApptScene);
+                allApptStage.show();
+            }
+        } else {
+            confirmation.setTitle("No Appointment selected");
+            confirmation.setHeaderText("Please select an Appointment from the list to delete");
+            confirmation.showAndWait();
+        }
     }
 
     // customer dashboard button action event

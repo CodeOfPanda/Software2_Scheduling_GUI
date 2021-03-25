@@ -54,7 +54,7 @@
                   <Font name="Bookman Old Style" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="allCustModBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustModBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Modify">
+            <Button fx:id="allCustModBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#allCustModBtnClicked" prefHeight="25.0" prefWidth="60.0" text="Update">
                <font>
                   <Font name="Bookman Old Style" size="12.0" />
                </font>

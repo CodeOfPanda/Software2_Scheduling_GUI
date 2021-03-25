@@ -53,7 +53,8 @@ public class Update_Appointment_Scene {
     // my initialize method to pre-populate the update appointment page.
     @FXML
     public void startApptUpdate(Appointments appt) {
-        modApptID.setText(appt.getApptID());
+        String apptID = String.valueOf(appt.getApptID());
+        modApptID.setText(apptID);
         modApptID.setEditable(false);
         modApptTitle.setText(appt.getApptTitle());
         modApptDescript.setText(appt.getApptDescript());

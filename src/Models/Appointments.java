@@ -53,9 +53,10 @@ public class Appointments {
     public IntegerProperty getAppointmentID() {
         return appointmentID;
     }
-    public String getApptID() {
-        return String.valueOf(appointmentID.get());
+    public int getApptID() {
+        return appointmentID.get();
     }
+
 
     // title
     public StringProperty getTitle() {

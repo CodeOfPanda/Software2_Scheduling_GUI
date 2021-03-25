@@ -255,14 +255,18 @@ public class DBAppointments {
     }
 
     // method to delete an appointment
-//    public static void deleteAppt() {
-//        try {
-//            // mySQL statement
-//        }
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void deleteAppt(int ID) {
+        try {
+            // mySQL statement
+            String sql = "delete from WJ07K54.appointments where Appointment_ID=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setInt(1, ID);
+            pStmt.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     // method to get customer appointments by type and month
     public static ObservableList<Report_CustomerAppointments> getApptsByMonthType() {
