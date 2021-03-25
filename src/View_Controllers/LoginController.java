@@ -1,6 +1,7 @@
 package View_Controllers;
 
 import DBAccess.DBUsers;
+import Models.Appointments;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,8 +12,12 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -56,6 +61,21 @@ public class LoginController implements Initializable {
     // sign in button action
     public void signInBtnClicked(ActionEvent actionEvent) throws IOException {
         // when triggered this validates the user, writes the activity to the reports file, then takes the user to All_Appointments_Scene.
+
+        // creating my login_activity file
+        try {
+            File activity = new File("login_activity.txt");
+            if (activity.createNewFile()) {
+                System.out.println("File created: " + activity.getName());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // creating my file writer
+        FileWriter fileWriter = new FileWriter("login_activity.txt", true);
+
+        // userName and password validation check
         AtomicBoolean userValid = new AtomicBoolean(false);
         AtomicBoolean passwordValid = new AtomicBoolean(false);
         DBUsers.getUserNames().forEach((name) -> {
@@ -67,9 +87,12 @@ public class LoginController implements Initializable {
             }
         });
 
+        // writing to file, error handling, and changing scenes
         if (userValid.get() && passwordValid.get()) {
-            //write to file
             // if bool is true : log-in attempts, dates, and time stamps and attempt was successful in a file named login_activity.txt.
+            fileWriter.write(userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was admitted successfully.\n");
+            fileWriter.close();
+            System.out.println(fileWriter);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
             Parent allAppointmentsRoot = loader.load();
@@ -78,8 +101,10 @@ public class LoginController implements Initializable {
             allAppointmentsStage.setScene(allAppointmentsScene);
             allAppointmentsStage.show();
         } else {
-            //write to file
             // else: log-in attempts, dates, and time stamps and attempt was unsuccessful in a file named login_activity.txt.
+            fileWriter.write(userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was not admitted.\n");
+            fileWriter.close();
+            System.out.println(fileWriter);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.NONE);
             alert.setTitle("Incorrect UserName or Password");
