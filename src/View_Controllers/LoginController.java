@@ -1,5 +1,6 @@
 package View_Controllers;
 
+import DBAccess.DBUsers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,17 +9,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
-* accepts user name and password
+* accepts user name and password (done)
 *
-* displays the string version of the ZoneID in loginLocation Label
+* displays the string version of the ZoneID in loginLocation Label (done)
 *
 * displays the login form in English or French based on the user's computer language setting to translate all the text,
 *     labels, buttons, and errors on the form
@@ -37,26 +40,52 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     @FXML private Label loginLocale;
-    @FXML private TextField loginUserID;
-    @FXML private PasswordField loginPassword;
+    @FXML private TextField userName;
+    @FXML private PasswordField password;
     @FXML private Button signInButton;
     @FXML private Button exitButton;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ZoneId zone = ZoneId.systemDefault();
+        String zoneID = String.valueOf(zone);
+        loginLocale.setText(zoneID);
     }
 
     // sign in button action
     public void signInBtnClicked(ActionEvent actionEvent) throws IOException {
-        //when triggered this takes the user to All_Appointments_Scene.
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
-        Parent allAppointmentsRoot = loader.load();
-        Stage allAppointmentsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene allAppointmentsScene = new Scene(allAppointmentsRoot);
-        allAppointmentsStage.setScene(allAppointmentsScene);
-        allAppointmentsStage.show();
+        // when triggered this validates the user, writes the activity to the reports file, then takes the user to All_Appointments_Scene.
+        AtomicBoolean userValid = new AtomicBoolean(false);
+        AtomicBoolean passwordValid = new AtomicBoolean(false);
+        DBUsers.getUserNames().forEach((name) -> {
+            if(userName.getText().equals(name)) {
+                userValid.set(true);
+                if (password.getText().equals(DBUsers.getUserPassword(name))) {
+                    passwordValid.set(true);
+                }
+            }
+        });
+
+        if (userValid.get() && passwordValid.get()) {
+            //write to file
+            // if bool is true : log-in attempts, dates, and time stamps and attempt was successful in a file named login_activity.txt.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
+            Parent allAppointmentsRoot = loader.load();
+            Stage allAppointmentsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene allAppointmentsScene = new Scene(allAppointmentsRoot);
+            allAppointmentsStage.setScene(allAppointmentsScene);
+            allAppointmentsStage.show();
+        } else {
+            //write to file
+            // else: log-in attempts, dates, and time stamps and attempt was unsuccessful in a file named login_activity.txt.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initModality(Modality.NONE);
+            alert.setTitle("Incorrect UserName or Password");
+            alert.setHeaderText("Please try again.");
+            alert.showAndWait();
+        }
     }
 
     public void exitBtnClicked(ActionEvent actionEvent) {

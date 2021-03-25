@@ -36,9 +36,9 @@
                   <Font name="Bookman Old Style" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="loginID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Jane Doe">
+            <TextField fx:id="userName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="Jane Doe">
                <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
+                  <Font name="Bookman Old Style" size="11.0" />
                </font>
                <VBox.margin>
                   <Insets />
@@ -52,9 +52,9 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <PasswordField fx:id="loginPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="#Doe123">
+            <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" promptText="#Doe123">
                <font>
-                  <Font name="Bookman Old Style Italic" size="11.0" />
+                  <Font name="Bookman Old Style" size="11.0" />
                </font>
             </PasswordField>
          </children>

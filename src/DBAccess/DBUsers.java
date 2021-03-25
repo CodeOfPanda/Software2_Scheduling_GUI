@@ -62,6 +62,45 @@ public class DBUsers {
         return userNames;
     }
 
+    public static ObservableList<String> getUserNames() {
+        ObservableList<String> names = FXCollections.observableArrayList();
+        try {
+            // mySQL statement
+            String userNameSql = "select User_Name from WJ07K54.users;";
+            PreparedStatement psUserName = DBConnection.getConnection().prepareStatement(userNameSql);
+
+            ResultSet nameResults = psUserName.executeQuery();
+
+            while (nameResults.next()) {
+                String name = nameResults.getString("User_Name");
+                names.add(name);
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return names;
+    }
+
+    public static String getUserPassword(String userName) {
+        String userPassword = null;
+        try {
+            // mySQL statement
+            String userPasswordsSql = "select Password from WJ07K54.users where User_Name=?;";
+            PreparedStatement psUserPasswords = DBConnection.getConnection().prepareStatement(userPasswordsSql);
+            psUserPasswords.setString(1, userName);
+            ResultSet passwordResults = psUserPasswords.executeQuery();
+
+            while (passwordResults.next()) {
+                userPassword = passwordResults.getString("Password");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userPassword;
+    }
+
 }
 
 
