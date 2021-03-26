@@ -30,10 +30,6 @@ public class Appointments {
     private final IntegerProperty customerID;
     private final IntegerProperty userID;
     private final IntegerProperty contactID;
-    LocalDateTime ldt = LocalDateTime.now();
-    ZonedDateTime localDateTimeZoned = ldt.atZone(ZoneId.systemDefault());
-    ZonedDateTime utcZoned = localDateTimeZoned.withZoneSameInstant(ZoneId.of("UTC"));
-
 
     // constructor method
     public Appointments(int appointmentID, String title, String description, String location, String type
@@ -131,18 +127,6 @@ public class Appointments {
         return contactID.get();
     }
 
-
-    // get the zone date time for systemDefault
-    public ZonedDateTime getLocalDateTimeZoned() {
-        return this.localDateTimeZoned;
-    }
-
-    // get the zone date time for UTC
-    public ZonedDateTime getUtcZoned() {
-        return this.utcZoned;
-    }
-
-
     /*  --------------  methods to populate combo-boxes  -------------------  */
     public static ObservableList<String> getContactNames() {
         contactNames.clear();
@@ -207,14 +191,21 @@ public class Appointments {
     }
 
     public static ObservableList<LocalTime> getEndWorkHours() {
-//        endWorkHours.clear();
-//        endWorkHours.addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"
-//                , "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
 
-        LocalTime start = LocalTime.of(8, 30);
+        LocalTime startTimeEST = LocalTime.of(8, 30);
 
+        LocalDateTime startLDTEST = LocalDateTime.of(LocalDate.now(), startTimeEST);
+        ZonedDateTime estZDT = startLDTEST.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime localZDT = estZDT.withZoneSameInstant(ZoneId.systemDefault());
 
-        LocalTime end = LocalTime.of(22, 00);
+        LocalTime start = localZDT.toLocalTime();
+
+        LocalTime endTimeEST = LocalTime.of(22, 00);
+        LocalDateTime endLDTEST = LocalDateTime.of(LocalDate.now(), endTimeEST);
+        ZonedDateTime endESTZDT = endLDTEST.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime endLocalZDT = endESTZDT.withZoneSameInstant(ZoneId.systemDefault());
+
+        LocalTime end = endLocalZDT.toLocalTime();
 
         while (start.isBefore(end.plusSeconds(1))) {
             endWorkHours.add(start);
