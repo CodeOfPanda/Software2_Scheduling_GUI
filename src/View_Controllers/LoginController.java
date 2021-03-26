@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
             // if bool is true : log-in attempts, dates, and time stamps and attempt was successful in a file named login_activity.txt.
             fileWriter.write(userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was admitted successfully.\n");
             fileWriter.close();
-            System.out.println(fileWriter);
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
             Parent allAppointmentsRoot = loader.load();

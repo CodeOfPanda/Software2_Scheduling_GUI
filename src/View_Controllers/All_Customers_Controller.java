@@ -123,9 +123,20 @@ public class All_Customers_Controller implements Initializable {
 
     // Delete Button Action Event
     @FXML
-    public void allCustDelBtnClicked(ActionEvent event) {
+    public void allCustDelBtnClicked(ActionEvent event) throws IOException {
         // when triggered this gives user a confirmation alert before deleting a customer.
         // it needs to ask user if they would like to also delete any appointments this customer had.
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/Delete_Customer_Scene.fxml"));
+        Parent deleteRoot = loader.load();
+        Stage deleteStage = new Stage();
+        Scene deleteScene = new Scene(deleteRoot);
+        deleteStage.setScene(deleteScene);
+        deleteStage.show();
+
+
+//        Customers selectedCustomer = allCustTable.getSelectionModel().getSelectedItem();
 
     }
 

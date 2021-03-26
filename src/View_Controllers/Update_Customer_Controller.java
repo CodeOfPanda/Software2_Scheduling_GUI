@@ -40,8 +40,8 @@ public class Update_Customer_Controller{
     // my initialize method to pre-populate the modify customer page.
     @FXML
     public void updateCustomer(Customers selectedCustomer) {
-
-        modCustID.setText(selectedCustomer.getCstmrID());
+        String custID = String.valueOf(selectedCustomer.getCustID());
+        modCustID.setText(custID);
         modCustID.setEditable(false);
         modCustName.setText(selectedCustomer.getName());
         modCustPhone.setText(selectedCustomer.getPhone());
