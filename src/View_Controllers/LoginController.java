@@ -49,8 +49,7 @@ public class LoginController implements Initializable {
     @FXML private Label loginLocale;
     @FXML private TextField userName;
     @FXML private PasswordField password;
-    @FXML private Button signInButton;
-    @FXML private Button exitButton;
+
     ZoneId zone = ZoneId.systemDefault();
     ZonedDateTime zdt = ZonedDateTime.now(zone);
 

@@ -38,10 +38,7 @@ import java.util.ResourceBundle;
 public class All_Appointments_Controller implements Initializable {
 
     @FXML private TextField allApptSearch;
-    @FXML private RadioButton allRadio;
     @FXML private ToggleGroup apptToggleGroup;
-    @FXML private RadioButton monthlyRadio;
-    @FXML private RadioButton weeklyRadio;
     @FXML private TableView<Appointments> allApptTable;
     @FXML private TableColumn<Appointments, Integer> allApptID;
     @FXML private TableColumn<Appointments, String> allApptTitle;

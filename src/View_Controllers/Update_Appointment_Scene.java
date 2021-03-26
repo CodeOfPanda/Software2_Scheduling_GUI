@@ -17,7 +17,6 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 /*
@@ -39,15 +38,11 @@ public class Update_Appointment_Scene {
     @FXML private TextField modApptLocale;
     @FXML private ComboBox<String> modApptContact;
     @FXML private ComboBox<String> modApptType;
-    @FXML private DatePicker modApptStartDate;
+    @FXML private DatePicker modApptDate;
     @FXML private ComboBox<LocalTime> modStartTime;
-    @FXML private DatePicker modApptEndDate;
     @FXML private ComboBox<LocalTime> modApptEndTime;
-//    @FXML private ComboBox<Integer> modApptCustID;
     @FXML private ComboBox<String> modApptCustName;
     @FXML private ComboBox<Integer> modApptUserID;
-    @FXML private Button modApptSubmitBtn;
-    @FXML private Button modApptCancelBtn;
 
     // my initialize method to pre-populate the update appointment page.
     @FXML
@@ -64,13 +59,12 @@ public class Update_Appointment_Scene {
         modApptType.setValue(appt.getApptType());
         modApptCustName.setItems(Appointments.getCustomerNames());
         modApptCustName.setValue(DBCustomers.getCustomerName(appt.getApptCustomerID()));
-        modApptStartDate.setValue(appt.getApptStart().toLocalDate());
-        modApptEndDate.setValue(appt.getApptEnd().toLocalDate());
+        modApptDate.setValue(appt.getApptStart().toLocalDate());
+        modApptDate.setValue(appt.getApptEnd().toLocalDate());
         modApptUserID.setItems(Appointments.getUserIDs());
         modApptUserID.setValue(appt.getApptUserID());
         modStartTime.setItems(Appointments.getStartWorkHours());
         modStartTime.setValue(appt.getApptStart().toLocalTime());
-        //.format(DateTimeFormatter.ofPattern("HH:mm")
         modApptEndTime.setItems(Appointments.getEndWorkHours());
         modApptEndTime.setValue(appt.getApptEnd().toLocalTime());
 
@@ -89,8 +83,8 @@ public class Update_Appointment_Scene {
                     , modApptDescript.getText()
                     , modApptLocale.getText()
                     , modApptType.getValue()
-                    , LocalDateTime.of(modApptStartDate.getValue(), modStartTime.getValue())
-                    , LocalDateTime.of(modApptEndDate.getValue(), modApptEndTime.getValue())
+                    , LocalDateTime.of(modApptDate.getValue(), modStartTime.getValue())
+                    , LocalDateTime.of(modApptDate.getValue(), modApptEndTime.getValue())
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(modApptUserID.getValue())
                     , DBCustomers.getCustomerID(modApptCustName.getValue())

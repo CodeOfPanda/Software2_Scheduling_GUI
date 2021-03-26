@@ -29,8 +29,6 @@ public class Reports_Controller implements Initializable {
     @FXML private TableColumn<Report_AppointmentsByCountry, String> countryCol;
     @FXML private TableColumn<Report_AppointmentsByCountry, String> apptsTypeCol;
     @FXML private TableColumn<Report_AppointmentsByCountry, Integer> apptsCountCol;
-    @FXML private Button reportsBackBtn;
-    @FXML private Button reportsLogOutBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

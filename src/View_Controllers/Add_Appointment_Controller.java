@@ -35,16 +35,12 @@ public class Add_Appointment_Controller implements Initializable {
     @FXML private TextField addApptDescript;
     @FXML private TextField addApptLocale;
     @FXML private ComboBox<String> addApptContact;
-    @FXML private DatePicker addApptStartDate;
-    @FXML private DatePicker addApptEndDate;
+    @FXML private DatePicker addApptDate;
     @FXML private ComboBox<String> addApptType;
     @FXML private ComboBox<LocalTime> addApptStartTime;
     @FXML private ComboBox<LocalTime> addApptEndTime;
     @FXML private ComboBox<String> addApptCustName;
     @FXML private ComboBox<Integer> addApptUserID;
-    @FXML private Button addApptSubmitBtn;
-    @FXML private Button addApptCancelBtn;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,8 +67,8 @@ public class Add_Appointment_Controller implements Initializable {
                     , addApptDescript.getText()
                     , addApptLocale.getText()
                     , addApptType.getValue()
-                    , LocalDateTime.of(addApptStartDate.getValue(), addApptStartTime.getValue())
-                    , LocalDateTime.of(addApptEndDate.getValue(), addApptEndTime.getValue())
+                    , LocalDateTime.of(addApptDate.getValue(), addApptStartTime.getValue())
+                    , LocalDateTime.of(addApptDate.getValue(), addApptEndTime.getValue())
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(addApptUserID.getValue())
                     , Appointments.getCurrentDateTime()

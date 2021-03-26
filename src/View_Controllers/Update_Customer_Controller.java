@@ -34,8 +34,6 @@ public class Update_Customer_Controller{
     @FXML private ComboBox<String> modCustCountry;
     @FXML private ComboBox<String> modCustDivision;
     @FXML private TextField modCustPostal;
-    @FXML private Button modCustSubmitBtn;
-    @FXML private Button modCustCancelBtn;
 
     // my initialize method to pre-populate the modify customer page.
     @FXML

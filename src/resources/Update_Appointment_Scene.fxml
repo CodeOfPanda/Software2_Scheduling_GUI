@@ -21,7 +21,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox prefHeight="295.0" prefWidth="143.0" spacing="20.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="100.0">
+      <VBox prefHeight="295.0" prefWidth="143.0" spacing="20.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="115.0">
          <children>
             <Label contentDisplay="RIGHT" text="Appointment_ID">
                <font>
@@ -53,17 +53,12 @@
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
             </Label>
-            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="262.0" text="Start Date">
+            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="262.0" text="Date">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
             </Label>
             <Label text="Start Time">
-               <font>
-                  <Font name="Bookman Old Style" size="14.0" />
-               </font>
-            </Label>
-            <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="262.0" text="End Date">
                <font>
                   <Font name="Bookman Old Style" size="14.0" />
                </font>
@@ -85,7 +80,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox prefHeight="368.0" prefWidth="175.0" spacing="10.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="95.0">
+      <VBox prefHeight="368.0" prefWidth="175.0" spacing="10.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="115.0">
          <children>
             <TextField fx:id="modApptID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.35" prefHeight="25.0" prefWidth="175.0" promptText="1">
                <font>
@@ -105,9 +100,8 @@
                </font></TextField>
             <ComboBox fx:id="modApptContact" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
-            <DatePicker fx:id="modApptStartDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
+            <DatePicker fx:id="modApptDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modStartTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
-            <DatePicker fx:id="modApptEndDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptEndTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptCustName" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />
             <ComboBox fx:id="modApptUserID" layoutX="10.0" layoutY="334.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" />

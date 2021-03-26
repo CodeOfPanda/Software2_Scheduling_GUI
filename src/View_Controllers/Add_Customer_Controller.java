@@ -31,15 +31,13 @@ public class Add_Customer_Controller implements Initializable {
     @FXML private ComboBox<String> addCustCountry;
     @FXML private ComboBox<String> addCustDivision;
     @FXML private TextField addCustPostal;
-    @FXML private Button addCustSubmitBtn;
-    @FXML private Button addCustCancelBtn;
 
     /*
     * when adding and updating a customer, text fields are used to collect: custName, address, postalCode, phone
-    *       customerID is auto-generated
+    *       customerID is auto-generated (done)
     *       first-level division & country data is collected using separate combo boxes.
     * ex of address: 123 ABC Street, White Plains
-    *                123 ABC Street, Newmarket
+    *                123 ABC Street, Newmarket  (done)
     */
 
 
