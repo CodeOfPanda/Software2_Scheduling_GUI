@@ -237,7 +237,7 @@ public class DBAppointments {
             psUpdate.setString(1, title);
             psUpdate.setString(2, description);
             psUpdate.setString(3, location);
-            psUpdate.setTimestamp(4, Timestamp.valueOf(type));
+            psUpdate.setObject(4, type);
             psUpdate.setTimestamp(5, Timestamp.valueOf(start));
             psUpdate.setTimestamp(6, Timestamp.valueOf(end));
             psUpdate.setTimestamp(7, Timestamp.valueOf(lastUpdate));

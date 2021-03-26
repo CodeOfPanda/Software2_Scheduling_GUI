@@ -50,3 +50,5 @@ test attempted log-in at 2021-03-26T13:49:19.146526900 and was admitted successf
 test attempted log-in at 2021-03-26T14:12:57.976312800 and was admitted successfully.
 test attempted log-in at 2021-03-26T14:30:25.038599800 and was admitted successfully.
 test attempted log-in at 2021-03-26T14:31:54.298087900 and was admitted successfully.
+admin attempted log-in at 2021-03-26T15:32:32.410142100 and was admitted successfully.
+admin attempted log-in at 2021-03-26T15:35:02.822094300 and was admitted successfully.
