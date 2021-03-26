@@ -47,30 +47,32 @@ public class All_Customers_Controller implements Initializable {
         customerNameCombo.setItems(newCustNames.sorted());
         customerNameCombo.setValue("All Customers");
         allCustTable.setItems(DBCustomers.getAllCust());
-        allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        allCustID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
         allCustName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
-        allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
-        allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
-        allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivNameProperty());
+        allCustAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        allCustPostal.setCellValueFactory(new PropertyValueFactory<>("Postal"));
+        allCustPhone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        allCustDivision.setCellValueFactory(new PropertyValueFactory<>("DivisionID"));
     }
 
     @FXML
     void changeCustName(ActionEvent event) {
         if(customerNameCombo.getValue() == "All Customers") {
             allCustTable.setItems(DBCustomers.getAllCust());
-            allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
-            allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
-            allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
-            allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
-            allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivNameProperty());
+            allCustID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
+            allCustName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            allCustAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            allCustPostal.setCellValueFactory(new PropertyValueFactory<>("Postal"));
+            allCustPhone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+            allCustDivision.setCellValueFactory(new PropertyValueFactory<>("DivisionID"));
         } else {
             allCustTable.setItems(DBCustomers.getSpecificCustomer(customerNameCombo.getValue()));
-            allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
-            allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
-            allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
-            allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
-            allCustDivision.setCellValueFactory(cellData -> cellData.getValue().getDivNameProperty());
+            allCustID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
+            allCustName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            allCustAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            allCustPostal.setCellValueFactory(new PropertyValueFactory<>("Postal"));
+            allCustPhone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+            allCustDivision.setCellValueFactory(new PropertyValueFactory<>("DivisionID"));
         }
     }
 
