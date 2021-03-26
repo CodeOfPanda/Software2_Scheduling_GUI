@@ -58,33 +58,40 @@ public class Add_Customer_Controller implements Initializable {
     void addCustSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an informational window will pop up, indicating the information was saved,
         // then take the user to All_Customer_Records_Scene.
+        if(isValid()) {
+            DBCustomers.createCustomer(addCustName.getText()
+                    , addCustAddress.getText()
+                    , addCustPostal.getText()
+                    , addCustPhone.getText()
+                    , Appointments.getCurrentDateTime()
+                    , Users.getLoggedInUser()
+                    , Appointments.getCurrentDateTime()
+                    , Users.getLoggedInUser()
+                    , DBFirst_Level_Divisions.getDivisionID(addCustDivision.getValue())
+            );
 
-        DBCustomers.createCustomer(addCustName.getText()
-                , addCustAddress.getText()
-                , addCustPostal.getText()
-                , addCustPhone.getText()
-                , Appointments.getCurrentDateTime()
-                , Users.getLoggedInUser()
-                , Appointments.getCurrentDateTime()
-                , Users.getLoggedInUser()
-                , DBFirst_Level_Divisions.getDivisionID(addCustDivision.getValue())
-                 );
+            Alert submit = new Alert(Alert.AlertType.INFORMATION);
+            submit.initModality(Modality.NONE);
+            submit.setTitle("Thank You!");
+            submit.setHeaderText("Your customer has been saved.");
+            Optional<ButtonType> results = submit.showAndWait();
+            if(results.get() == ButtonType.OK) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
+                Parent submitCustRoot = loader.load();
 
-        Alert submit = new Alert(Alert.AlertType.INFORMATION);
-        submit.initModality(Modality.NONE);
-        submit.setTitle("Thank You!");
-        submit.setHeaderText("Your customer has been saved.");
-        Optional<ButtonType> results = submit.showAndWait();
-        if(results.get() == ButtonType.OK) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
-            Parent submitCustRoot = loader.load();
-
-            Stage submitCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene submitCustScene = new Scene(submitCustRoot);
-            submitCustStage.setScene(submitCustScene);
-            submitCustStage.show();
+                Stage submitCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene submitCustScene = new Scene(submitCustRoot);
+                submitCustStage.setScene(submitCustScene);
+                submitCustStage.show();
+            }
+        } else {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Missing Information.");
+            error.setHeaderText("Please make sure you have filled out each text field.");
+            Optional<ButtonType> results = error.showAndWait();
         }
+
     }
 
     // Cancel Button Action Event
@@ -108,4 +115,31 @@ public class Add_Customer_Controller implements Initializable {
             cancelCustStage.show();
         }
     }
+
+    // checks input values
+    public Boolean isValid() {
+        if(addCustName.getText().isEmpty() || addCustName.getText() == null) {
+            return false;
+        } else if (addCustPhone.getText().isEmpty() || addCustPhone.getText() == null) {
+            return false;
+        } else if (addCustAddress.getText().isEmpty() || addCustAddress.getText() == null){
+            return false;
+        } else if (addCustPostal.getText().isEmpty() || addCustPostal.getText() == null) {
+            return false;
+        } else if (addCustCountry.getValue() == null) {
+            return false;
+        } else if (addCustDivision.getValue() == null) {
+            return false;
+        }
+        return true;
+    }
 }
+
+
+//@FXML private TextField addCustID;
+//    @FXML private TextField addCustName;
+//    @FXML private TextField addCustPhone;
+//    @FXML private TextField addCustAddress;
+//    @FXML private ComboBox<String> addCustCountry;
+//    @FXML private ComboBox<String> addCustDivision;
+//    @FXML private TextField addCustPostal;

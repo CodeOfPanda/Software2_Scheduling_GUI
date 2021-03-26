@@ -62,30 +62,56 @@ public class Update_Customer_Controller{
         // when triggered an informational window will pop up, indicating the information was saved,
         // then take the user to All_Customer_Records_Scene.
         String customerID = String.valueOf(modCustID.getText());
-        DBCustomers.modifyCustomer(Integer.parseInt(customerID)
-                , modCustName.getText()
-                , modCustAddress.getText()
-                , modCustPostal.getText()
-                , modCustPhone.getText()
-                , Appointments.getCurrentDateTime()
-                , Users.getLoggedInUser()
-                , DBFirst_Level_Divisions.getDivisionID(modCustDivision.getValue()));
+        if(isValid()) {
+            DBCustomers.modifyCustomer(Integer.parseInt(customerID)
+                    , modCustName.getText()
+                    , modCustAddress.getText()
+                    , modCustPostal.getText()
+                    , modCustPhone.getText()
+                    , Appointments.getCurrentDateTime()
+                    , Users.getLoggedInUser()
+                    , DBFirst_Level_Divisions.getDivisionID(modCustDivision.getValue()));
 
-        Alert submit = new Alert(Alert.AlertType.INFORMATION);
-        submit.initModality(Modality.NONE);
-        submit.setTitle("Thank You!");
-        submit.setHeaderText("Your appointment has been saved.");
-        Optional<ButtonType> results = submit.showAndWait();
-        if(results.get() == ButtonType.OK) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
-            Parent submitCustRoot = loader.load();
+            Alert submit = new Alert(Alert.AlertType.INFORMATION);
+            submit.initModality(Modality.NONE);
+            submit.setTitle("Thank You!");
+            submit.setHeaderText("Your appointment has been saved.");
+            Optional<ButtonType> results = submit.showAndWait();
+            if(results.get() == ButtonType.OK) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
+                Parent submitCustRoot = loader.load();
 
-            Stage submitCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene submitCustScene = new Scene(submitCustRoot);
-            submitCustStage.setScene(submitCustScene);
-            submitCustStage.show();
+                Stage submitCustStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene submitCustScene = new Scene(submitCustRoot);
+                submitCustStage.setScene(submitCustScene);
+                submitCustStage.show();
+            }
+        } else {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Missing Information.");
+            error.setHeaderText("Please make sure you have filled out each text field.");
+            Optional<ButtonType> results = error.showAndWait();
         }
+
+    }
+
+    // checks input values
+    public Boolean isValid() {
+        if(modCustName.getText().isEmpty() || modCustName.getText() == null) {
+            return false;
+        } else if (modCustPhone.getText().isEmpty() || modCustPhone.getText() == null) {
+            return false;
+        } else if (modCustAddress.getText().isEmpty() || modCustAddress.getText() == null){
+            return false;
+        } else if (modCustPostal.getText().isEmpty() || modCustPostal.getText() == null) {
+            return false;
+        } else if (modCustCountry.getValue() == null) {
+            return false;
+        } else if (modCustDivision.getValue() == null) {
+            return false;
+        }
+        return true;
     }
 
     // Cancel Button Action Event

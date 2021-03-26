@@ -90,23 +90,29 @@ public class Update_Appointment_Scene {
                     , DBCustomers.getCustomerID(modApptCustName.getValue())
                     , modApptUserID.getValue()
                     , DBContacts.getContactID(modApptContact.getValue()));
+            Alert submit = new Alert(Alert.AlertType.INFORMATION);
+            submit.initModality(Modality.NONE);
+            submit.setTitle("Thank You!");
+            submit.setHeaderText("Your appointment has been saved.");
+            Optional<ButtonType> results = submit.showAndWait();
+            if(results.get() == ButtonType.OK) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
+                Parent submitApptRoot = loader.load();
+
+                Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene submitApptScene = new Scene(submitApptRoot);
+                submitApptStage.setScene(submitApptScene);
+                submitApptStage.show();
+            }
+        } else {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Missing Information.");
+            error.setHeaderText("Please make sure you have filled out each text field.");
+            Optional<ButtonType> results = error.showAndWait();
         }
 
-        Alert submit = new Alert(Alert.AlertType.INFORMATION);
-        submit.initModality(Modality.NONE);
-        submit.setTitle("Thank You!");
-        submit.setHeaderText("Your appointment has been saved.");
-        Optional<ButtonType> results = submit.showAndWait();
-        if(results.get() == ButtonType.OK) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
-            Parent submitApptRoot = loader.load();
 
-            Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene submitApptScene = new Scene(submitApptRoot);
-            submitApptStage.setScene(submitApptScene);
-            submitApptStage.show();
-        }
     }
 
     // Cancel Button Action Event
@@ -131,8 +137,15 @@ public class Update_Appointment_Scene {
             }
     }
 
+    // checks input values
     public Boolean isValid() {
-
+        if (modApptTitle.getText().isEmpty() || modApptTitle.getText() == null) {
+            return false;
+        } else if (modApptDescript.getText().isEmpty() || modApptDescript.getText() == null) {
+            return false;
+        } else if (modApptLocale.getText().isEmpty() || modApptLocale.getText() == null) {
+            return false;
+        }
         return true;
     }
 }
