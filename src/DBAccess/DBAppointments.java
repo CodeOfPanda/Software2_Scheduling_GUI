@@ -31,8 +31,8 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                LocalDateTime start = rs.getObject("Start", LocalDateTime.class); // unsure on if this will work found on Stack
-                LocalDateTime end = rs.getObject("End", LocalDateTime.class);
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime(); // unsure on if this will work found on Stack
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
                 LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
@@ -195,11 +195,11 @@ public class DBAppointments {
             psCA.setString(2, description);
             psCA.setString(3, location);
             psCA.setString(4, type);
-            psCA.setObject(5, start);
-            psCA.setObject(6, end);
-            psCA.setObject(7, createDate);
+            psCA.setTimestamp(5, Timestamp.valueOf(start));
+            psCA.setTimestamp(6, Timestamp.valueOf(end));
+            psCA.setTimestamp(7, Timestamp.valueOf(createDate));
             psCA.setString(8, createdBy);
-            psCA.setObject(9, lastUpdate);
+            psCA.setTimestamp(9, Timestamp.valueOf(lastUpdate));
             psCA.setString(10,lastUpdatedBy);
             psCA.setInt(11, customerID);
             psCA.setInt(12, userID);
@@ -237,10 +237,10 @@ public class DBAppointments {
             psUpdate.setString(1, title);
             psUpdate.setString(2, description);
             psUpdate.setString(3, location);
-            psUpdate.setObject(4, type);
-            psUpdate.setObject(5, start);
-            psUpdate.setObject(6, end);
-            psUpdate.setObject(7, lastUpdate);
+            psUpdate.setTimestamp(4, Timestamp.valueOf(type));
+            psUpdate.setTimestamp(5, Timestamp.valueOf(start));
+            psUpdate.setTimestamp(6, Timestamp.valueOf(end));
+            psUpdate.setTimestamp(7, Timestamp.valueOf(lastUpdate));
             psUpdate.setString(8, lastUpdatedBy);
             psUpdate.setInt(9, customerID);
             psUpdate.setInt(10, userID);

@@ -7,8 +7,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 public class Appointments {
     // for populating combo-boxes.
@@ -31,6 +30,10 @@ public class Appointments {
     private final IntegerProperty customerID;
     private final IntegerProperty userID;
     private final IntegerProperty contactID;
+    LocalDateTime ldt = LocalDateTime.now();
+    ZonedDateTime localDateTimeZoned = ldt.atZone(ZoneId.systemDefault());
+    ZonedDateTime utcZoned = localDateTimeZoned.withZoneSameInstant(ZoneId.of("UTC"));
+
 
     // constructor method
     public Appointments(int appointmentID, String title, String description, String location, String type
@@ -87,7 +90,10 @@ public class Appointments {
     public ObjectProperty<LocalDateTime> getStart() {
         return start;
     }
-    public LocalDateTime getApptStart() {return start.get();}
+    public LocalDateTime getApptStart() {
+
+        return start.get();
+    }
 
 
     // end datetime
@@ -125,7 +131,19 @@ public class Appointments {
         return contactID.get();
     }
 
-    // methods to populate combo-boxes
+
+    // get the zone date time for systemDefault
+    public ZonedDateTime getLocalDateTimeZoned() {
+        return this.localDateTimeZoned;
+    }
+
+    // get the zone date time for UTC
+    public ZonedDateTime getUtcZoned() {
+        return this.utcZoned;
+    }
+
+
+    /*  --------------  methods to populate combo-boxes  -------------------  */
     public static ObservableList<String> getContactNames() {
         contactNames.clear();
         DBContacts.getAllContacts().forEach((contact) -> {
@@ -165,13 +183,21 @@ public class Appointments {
     }
 
     public static ObservableList<LocalTime> getStartWorkHours() {
-//        startWorkHours.clear();
-//        startWorkHours.addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"
-//                , "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
 
+        LocalTime startTimeEST = LocalTime.of(8, 00);
 
-        LocalTime start = LocalTime.of(8, 00);
-        LocalTime end = LocalTime.of(22, 00);
+        LocalDateTime startLDTEST = LocalDateTime.of(LocalDate.now(), startTimeEST);
+        ZonedDateTime estZDT = startLDTEST.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime localZDT = estZDT.withZoneSameInstant(ZoneId.systemDefault());
+
+        LocalTime start = localZDT.toLocalTime();
+
+        LocalTime endTimeEST = LocalTime.of(22, 00);
+        LocalDateTime endLDTEST = LocalDateTime.of(LocalDate.now(), endTimeEST);
+        ZonedDateTime endESTZDT = endLDTEST.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime endLocalZDT = endESTZDT.withZoneSameInstant(ZoneId.systemDefault());
+
+        LocalTime end = endLocalZDT.toLocalTime();
 
         while (start.isBefore(end.minusMinutes(30))) {
             startWorkHours.add(start);
@@ -186,6 +212,8 @@ public class Appointments {
 //                , "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
 
         LocalTime start = LocalTime.of(8, 30);
+
+
         LocalTime end = LocalTime.of(22, 00);
 
         while (start.isBefore(end.plusSeconds(1))) {
@@ -194,4 +222,5 @@ public class Appointments {
         }
         return endWorkHours;
     }
+
 }

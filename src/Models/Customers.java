@@ -12,22 +12,22 @@ public class Customers {
 
     private static ObservableList<String> divisionNames = FXCollections.observableArrayList();
 
-    private IntegerProperty customerID;
-    private StringProperty custName;
-    private StringProperty custAddress;
-    private StringProperty custPostal;
-    private StringProperty custPhone;
-    private ObjectProperty<LocalDateTime> createDate;
-    private StringProperty createdBy;
-    private Timestamp lastUpdate;
-    private StringProperty lastUpdatedBy;
-    private IntegerProperty divisionID;
+    private final IntegerProperty customerID;
+    private final String custName;
+    private final StringProperty custAddress;
+    private final StringProperty custPostal;
+    private final StringProperty custPhone;
+    private final ObjectProperty<LocalDateTime> createDate;
+    private final StringProperty createdBy;
+    private final Timestamp lastUpdate;
+    private final StringProperty lastUpdatedBy;
+    private final IntegerProperty divisionID;
 
     public Customers(int customerID, String name, String address, String postalCode, String phone, LocalDateTime createDate
                     ,String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionID)
     {
         this.customerID = new SimpleIntegerProperty(customerID);
-        this.custName = new SimpleStringProperty(name);
+        this.custName = name;
         this.custAddress = new SimpleStringProperty(address);
         this.custPostal = new SimpleStringProperty(postalCode);
         this.custPhone = new SimpleStringProperty(phone);
@@ -45,10 +45,7 @@ public class Customers {
     public int getCustID() {return customerID.get();}
 
     // customer name
-    public StringProperty getCustName() {
-        return this.custName;
-    }
-    public String getName(){return custName.get();}
+    public String getName(){return custName;}
 
     // customer address
     public StringProperty getCustAddress() {

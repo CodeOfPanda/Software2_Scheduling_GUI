@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -50,11 +51,20 @@ public class LoginController implements Initializable {
     @FXML private PasswordField password;
     @FXML private Button signInButton;
     @FXML private Button exitButton;
+    ZoneId zone = ZoneId.systemDefault();
+    ZonedDateTime zdt = ZonedDateTime.now(zone);
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ZoneId zone = ZoneId.systemDefault();
+
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println(ldt);
+        ZonedDateTime ldtZoned = ldt.atZone(ZoneId.systemDefault());
+        ZonedDateTime utcZoned = ldtZoned.withZoneSameInstant(ZoneId.of("UTC"));
+        System.out.println(ldtZoned);
+        System.out.println(utcZoned);
+
         String zoneID = String.valueOf(zone);
         loginLocale.setText(zoneID);
     }

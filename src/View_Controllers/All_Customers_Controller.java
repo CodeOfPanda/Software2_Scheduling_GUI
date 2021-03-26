@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -33,6 +34,7 @@ public class All_Customers_Controller implements Initializable {
     @FXML private TextField allCustSearchTextField;
     @FXML private TableView<Customers> allCustTable;
     @FXML private TableColumn<Customers, Integer> allCustID;
+    @FXML private TableColumn<Customers, String> allCustName;
     @FXML private TableColumn<Customers, String> allCustAddress;
     @FXML private TableColumn<Customers, String> allCustDivision;
     @FXML private TableColumn<Customers, String> allCustPostal;
@@ -46,6 +48,7 @@ public class All_Customers_Controller implements Initializable {
         customerNameCombo.setValue("All Customers");
         allCustTable.setItems(DBCustomers.getAllCust());
         allCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        allCustName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         allCustAddress.setCellValueFactory(cellData -> cellData.getValue().getCustAddress());
         allCustPostal.setCellValueFactory(cellData -> cellData.getValue().getCustPostal());
         allCustPhone.setCellValueFactory(cellData -> cellData.getValue().getCustPhone());
