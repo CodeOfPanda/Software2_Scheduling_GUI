@@ -72,6 +72,7 @@ public class All_Appointments_Controller implements Initializable {
     void toggleAppts(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) apptToggleGroup.getSelectedToggle();
         String radioButtonText = selectedRadioButton.getText();
+        // sets table to appropriate information based off of which radio button is selected
         if (radioButtonText.equals("All")) {
             allApptTable.setItems(DBAppointments.getAllAppts());
             allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
@@ -131,7 +132,7 @@ public class All_Appointments_Controller implements Initializable {
     // update appointment button action event
     @FXML
     public void updateApptBtn(ActionEvent event) throws IOException {
-        // when triggered this takes the user to the Update_Appointment_Scene.
+        // when triggered this method checks to make sure an appointment was selected
         Appointments selectedAppt = allApptTable.getSelectionModel().getSelectedItem();
         if(selectedAppt != null) {
             updateAppt(event, selectedAppt);
@@ -143,8 +144,10 @@ public class All_Appointments_Controller implements Initializable {
             alert.showAndWait();
         }
     }
+
     // this method makes it possible for me to pass in the selected appointment and use that data in my update appt controller.
     public void updateAppt(ActionEvent event, Appointments selectedAppt) throws IOException{
+        // takes user to update appt scene
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Update_Appointment_Scene.fxml"));
         Parent modApptRoot = loader.load();

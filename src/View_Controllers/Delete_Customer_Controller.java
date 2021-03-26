@@ -33,9 +33,7 @@ public class Delete_Customer_Controller implements Initializable {
     // Submit Button for Delete GUI
     @FXML
     void deleteCustSubmit(ActionEvent event) throws IOException {
-
-        // want to delete the customer on this action event
-        // then reload the all customer records scene
+        // deletes appropriate customer and their appointments
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         if (deleteCustCombo.getValue() != null) {
             confirmation.setTitle("Please confirm your action.");
@@ -66,6 +64,7 @@ public class Delete_Customer_Controller implements Initializable {
     // Cancel Button for Delete Customer GUI
     @FXML
     public void deleteCancelBtn(ActionEvent event) throws IOException {
+        // takes user back to the customer dashboard.
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
         Parent allCustomersRoot = loader.load();

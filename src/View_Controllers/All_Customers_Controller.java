@@ -21,9 +21,9 @@ import java.util.ResourceBundle;
 
 /*
  * all of the customer's appointments must be deleted prior to deleting a customer.
- *          use an error message indicating this need.
+ *          use an error message indicating this need. (done)
  *
- * when deleting a customer record, a custom message should display in the user interface ("are you sure?" --> "Customer Removed")
+ * when deleting a customer record, a custom message should display in the user interface ("are you sure?" --> "Customer Removed") (done)
  */
 
 public class All_Customers_Controller implements Initializable {
@@ -95,7 +95,7 @@ public class All_Customers_Controller implements Initializable {
     // Modify Button Action Event
     @FXML
     public void allCustModBtnClicked(ActionEvent event) throws IOException {
-        // when triggered this takes the user to Update_Customer_Scene.
+        // when triggered this checks to make sure there was a customer selected
         Customers selectedCustomer = allCustTable.getSelectionModel().getSelectedItem();
 
         if (selectedCustomer != null) {
@@ -110,6 +110,8 @@ public class All_Customers_Controller implements Initializable {
     }
 
     public void modifyCustomer(ActionEvent event, Customers selectedCustomer) throws IOException {
+        // when triggered this passes the selected customer to the method in the Update_Customer_Controller.
+        // and takes the user to that scene.
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Update_Customer_Scene.fxml"));
         Parent modCustRoot = loader.load();
@@ -124,20 +126,14 @@ public class All_Customers_Controller implements Initializable {
     // Delete Button Action Event
     @FXML
     public void allCustDelBtnClicked(ActionEvent event) throws IOException {
-        // when triggered this gives user a confirmation alert before deleting a customer.
-        // it needs to ask user if they would like to also delete any appointments this customer had.
-
+        //when triggered this takes them to the delete a customer GUI
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Delete_Customer_Scene.fxml"));
         Parent deleteRoot = loader.load();
-        Stage deleteStage = new Stage();
+        Stage deleteStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene deleteScene = new Scene(deleteRoot);
         deleteStage.setScene(deleteScene);
         deleteStage.show();
-
-
-//        Customers selectedCustomer = allCustTable.getSelectionModel().getSelectedItem();
-
     }
 
     // Back Button Action Event
