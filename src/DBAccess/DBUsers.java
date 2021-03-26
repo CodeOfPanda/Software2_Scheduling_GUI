@@ -28,7 +28,7 @@ public class DBUsers {
                 int userID = rs.getInt("User_ID");
                 String name = rs.getString("User_Name");
                 String password = rs.getString("Password");
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");

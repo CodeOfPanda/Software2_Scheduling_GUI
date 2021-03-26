@@ -29,7 +29,7 @@ public class DBCustomers {
                 String address = rs.getString("Address");
                 String postalCode = rs.getString("Postal_Code");
                 String phone = rs.getString("Phone");
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -62,7 +62,7 @@ public class DBCustomers {
                 String address = rs.getString("Address");
                 String postalCode = rs.getString("Postal_Code");
                 String phone = rs.getString("Phone");
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -139,9 +139,9 @@ public class DBCustomers {
             pStmt.setString(2, address);
             pStmt.setString(3, postalCode);
             pStmt.setString(4, phone);
-            pStmt.setObject(5, createDate);
+            pStmt.setTimestamp(5, Timestamp.valueOf(createDate));
             pStmt.setString(6, createdBy);
-            pStmt.setObject(7, lastUpdate);
+            pStmt.setTimestamp(7, Timestamp.valueOf(lastUpdate));
             pStmt.setString(8, lastUpdatedBy);
             pStmt.setInt(9, divisionID); // can't be null
 
@@ -171,7 +171,7 @@ public class DBCustomers {
             pStmt.setString(2, address);
             pStmt.setString(3, postalCode);
             pStmt.setString(4, phone);
-            pStmt.setObject(5, lastUpdate);
+            pStmt.setTimestamp(5, Timestamp.valueOf(lastUpdate));
             pStmt.setString(6, lastUpdatedBy);
             pStmt.setInt(7, divisionID); // can't be null
             pStmt.setInt(8, customerID);

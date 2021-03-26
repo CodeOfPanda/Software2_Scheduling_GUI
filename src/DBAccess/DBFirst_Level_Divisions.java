@@ -24,7 +24,7 @@ public class DBFirst_Level_Divisions {
             while (rs.next()) {
                 int divisionID = rs.getInt("Division_ID");
                 String division = rs.getString("Division");
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");

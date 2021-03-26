@@ -26,7 +26,7 @@ public class DBCountries {
             while (rs.next()) {
                 int countryID = rs.getInt("Country_ID");
                 String country = rs.getString("Country");
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");

@@ -33,7 +33,7 @@ public class DBAppointments {
                 String type = rs.getString("Type");
                 LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime(); // unsure on if this will work found on Stack
                 LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -73,9 +73,9 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                LocalDateTime start = rs.getObject("Start", LocalDateTime.class); // unsure on if this will work found on Stack
-                LocalDateTime end = rs.getObject("End", LocalDateTime.class);
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime(); // unsure on if this will work found on Stack
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -112,9 +112,9 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                LocalDateTime start = rs.getObject("Start", LocalDateTime.class); // unsure on if this will work found on Stack
-                LocalDateTime end = rs.getObject("End", LocalDateTime.class);
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime(); // unsure on if this will work found on Stack
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -150,9 +150,9 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                LocalDateTime start = rs.getObject("Start", LocalDateTime.class); // unsure on if this will work found on Stack
-                LocalDateTime end = rs.getObject("End", LocalDateTime.class);
-                LocalDateTime createDate = rs.getObject("Create_Date", LocalDateTime.class);
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime(); // unsure on if this will work found on Stack
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -237,7 +237,7 @@ public class DBAppointments {
             psUpdate.setString(1, title);
             psUpdate.setString(2, description);
             psUpdate.setString(3, location);
-            psUpdate.setObject(4, type);
+            psUpdate.setString(4, type);
             psUpdate.setTimestamp(5, Timestamp.valueOf(start));
             psUpdate.setTimestamp(6, Timestamp.valueOf(end));
             psUpdate.setTimestamp(7, Timestamp.valueOf(lastUpdate));
