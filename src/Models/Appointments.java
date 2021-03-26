@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Appointments {
     // for populating combo-boxes.
@@ -16,8 +17,8 @@ public class Appointments {
     private static ObservableList<String> allApptTypes = FXCollections.observableArrayList();
     private static ObservableList<Integer> customerIDs = FXCollections.observableArrayList();
     private static ObservableList<Integer> userIDs = FXCollections.observableArrayList();
-    private static ObservableList<String> startWorkHours = FXCollections.observableArrayList();
-    private static ObservableList<String> endWorkHours = FXCollections.observableArrayList();
+    private static ObservableList<LocalTime> startWorkHours = FXCollections.observableArrayList();
+    private static ObservableList<LocalTime> endWorkHours = FXCollections.observableArrayList();
 
     private final IntegerProperty appointmentID;
     private final StringProperty title;
@@ -87,6 +88,7 @@ public class Appointments {
         return start;
     }
     public LocalDateTime getApptStart() {return start.get();}
+
 
     // end datetime
     public ObjectProperty<LocalDateTime> getEnd() {
@@ -162,17 +164,34 @@ public class Appointments {
         return userIDs;
     }
 
-    public static ObservableList<String> getStartWorkHours() {
-        startWorkHours.clear();
-        startWorkHours.addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"
-                , "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
+    public static ObservableList<LocalTime> getStartWorkHours() {
+//        startWorkHours.clear();
+//        startWorkHours.addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"
+//                , "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
+
+
+        LocalTime start = LocalTime.of(8, 00);
+        LocalTime end = LocalTime.of(22, 00);
+
+        while (start.isBefore(end.minusMinutes(30))) {
+            startWorkHours.add(start);
+            start = start.plusMinutes(30);
+        }
         return startWorkHours;
     }
 
-    public static ObservableList<String> getEndWorkHours() {
-        endWorkHours.clear();
-        endWorkHours.addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"
-                , "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
+    public static ObservableList<LocalTime> getEndWorkHours() {
+//        endWorkHours.clear();
+//        endWorkHours.addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"
+//                , "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
+
+        LocalTime start = LocalTime.of(8, 30);
+        LocalTime end = LocalTime.of(22, 00);
+
+        while (start.isBefore(end.plusSeconds(1))) {
+            endWorkHours.add(start);
+            start = start.plusMinutes(30);
+        }
         return endWorkHours;
     }
 }

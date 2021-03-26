@@ -38,8 +38,8 @@ public class Add_Appointment_Controller implements Initializable {
     @FXML private DatePicker addApptStartDate;
     @FXML private DatePicker addApptEndDate;
     @FXML private ComboBox<String> addApptType;
-    @FXML private ComboBox<String> addApptStartTime;
-    @FXML private ComboBox<String> addApptEndTime;
+    @FXML private ComboBox<LocalTime> addApptStartTime;
+    @FXML private ComboBox<LocalTime> addApptEndTime;
     @FXML private ComboBox<String> addApptCustName;
     @FXML private ComboBox<Integer> addApptUserID;
     @FXML private Button addApptSubmitBtn;
@@ -71,8 +71,8 @@ public class Add_Appointment_Controller implements Initializable {
                     , addApptDescript.getText()
                     , addApptLocale.getText()
                     , addApptType.getValue()
-                    , LocalDateTime.of(addApptStartDate.getValue(),LocalTime.parse(addApptStartTime.getValue()))
-                    , LocalDateTime.of(addApptEndDate.getValue(),LocalTime.parse(addApptEndTime.getValue()))
+                    , LocalDateTime.of(addApptStartDate.getValue(), addApptStartTime.getValue())
+                    , LocalDateTime.of(addApptEndDate.getValue(), addApptEndTime.getValue())
                     , Appointments.getCurrentDateTime()
                     , DBUsers.getUserName(addApptUserID.getValue())
                     , Appointments.getCurrentDateTime()
