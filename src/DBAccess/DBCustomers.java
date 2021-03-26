@@ -199,6 +199,7 @@ public class DBCustomers {
         }
     }
 
+    // method to delete a customer after deleting their appointments
     public static void deleteCustomer(int ID) {
         try {
             // mySQL statement
