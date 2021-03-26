@@ -78,7 +78,7 @@ public class DBCustomers {
         }
         return custList;
     }
-
+    // method that returns a specific customer name that is associated with the customer ID that is being passed in.
     public static String getCustomerName(int ID) {
         String customerName = null;
         try{
@@ -99,6 +99,7 @@ public class DBCustomers {
         return customerName;
     }
 
+    // method that returns a specific customer ID that is associated with the customer name that is being passed in.
     public static int getCustomerID(String name) {
         int customerID = 0;
         try {
@@ -117,7 +118,7 @@ public class DBCustomers {
         return customerID;
     }
 
-    // adding a customer
+    // method that creates a customer
     public static void createCustomer(String customerName
             , String address
             , String postalCode
@@ -150,7 +151,7 @@ public class DBCustomers {
         }
     }
 
-    // modifying a customer
+    // method that modifies a customer
     public static void modifyCustomer(int customerID
             , String customerName
             , String address
@@ -180,6 +181,39 @@ public class DBCustomers {
         }
     }
 
+    // method that deletes a customer and any appointments they may have had.
+    public static void deleteCustomerAppts(int ID) {
+        try {
+            // mySQL statement
+            String sql = "delete a.*\n" + // change to delete
+                    "from WJ07K54.appointments a\n" +
+                    "where a.Customer_ID in\n" +
+                    "\t(select b.Customer_ID \n" +
+                    "\t from WJ07K54.customers b\n" +
+                    "     where Customer_ID=?);";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setInt(1, ID);
+            pStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteCustomer(int ID) {
+        try {
+            // mySQL statement
+            String sql = "delete \n" + // change to delete
+                    "from WJ07K54.customers\n" +
+                    "where Customer_ID=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setInt(1, ID);
+            pStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // method that returns a specific country name
     public static String getCountryName(int ID) {
         String countryName = null;
         try{
