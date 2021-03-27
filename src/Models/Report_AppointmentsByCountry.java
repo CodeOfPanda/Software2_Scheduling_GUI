@@ -6,17 +6,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Report_AppointmentsByCountry {
-    private StringProperty country;
-    private StringProperty type;
-    private IntegerProperty count;
+    private String country;
+    private String type;
+    private int count;
 
     public Report_AppointmentsByCountry(String country, String type, int count) {
-        this.country = new SimpleStringProperty(country);
-        this.type = new SimpleStringProperty(type);
-        this.count = new SimpleIntegerProperty(count);
+        this.country = country;
+        this.type = type;
+        this.count = count;
     }
 
-    public StringProperty getReportApptCountry() {return country;}
-    public StringProperty getReportApptType() {return type;}
-    public IntegerProperty getReportApptCount() {return count;}
+    public String getReportApptCountry() {return country;}
+    public String getReportApptType() {return type;}
+    public int getReportApptCount() {return count;}
 }

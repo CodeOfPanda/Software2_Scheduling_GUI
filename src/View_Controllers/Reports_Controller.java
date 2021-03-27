@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -34,14 +35,14 @@ public class Reports_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Customer Appointments Table
         custApptsTable.setItems(DBAppointments.getApptsByMonthType());
-        monthCol.setCellValueFactory(cellData -> cellData.getValue().getReportCustMonth());
-        custTypeCol.setCellValueFactory(cellData -> cellData.getValue().getReportType());
-        custCountCol.setCellValueFactory(cellData -> cellData.getValue().getReportCustCount().asObject());
+        monthCol.setCellValueFactory(new PropertyValueFactory<>("ReportCustMonth"));
+        custTypeCol.setCellValueFactory(new PropertyValueFactory<>("ReportCustCount"));
+        custCountCol.setCellValueFactory(new PropertyValueFactory<>("ReportType"));
         // Appointments by Country Table
         apptsByCountryTable.setItems(DBAppointments.getApptsByCountry());
-        countryCol.setCellValueFactory(cellData -> cellData.getValue().getReportApptCountry());
-        apptsTypeCol.setCellValueFactory(cellData -> cellData.getValue().getReportApptType());
-        apptsCountCol.setCellValueFactory(cellData -> cellData.getValue().getReportApptCount().asObject());
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("ReportApptCountry"));
+        apptsTypeCol.setCellValueFactory(new PropertyValueFactory<>("ReportApptType"));
+        apptsCountCol.setCellValueFactory(new PropertyValueFactory<>("ReportApptCount"));
     }
 
     // log out button action event

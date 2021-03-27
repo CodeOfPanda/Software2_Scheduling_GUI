@@ -6,18 +6,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Report_CustomerAppointments {
-    private StringProperty month;
-    private IntegerProperty count;
-    private StringProperty type;
+    private String month;
+    private int count;
+    private String type;
 
     public Report_CustomerAppointments (String month, int count, String type) {
-        this.month = new SimpleStringProperty(month);
-        this.count = new SimpleIntegerProperty(count);
-        this.type = new SimpleStringProperty(type);
+        this.month = month;
+        this.count = count;
+        this.type = type;
     }
 
-    public StringProperty getReportCustMonth() {return month;}
-    public IntegerProperty getReportCustCount() {return count;}
-    public StringProperty getReportType() {return type;}
+    public String getReportCustMonth() {return month;}
+    public int getReportCustCount() {return count;}
+    public String getReportType() {return type;}
 
 }
