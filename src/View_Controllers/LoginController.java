@@ -24,23 +24,10 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
-* accepts user name and password (done)
-*
-* displays the string version of the ZoneID in loginLocation Label (done)
-*
 * displays the login form in English or French based on the user's computer language setting to translate all the text,
 *     labels, buttons, and errors on the form
 * Locale.setDefault(new Locale("fr")); for translating language
 *     put on the first line of program in main.
-*
-* provide an alert when there is an appt within 15 min of the user's login. a custom message should be displayed including
-*     the apptID, date, & time.
-*     if the user does not have an appt within 15 min, display a message indicating there are no upcoming appts.
-*
-* writes code that provides the ability to track user activity by recording all user login attempts, dates, and time stamps
-*     and whether each attempt was successful in a file named login_activity.txt.
-*     Append each new record to the existing file, and save to the root folder of the application.
-*     ex: "User Davis successfully logged in at 2020-07-21 16:00:00" or "User test gave invalid log-in at 2020-07-23 14:00:00" (system default)
 **/
 
 public class LoginController implements Initializable {
@@ -92,7 +79,7 @@ public class LoginController implements Initializable {
             Users.setLoggedInUser(userName.getText());
 
             // if bool is true : log-in attempts, dates, and time stamps and attempt was successful in a file named login_activity.txt.
-            fileWriter.write(userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was admitted successfully.\n");
+            fileWriter.write("User: " + userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was admitted successfully.\n");
             fileWriter.close();
 
             FXMLLoader loader = new FXMLLoader();
