@@ -76,13 +76,6 @@ public class All_Customers_Controller implements Initializable {
         }
     }
 
-
-    // Search Button Action Event
-    @FXML
-    public void allCustSearchBtnClicked(ActionEvent event) {
-
-    }
-
     // Add Button Action Event
     @FXML
     public void allCustAddBtnClicked(ActionEvent event) throws IOException {

@@ -1,5 +1,6 @@
 package View_Controllers;
 
+import DBAccess.DBAppointments;
 import DBAccess.DBUsers;
 import Models.Appointments;
 import Models.Users;
@@ -13,14 +14,11 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -63,7 +61,6 @@ public class LoginController implements Initializable {
     // sign in button action
     public void signInBtnClicked(ActionEvent actionEvent) throws IOException {
         // when triggered this validates the user, writes the activity to the reports file, then takes the user to All_Appointments_Scene.
-
         // creating my login_activity file
         try {
             File activity = new File("login_activity.txt");
@@ -114,6 +111,28 @@ public class LoginController implements Initializable {
             alert.initModality(Modality.NONE);
             alert.setTitle("Incorrect UserName or Password");
             alert.setHeaderText("Please try again.");
+            alert.showAndWait();
+        }
+
+        // checking to see if there is an appt with in 15 min.
+        LocalTime local = LocalTime.now();
+        LocalDateTime ldt = LocalDateTime.of(LocalDate.now(), local);
+        ZonedDateTime localZDT = ldt.atZone(ZoneId.systemDefault());
+        ZonedDateTime utcZDT = localZDT.withZoneSameInstant(ZoneId.of("UTC"));
+        LocalDateTime currentTimeUTCPlus15Min = utcZDT.plusMinutes(15).toLocalDateTime();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(DBAppointments.getApptsIn15Mins(currentTimeUTCPlus15Min, utcZDT.toLocalDateTime()) > 0) {
+            DBAppointments.getApptDataWithIn15Min(currentTimeUTCPlus15Min).forEach((appt) -> {
+                alert.setTitle("Upcoming Appointment");
+                alert.setHeaderText("Appointment_ID: " + appt.getApptID() + "\nDate: " + appt.getApptStart().toLocalDate() + "\nTime: "
+                        + appt.getApptStart().toLocalTime() + "\n\nStarts within 15 minutes.");
+                alert.setContentText("Select OK to continue.");
+                alert.showAndWait();
+            });
+        } else {
+            alert.setTitle("Upcoming Appointments");
+            alert.setHeaderText("There are no upcoming appointments within 15 minutes.");
+            alert.setContentText("Select OK to continue");
             alert.showAndWait();
         }
     }

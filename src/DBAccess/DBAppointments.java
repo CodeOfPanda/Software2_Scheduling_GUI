@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
 import java.sql.*;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 // dbName: WJ07K54
@@ -22,7 +23,6 @@ public class DBAppointments {
             String sql = "select * from WJ07K54.appointments;";
             PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
             ResultSet rs = pStmt.executeQuery();
-
 
             while (rs.next()) {
                 // getting the data from mySQL
@@ -80,7 +80,7 @@ public class DBAppointments {
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
                 int customerID = rs.getInt("Customer_ID");
-                int userID = rs.getInt("User_ID");  
+                int userID = rs.getInt("User_ID");
                 int contactID = rs.getInt("Contact_ID");
                 Appointments list = new Appointments(appointmentID, title, description, location, type, start, end
                         ,createDate, createdBy,lastUpdate, lastUpdatedBy, customerID, userID, contactID);
@@ -320,5 +320,61 @@ public class DBAppointments {
         }
         return apptsByCountry;
     }
+
+    public static int getApptsIn15Mins(LocalDateTime time, LocalDateTime currentTime) {
+        int count = 0;
+        try {
+            //mySQL statement
+            String sql = "SELECT count(*) as Appointment_Count FROM WJ07K54.appointments\n" +
+                    "where Start <=? and Start >= ?";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setObject(1, time);
+            pStmt.setObject(2, currentTime);
+            ResultSet rs = pStmt.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt("Appointment_Count");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public static ObservableList<Appointments> getApptDataWithIn15Min(LocalDateTime time) {
+        ObservableList<Appointments> apptData = FXCollections.observableArrayList();
+        try {
+            //mySQL statement
+            String sql = "select * from WJ07K54.appointments\n" +
+                    "where Start <=?";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setObject(1, time);
+            ResultSet rs = pStmt.executeQuery();
+            while (rs.next()) {
+                int appointmentID = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                String location = rs.getString("Location");
+                String type = rs.getString("Type");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
+                String createdBy = rs.getString("Created_By");
+                Timestamp lastUpdate = rs.getTimestamp("Last_Update");
+                String lastUpdatedBy = rs.getString("Last_Updated_By");
+                int customerID = rs.getInt("Customer_ID");
+                int userID = rs.getInt("User_ID");
+                int contactID = rs.getInt("Contact_ID");
+                Appointments list = new Appointments(appointmentID, title, description, location, type, start, end
+                        ,createDate, createdBy,lastUpdate, lastUpdatedBy, customerID, userID, contactID);
+                apptData.add(list);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return apptData;
+    }
+
 
 }
