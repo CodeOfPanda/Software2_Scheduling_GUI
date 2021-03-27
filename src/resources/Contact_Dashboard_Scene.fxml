@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -30,12 +29,6 @@
                </font>
             </Label>
             <ComboBox fx:id="contactNamesCombo" onAction="#changeContactName" prefWidth="150.0" />
-            <Button fx:id="contactSearchBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#contactSearchBtnClicked" prefHeight="25.0" prefWidth="75.0" text="Search" translateX="220.0">
-               <font>
-                  <Font name="Bookman Old Style" size="13.0" />
-               </font>
-            </Button>
-            <TextField fx:id="contactSearchText" prefHeight="25.0" prefWidth="175.0" translateX="215.0" />
          </children>
       </HBox>
       <TableView fx:id="contactTable" prefHeight="200.0" prefWidth="750.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0">

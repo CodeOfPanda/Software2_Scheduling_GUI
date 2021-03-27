@@ -169,6 +169,7 @@ public class All_Appointments_Controller implements Initializable {
             Optional<ButtonType> result = confirmation.showAndWait();
             if(result.get() == ButtonType.OK) {
                 DBAppointments.deleteAppt(selectedAppt.getApptID());
+
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
                 Parent allApptRoot = loader.load();
@@ -176,6 +177,12 @@ public class All_Appointments_Controller implements Initializable {
                 Scene allApptScene = new Scene(allApptRoot);
                 allApptStage.setScene(allApptScene);
                 allApptStage.show();
+
+                // custom message:
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setHeaderText("Appointment_ID: " + selectedAppt.getApptID() + " of Type: " + selectedAppt.getApptType() + " was deleted.");
+                info.setContentText("Select OK to continue.");
+                info.showAndWait();
             }
         } else {
             confirmation.setTitle("No Appointment selected");
