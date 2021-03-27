@@ -40,6 +40,11 @@ public class Delete_Customer_Controller implements Initializable {
             confirmation.setContentText("Select OK if you wish to delete.");
             Optional<ButtonType> result = confirmation.showAndWait();
             if(result.get() == ButtonType.OK) {
+                // custom message for specific customer was successfully deleted
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setHeaderText(deleteCustCombo.getValue() + " has been deleted.");
+                info.setContentText("Select OK to continue.");
+                info.showAndWait();
                 // deleting customer appointments then deleting customer
                 DBCustomers.deleteCustomerAppts(DBCustomers.getCustomerID(deleteCustCombo.getValue()));
                 DBCustomers.deleteCustomer(DBCustomers.getCustomerID(deleteCustCombo.getValue()));
@@ -71,5 +76,6 @@ public class Delete_Customer_Controller implements Initializable {
         Scene allCustScene = new Scene(allCustomersRoot);
         allCustStage.setScene(allCustScene);
         allCustStage.show();
+
     }
 }

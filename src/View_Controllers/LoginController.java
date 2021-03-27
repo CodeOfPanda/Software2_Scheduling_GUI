@@ -56,14 +56,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        LocalDateTime ldt = LocalDateTime.now();
-        System.out.println(ldt);
-        ZonedDateTime ldtZoned = ldt.atZone(ZoneId.systemDefault());
-        ZonedDateTime utcZoned = ldtZoned.withZoneSameInstant(ZoneId.of("UTC"));
-        System.out.println(ldtZoned);
-        System.out.println(utcZoned);
-
         String zoneID = String.valueOf(zone);
         loginLocale.setText(zoneID);
     }

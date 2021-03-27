@@ -36,8 +36,9 @@ public class Reports_Controller implements Initializable {
         // Customer Appointments Table
         custApptsTable.setItems(DBAppointments.getApptsByMonthType());
         monthCol.setCellValueFactory(new PropertyValueFactory<>("ReportCustMonth"));
-        custTypeCol.setCellValueFactory(new PropertyValueFactory<>("ReportCustCount"));
-        custCountCol.setCellValueFactory(new PropertyValueFactory<>("ReportType"));
+        custTypeCol.setCellValueFactory(new PropertyValueFactory<>("ReportType"));
+        custCountCol.setCellValueFactory(new PropertyValueFactory<>("ReportCustCount"));
+
         // Appointments by Country Table
         apptsByCountryTable.setItems(DBAppointments.getApptsByCountry());
         countryCol.setCellValueFactory(new PropertyValueFactory<>("ReportApptCountry"));
