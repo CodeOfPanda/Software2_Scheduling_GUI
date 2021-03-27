@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -41,35 +42,35 @@ public class Contact_Controller implements Initializable {
         contactNamesCombo.setItems(newContactNames.sorted());
         contactNamesCombo.setValue("All Contacts");
         contactTable.setItems(DBAppointments.getAllAppts());
-        contactApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
-        contactApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
-        contactApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
-        contactApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+        contactApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
+        contactApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
+        contactApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
+        contactApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
         contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
         contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
-        contactApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
     }
 
     @FXML
     void changeContactName(ActionEvent event) {
         if(contactNamesCombo.getValue() == "All Contacts") {
             contactTable.setItems(DBAppointments.getAllAppts());
-            contactApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
-            contactApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
-            contactApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
-            contactApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            contactApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
+            contactApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
+            contactApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
+            contactApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
             contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
             contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
-            contactApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+            contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         } else {
             contactTable.setItems(DBAppointments.getSpecificAppt(contactNamesCombo.getValue()));
-            contactApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
-            contactApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
-            contactApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
-            contactApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            contactApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
+            contactApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
+            contactApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
+            contactApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
             contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
             contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
-            contactApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+            contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         }
     }
 

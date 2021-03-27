@@ -19,75 +19,59 @@ public class Appointments {
     private static ObservableList<LocalTime> startWorkHours = FXCollections.observableArrayList();
     private static ObservableList<LocalTime> endWorkHours = FXCollections.observableArrayList();
 
-    private final IntegerProperty appointmentID;
-    private final StringProperty title;
-    private final StringProperty location;
-    private final StringProperty description;
-    private final StringProperty type;
+    private final int appointmentID;
+    private final String title;
+    private final String location;
+    private final String description;
+    private final String type;
     private final ObjectProperty<LocalDateTime> start;
     private final ObjectProperty<LocalDateTime> end;
-    private final StringProperty lastUpdatedBy;
-    private final IntegerProperty customerID;
-    private final IntegerProperty userID;
-    private final IntegerProperty contactID;
+    private final String lastUpdatedBy;
+    private final int customerID;
+    private final int userID;
+    private final int contactID;
 
     // constructor method
     public Appointments(int appointmentID, String title, String description, String location, String type
                         ,LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createdBy
                         ,Timestamp lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID)
     {
-        this.appointmentID = new SimpleIntegerProperty(appointmentID);
-        this.title = new SimpleStringProperty(title);
-        this.description = new SimpleStringProperty(description);
-        this.location = new SimpleStringProperty(location);
-        this.type = new SimpleStringProperty(type);
+        this.appointmentID = appointmentID;
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.type = type;
         this.start = new SimpleObjectProperty<>(start);
         this.end = new SimpleObjectProperty<>(end);
-        this.lastUpdatedBy = new SimpleStringProperty(lastUpdatedBy);
-        this.customerID = new SimpleIntegerProperty(customerID);
-        this.userID = new SimpleIntegerProperty(userID);
-        this.contactID = new SimpleIntegerProperty(contactID);
+        this.lastUpdatedBy = lastUpdatedBy;
+        this.customerID = customerID;
+        this.userID = userID;
+        this.contactID = contactID;
     }
 
     // appointmentID
-    public IntegerProperty getAppointmentID() {
-        return appointmentID;
-    }
     public int getApptID() {
-        return appointmentID.get();
+        return appointmentID;
     }
 
 
     // title
-    public StringProperty getTitle() {
-        return title;
-    }
-    public String getApptTitle() {return title.get();}
+    public String getApptTitle() {return title;}
 
     // description
-    public StringProperty getDescription() {
-        return description;
-    }
-    public String getApptDescript() {return description.get();}
+    public String getApptDescript() {return description;}
 
     // location
-    public StringProperty getLocation() {
-        return location;
-    }
-    public String getApptLocation() {return location.get();}
+    public String getApptLocation() {return location;}
 
     // type
-    public StringProperty getType() {
-        return type;
-    }
-    public String getApptType() {return type.get();}
+    public String getApptType() {return type;}
 
     // start datetime
     public ObjectProperty<LocalDateTime> getStart() {
         return start;
     }
     public LocalDateTime getApptStart() {
-
         return start.get();
     }
 
@@ -104,27 +88,15 @@ public class Appointments {
         return dateTime;
     }
 
-    // last_updated_by
-    public StringProperty getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
     // customer id
-    public IntegerProperty getCustomerID() {
-        return customerID;
-    }
-    public int getApptCustomerID() {return customerID.get();}
+    public int getApptCustomerID() {return customerID;}
 
     // user id
-    public IntegerProperty getUserID() {
-        return userID;
-    }
-    public int getApptUserID() {return userID.get();}
+    public int getApptUserID() {return userID;}
 
     // contact id
-    public IntegerProperty getApptContactID() { return contactID;}
     public int getContact() {
-        return contactID.get();
+        return contactID;
     }
 
     /*  --------------  methods to populate combo-boxes  -------------------  */
@@ -183,7 +155,7 @@ public class Appointments {
 
         LocalTime end = endLocalZDT.toLocalTime();
 
-        while (start.isBefore(end.minusMinutes(30))) {
+        while (start.isBefore(end)) {
             startWorkHours.add(start);
             start = start.plusMinutes(30);
         }

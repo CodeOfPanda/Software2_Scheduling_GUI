@@ -181,7 +181,7 @@ public class DBCustomers {
         }
     }
 
-    // method that deletes a customer and any appointments they may have had.
+    // method that deletes a customer's appointments they may have had.
     public static void deleteCustomerAppts(int ID) {
         try {
             // mySQL statement

@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -26,10 +27,10 @@ import java.util.ResourceBundle;
 *           the database has an auto-gen section in the DB already. (done)
 *
 * write code that enables the user to adjust appt times.
-*       appt times should be stored in Coordinated Universal Time (UTC)
+*       appt times should be stored in Coordinated Universal Time (UTC) (done)
 *       they should be automatically and consistently updated according to the local time zone set on the user's computer.
 *
-* Application must allow the date/times to be changed
+* Application must allow the date/times to be changed (done)
 *
 * NOTE: there are up to three time zones in effect. UTC, EST, and system default. (local time will be checked against
 * EST business hrs, (8 - 10) including weekends, before they are stored in the DB as UTC).
@@ -53,15 +54,15 @@ public class All_Appointments_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allApptTable.setItems(DBAppointments.getAllAppts());
-        allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
-        allApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
-        allApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
-        allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
-        allApptCont.setCellValueFactory(cellData -> cellData.getValue().getApptContactID().asObject());
-        allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+        allApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
+        allApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
+        allApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
+        allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
+        allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
+        allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
         allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
         allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
-        allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+        allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
     }
 
     // all radio button action event
@@ -72,37 +73,37 @@ public class All_Appointments_Controller implements Initializable {
         // sets table to appropriate information based off of which radio button is selected
         if (radioButtonText.equals("All")) {
             allApptTable.setItems(DBAppointments.getAllAppts());
-            allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
-            allApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
-            allApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
-            allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
-            allApptCont.setCellValueFactory(cellData -> cellData.getValue().getApptContactID().asObject());
-            allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            allApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
+            allApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
+            allApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
+            allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
+            allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
+            allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
             allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
             allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
-            allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+            allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         } else if (radioButtonText.equals("Monthly")) {
             allApptTable.setItems(DBAppointments.getApptsThisMonth());
-            allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
-            allApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
-            allApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
-            allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
-            allApptCont.setCellValueFactory(cellData -> cellData.getValue().getApptContactID().asObject());
-            allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            allApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
+            allApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
+            allApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
+            allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
+            allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
+            allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
             allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
             allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
-            allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+            allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         } else if (radioButtonText.equals("Weekly")) {
             allApptTable.setItems(DBAppointments.getApptsThisWeek());
-            allApptID.setCellValueFactory(cellData -> cellData.getValue().getAppointmentID().asObject());
-            allApptTitle.setCellValueFactory(cellData -> cellData.getValue().getTitle());
-            allApptDescript.setCellValueFactory(cellData -> cellData.getValue().getDescription());
-            allApptLocale.setCellValueFactory(cellData -> cellData.getValue().getLocation());
-            allApptCont.setCellValueFactory(cellData -> cellData.getValue().getApptContactID().asObject());
-            allApptType.setCellValueFactory(cellData -> cellData.getValue().getType());
+            allApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
+            allApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
+            allApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
+            allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
+            allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
+            allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
             allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
             allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
-            allApptCustID.setCellValueFactory(cellData -> cellData.getValue().getCustomerID().asObject());
+            allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         }
 
     }

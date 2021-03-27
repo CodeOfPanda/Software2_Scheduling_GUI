@@ -50,11 +50,7 @@ public class Customers {
         return divisionID;
     }
 
-    public StringProperty getDivNameProperty() {
-        String name = DBFirst_Level_Divisions.getDivisionName(getDivisionID());
-        StringProperty divName = new SimpleStringProperty(name);
-        return divName;
-    }
+    // getting divisions names
     public String getDivName() {
         return DBFirst_Level_Divisions.getDivisionName(getDivisionID());
     }
