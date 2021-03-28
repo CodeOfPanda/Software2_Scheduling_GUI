@@ -4,7 +4,6 @@ import DBAccess.DBCustomers;
 import DBAccess.DBFirst_Level_Divisions;
 import Models.Appointments;
 import Models.Countries;
-
 import Models.First_Level_Divisions;
 import Models.Users;
 import javafx.fxml.FXML;
@@ -22,6 +21,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** This class is the Add_Customer_Controller for the Add_Customer_Scene.*/
 public class Add_Customer_Controller implements Initializable {
 
     @FXML private TextField addCustID;
@@ -32,15 +32,11 @@ public class Add_Customer_Controller implements Initializable {
     @FXML private ComboBox<String> addCustDivision;
     @FXML private TextField addCustPostal;
 
-    /*
-    * when adding and updating a customer, text fields are used to collect: custName, address, postalCode, phone
-    *       customerID is auto-generated (done)
-    *       first-level division & country data is collected using separate combo boxes.
-    * ex of address: 123 ABC Street, White Plains
-    *                123 ABC Street, Newmarket  (done)
-    */
 
-
+    /** This is the initialize method that sets the initial values for the fxml text fields and combo-boxes.
+     *  This method populates the combo-boxes with customer, country, and first_level_divisions information.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addCustID.setEditable(false);
@@ -48,12 +44,15 @@ public class Add_Customer_Controller implements Initializable {
         addCustDivision.setItems(First_Level_Divisions.getDivisionNames());
     }
 
+
     @FXML
     void changeCountry(ActionEvent event) {
         addCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(addCustCountry.getValue()));
     }
 
-    // Submit Button Action Event
+    /** This method is the action event for when the submit button is clicked.
+     *  This method calls the method to create a new Customer and takes the user to the All_Customer_Records_Scene.
+     *  @param event When the button is clicked*/
     @FXML
     void addCustSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an informational window will pop up, indicating the information was saved,
@@ -94,7 +93,9 @@ public class Add_Customer_Controller implements Initializable {
 
     }
 
-    // Cancel Button Action Event
+    /** This method is the action event for when the cancel button is clicked.
+     *  This method asks the user for confirmation before taking them back to the All_Customer_Records_Scene.
+     *  @param event When the button is clicked*/
     @FXML
     void addCustCancelBtnClicked(ActionEvent event) throws IOException {
         // when triggered an alert will ask for conformation before taking them back to All_Customer_Records_Scene.
@@ -136,12 +137,3 @@ public class Add_Customer_Controller implements Initializable {
         return true;
     }
 }
-
-
-//@FXML private TextField addCustID;
-//    @FXML private TextField addCustName;
-//    @FXML private TextField addCustPhone;
-//    @FXML private TextField addCustAddress;
-//    @FXML private ComboBox<String> addCustCountry;
-//    @FXML private ComboBox<String> addCustDivision;
-//    @FXML private TextField addCustPostal;
