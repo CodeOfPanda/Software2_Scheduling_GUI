@@ -23,40 +23,15 @@ public class Users {
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = lastUpdatedBy;
     }
-//    public Users(String name) {
-//        userName = name;
-//    }
+
 
     public int getUserID() {
         return userID;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public Timestamp getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
     public static void setLoggedInUser(String name) {
         loggedInUser = name;
     }
+    
     public static String getLoggedInUser() {return loggedInUser;}
 }

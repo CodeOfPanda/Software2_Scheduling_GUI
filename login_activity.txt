@@ -1,1 +1,2 @@
 User: test attempted log-in at 2021-03-27T21:40:40.388449200 and was admitted successfully.
+User: admin attempted log-in at 2021-03-27T22:31:06.494020300 and was admitted successfully.
