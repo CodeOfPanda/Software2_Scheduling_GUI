@@ -52,6 +52,67 @@ public class DBAppointments {
         }
         return apptList;
     }
+
+    /** This is an ObservableList method that returns a specific appointment that is associate with a specific Customer.
+     *  This method queries the database to access the data of a specific appointment or appointments that are associated with a specific contact.
+     *  @param customerName The Customer's Name
+     *  @return Returns an ObservableList of type Appointments from the Appointments model that contains the Customer's appointment information.*/
+    public static ObservableList<Appointments> getSpecificCustomerAppts(String customerName) {
+        ObservableList<Appointments> apptList = FXCollections.observableArrayList();
+
+        try {
+            // My SQL statement
+            String sql = "select a.*\n" +
+                    "    from WJ07K54.appointments a\n" +
+                    "    join WJ07K54.customers b on a.Customer_ID=b.Customer_ID\n" +
+                    "    where Customer_Name=?;";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+            pStmt.setString(1, customerName);
+            ResultSet rs = pStmt.executeQuery();
+
+            while (rs.next()) {
+                // getting the data from mySQL
+                int appointmentID = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                String location = rs.getString("Location");
+                String type = rs.getString("Type");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
+                String createdBy = rs.getString("Created_By");
+                Timestamp lastUpdate = rs.getTimestamp("Last_Update");
+                String lastUpdatedBy = rs.getString("Last_Updated_By");
+                int customerID = rs.getInt("Customer_ID");
+                int userID = rs.getInt("User_ID");
+                int contactID = rs.getInt("Contact_ID");
+                Appointments list = new Appointments(appointmentID, title, description, location, type, start, end
+                        ,createDate, createdBy,lastUpdate, lastUpdatedBy, customerID, userID, contactID);
+                apptList.add(list);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return apptList;
+    }
+
+    public static Boolean apptTimeValid() {
+        //check if newStartTime is within the appt.getApptStart and appt.getApptEnd
+        //check if newEndTime is within with appt.getApptStart and appt.getApptEnd
+        //check if newStartTime is < appt.getApptStart and newEndTime is > than appt.getApptEnd
+
+        try {
+            // mysql statement
+            String sql = "";
+            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
     /** This is an ObservableList method that returns a specific appointment that is associate with a specific contact.
      *  This method queries the database to access the data of a specific appointment or appointments that are associated with a specific contact.
      *  @param contactName The Contact's Name
@@ -423,6 +484,5 @@ public class DBAppointments {
         }
         return apptData;
     }
-
 
 }

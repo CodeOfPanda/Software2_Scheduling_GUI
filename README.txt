@@ -1,21 +1,32 @@
-E.  Create a README.txt file that includes the following information:
+Title:
+Scheduling Application for C195 project.
+    application version: 1.0
+    date: 03/28/2021
 
-title and purpose of the application
+Purpose:
+The purpose of this application is to allow a Consulting company to manage their Customers information and Appointment bookings.
 
-•  author, contact information, student application version, and date
+Author:
+Maggie Leigland
+    Student ID: 001058808
+    Contact Information:
+        Email: mleigla@wgu.edu
+        Phone: 406-781-4932
 
-•  IDE including version number (e.g., IntelliJ Community 2020.01), full JDK of version 11 used (e.g., Java SE 11.0.4), and JavaFX version compatible with JDK 11 (e.g. JavaFX-SDK-11.0.2)
+IDE: IntelliJ IDEA Ultimate 2020.3.2
+JDK: Java SE Development Kit 11.0.10
+JavaFX: JavaFX-SDK-11.0.2
+MySQL connector driver: mysql:mysql-connector-java-8.0.22
 
-•  directions for how to run the program
+How to run this program:
+    1. To run this program please press the green play button at the top of the editor or in the menu bar press the Run tab and then select:
+        Run 'Main' option.
+    2. Login to the application with the user name and password of "test" or "admin".
+        The password must be of matching text to the user name.
+    3. Once logged-in you can be free to add or update an appointment or a customer using the buttons provided. You may also visit the Contacts
+        Dashboard to view the appointments they are associated with or visit the Reports Dashboard. There, you can view the Customer Appointments
+        report or the Appointments by Country report.
 
-•  a description of the additional report of your choice you ran in part A3f
-
-•  the MySQL Connector driver version number, including the update number (e.g., mysql-connector-java-8.1.23)
-
-
-// Title
-
-
-// Purpose
-The purpose of this application is to keep track of a Consulting company's Customers, Appointments, and its Contacts information. It allows
-a user to add and update both a customer and an appointment
+A3f report:
+    My additional report is titled "Appointments by Country" and the information that it provides is: the type of appointment,
+        the number of each appointment type, and the Country in which the appointment is scheduled for.

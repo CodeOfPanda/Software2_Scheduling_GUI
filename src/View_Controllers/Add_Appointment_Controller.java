@@ -150,5 +150,16 @@ public class Add_Appointment_Controller implements Initializable {
             return true;
     }
 
+    public Boolean apptTimeIsValid() {
+
+        DBAppointments.getSpecificCustomerAppts(addApptCustName.getValue()).forEach((appt) -> {
+            //check if newStartTime is within the appt.getApptStart and appt.getApptEnd
+            //check if newEndTime is within with appt.getApptStart and appt.getApptEnd
+            //check if newStartTime is < appt.getApptStart and newEndTime is > than appt.getApptEnd
+        });
+
+        return true;
+    }
+
 }
 
