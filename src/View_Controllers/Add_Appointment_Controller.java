@@ -22,7 +22,7 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/** This class is the Add_Appointment_Controller for the Add_Appointment_Scene.*/
+/** This class is the Add_Appointment_Controller for the Add_Appointment_Scene.fxml.*/
 public class Add_Appointment_Controller implements Initializable {
 
     @FXML private TextField addApptID;

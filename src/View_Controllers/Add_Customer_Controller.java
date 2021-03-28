@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/** This class is the Add_Customer_Controller for the Add_Customer_Scene.*/
+/** This class is the Add_Customer_Controller for the Add_Customer_Scene.fxml.*/
 public class Add_Customer_Controller implements Initializable {
 
     @FXML private TextField addCustID;
