@@ -85,7 +85,7 @@ public class Contact_Controller implements Initializable {
         }
     }
 
-    /** This method is the action event for when the View All Customer's Button is clicked.
+    /** This method is the action event for when the View All Customers Button is clicked.
      *  This method takes the user to the All_Customer_Records_Scene.
      *  @param event When the button is clicked.*/
     @FXML
@@ -100,7 +100,7 @@ public class Contact_Controller implements Initializable {
         viewCustsStage.show();
     }
 
-    /** This method is the action event for when the View All Customer's Button is clicked.
+    /** This method is the action event for when the View All Appointments Button is clicked.
      *  This method takes the user to the All_Appointments_Scene.
      *  @param event When the button is clicked.*/
     @FXML
