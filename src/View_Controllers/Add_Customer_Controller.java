@@ -116,7 +116,9 @@ public class Add_Customer_Controller implements Initializable {
         }
     }
 
-    // checks input values
+    /** This method checks the text fields and combo-boxes to ensure each contains the correct value and returns a boolean value.
+     *  This method checks the text fields and combo-boxes to ensure they are not null or not equal to empty, then returns a boolean value.
+     *  @return Returns a boolean value of true or false*/
     public Boolean isValid() {
         if(addCustName.getText().isEmpty() || addCustName.getText() == null) {
             return false;

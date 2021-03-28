@@ -22,12 +22,7 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/*
-* when adding/updating text fields are used to record:
-*       apptID, title, description, location, contact, type, start date & time, end date & time, custID, user.
-*       but you can use a combo box or date picker as well for the contact, type, sd&t, ed&t, custID (may want to display name), and user.
-*/
-
+/** This class is the Add_Appointment_Controller for the Add_Appointment_Scene.*/
 public class Add_Appointment_Controller implements Initializable {
 
     @FXML private TextField addApptID;
@@ -42,6 +37,10 @@ public class Add_Appointment_Controller implements Initializable {
     @FXML private ComboBox<String> addApptCustName;
     @FXML private ComboBox<Integer> addApptUserID;
 
+    /** This is the initialize method that sets the initial values for the fxml text fields and combo-boxes.
+     *  This method populates the combo-boxes with appointment and customer information.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addApptID.setEditable(false);
@@ -53,7 +52,9 @@ public class Add_Appointment_Controller implements Initializable {
         addApptEndTime.setItems(Appointments.getEndWorkHours());
     }
 
-    // Submit Button Action Event
+    /** This method is the action event for when the submit button is clicked.
+     *  This method calls the method to create a new Appointment and takes the user to the All_Appointment_Scene.
+     *  @param event When the button is clicked*/
     @FXML
     void addApptSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an information alert will inform the user that their changes have been saved and take them
@@ -98,7 +99,9 @@ public class Add_Appointment_Controller implements Initializable {
             }
     }
 
-    // Cancel Button Action Event
+    /** This method is the action event for when the cancel button is clicked.
+     *  This method asks the user for confirmation before taking them back to the All_Appointments_Scene.
+     *  @param event When the button is clicked*/
     @FXML
     void addApptCancelBtnClicked(ActionEvent event) throws IOException {
         // when triggered an alert will ask for conformation before taking them back to All_Appointments_Scene.
@@ -120,7 +123,9 @@ public class Add_Appointment_Controller implements Initializable {
         }
     }
 
-    // checks to make sure each variable contains a value.
+    /** This method checks the text fields and combo-boxes to ensure each contains the correct value and returns a boolean value.
+     *  This method checks the text fields and combo-boxes to ensure they are not null or not equal to empty, then returns a boolean value.
+     *  @return Returns a boolean value of true or false*/
     public Boolean isValid() {
         // checks text fields/combo-boxes to ensure each contains a value.
         if (addApptTitle.getText().isEmpty() || addApptTitle.getText() == null) {
