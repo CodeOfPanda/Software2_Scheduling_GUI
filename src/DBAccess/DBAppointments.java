@@ -7,13 +7,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
 import java.sql.*;
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 // dbName: WJ07K54
 
+/** This class queries a database in MySQL Workbench to access the data in the WJ07K54.appointments table.*/
 public class DBAppointments {
-
+    /** This is an ObservableList method that returns the data for each field in the WJ07K54.appointments table.
+     *  This method queries the database to access the data for each field and with it creates an instance of type Appointments from the Appointments model.
+     *  @return Returns an ObservableList of appointment information.*/
     public static ObservableList<Appointments> getAllAppts() {
         ObservableList<Appointments> apptList = FXCollections.observableArrayList();
 
@@ -50,7 +52,10 @@ public class DBAppointments {
         }
         return apptList;
     }
-
+    /** This is an ObservableList method that returns a specific appointment that is associate with a specific contact.
+     *  This method queries the database to access the data of a specific appointment or appointments that are associated with a specific contact.
+     *  @param contactName The Contact's Name
+     *  @return Returns an ObservableList of type Appointments from the Appointments model that contains the appointment information.*/
     public static ObservableList<Appointments> getSpecificAppt(String contactName) {
         ObservableList<Appointments> apptList = FXCollections.observableArrayList();
 
@@ -93,7 +98,9 @@ public class DBAppointments {
         return apptList;
     }
 
-    // method to get appts by current month
+    /** This is an ObservableList method that returns any appointment that is in the current month and current year.
+     *  This method queries the database to access the appointment data that is scheduled in the current month and year.
+     *  @return Returns an ObservableList of appointment information that is associated with the current month and year.*/
     public static ObservableList<Appointments> getApptsThisMonth() {
         ObservableList<Appointments> apptsThisMonth = FXCollections.observableArrayList();
 
@@ -132,7 +139,9 @@ public class DBAppointments {
         return apptsThisMonth;
     }
 
-    // method to get appts by current week
+    /** This is an ObservableList method that returns any appointment that is in the current week and current year.
+     *  This method queries the database to access the appointment data that is scheduled in the current week and year.
+     *  @return Returns an ObservableList of appointment information that is associated with the current week and year.*/
     public static ObservableList<Appointments> getApptsThisWeek() {
         ObservableList<Appointments> apptsThisWeek = FXCollections.observableArrayList();
 
@@ -170,7 +179,21 @@ public class DBAppointments {
         return apptsThisWeek;
     }
 
-    // method to create an appointment
+    /** This is a method that creates a new appointments in the database.
+     *  This method inserts a new appointment into the WJ07K54.appointments table.
+     *  @param title The appointment's title
+     *  @param description The appointment's description
+     *  @param location The appointment's location
+     *  @param type The appointment's type
+     *  @param start The date and time the appointment starts
+     *  @param end The date and time the appointment ends
+     *  @param createDate The date and time the appointment was created
+     *  @param createdBy The user who created the appointment
+     *  @param lastUpdate The date and time the appointment was last updated
+     *  @param lastUpdatedBy The users who last updated the appointment
+     *  @param customerID The ID of the customer associated with the appointment
+     *  @param userID The ID of the user who is associated with the appointment
+     *  @param contactID The ID of the contact who is associated with the appointment*/
     public static void createAppt(String title
             , String description
             , String location
@@ -212,7 +235,20 @@ public class DBAppointments {
             e.printStackTrace();
         }
     }
-
+    /** This is a method that updates an existing appointment in the database.
+     *  This method updates an existing appointment into the WJ07K54.appointments table.
+     * @param appt_ID The ID of the appointment that is to be updated
+     *  @param title The appointment's title
+     *  @param description The appointment's description
+     *  @param location The appointment's location
+     *  @param type The appointment's type
+     *  @param start The date and time the appointment starts
+     *  @param end The date and time the appointment ends
+     *  @param lastUpdate The date and time the appointment was last updated
+     *  @param lastUpdatedBy The users who last updated the appointment
+     *  @param customerID The ID of the customer associated with the appointment
+     *  @param userID The ID of the user who is associated with the appointment
+     *  @param contactID The ID of the contact who is associated with the appointment*/
     // method to modify an appointment
     public static void modifyAppt(int appt_ID
             , String title
@@ -254,7 +290,9 @@ public class DBAppointments {
         }
     }
 
-    // method to delete an appointment
+    /** This is a method that deletes an appointment from the database.
+     *  This method deletes an appointment from the WJ07K54.appointments table.
+     *  @param ID The ID of the appointment*/
     public static void deleteAppt(int ID) {
         try {
             // mySQL statement
@@ -267,8 +305,9 @@ public class DBAppointments {
             e.printStackTrace();
         }
     }
-
-    // method to get customer appointments by type and month
+    /** This is an ObservableList method that returns the appointment's Type, the amount of each type, and the month that appointment is scheduled in.
+     *  This method queries the database to access the data for appointment type and returns the different types by count and the month it is scheduled in.
+     *  @return Returns an ObservableList of type Report_CustomerAppointments from the Report_CustomerAppointments model containing appointment information*/
     public static ObservableList<Report_CustomerAppointments> getApptsByMonthType() {
         ObservableList<Report_CustomerAppointments> apptsByMonthType = FXCollections.observableArrayList();
 
@@ -293,7 +332,9 @@ public class DBAppointments {
         }
         return apptsByMonthType;
     }
-
+    /** This is an ObservableList method that returns the appointment's Type, the amount of each type, and the country where that appointment takes place.
+     *  This method queries the database to access the data for appointment type and returns the different types by count and the country where that appointment takes place.
+     *  @return Returns an ObservableList of type Report_AppointmentsByCountry from the Report_AppointmentsByCountry model containing appointment and country information*/
     public static ObservableList<Report_AppointmentsByCountry> getApptsByCountry() {
         ObservableList<Report_AppointmentsByCountry> apptsByCountry = FXCollections.observableArrayList();
 
@@ -320,7 +361,11 @@ public class DBAppointments {
         }
         return apptsByCountry;
     }
-
+    /** This method returns the number of appointments that are within 15 minutes of the user logging in to the application.
+     *  This method queries the database to return the number of appointments that are within 15 minutes of the user logging into the application.
+     *  @param time The current time in UTC plus 15 minutes
+     *  @param currentTime The current time in UTC
+     *  @return Returns the number of appointments that are within 15 minutes of the user logging into the application*/
     public static int getApptsIn15Mins(LocalDateTime time, LocalDateTime currentTime) {
         int count = 0;
         try {
@@ -340,7 +385,10 @@ public class DBAppointments {
         }
         return count;
     }
-
+    /** This is an ObservableList method that returns the appointments that are within 15 minutes of the user logging in to the application.
+     *  This method queries the database to return the appointment or appointments that are within 15 minutes of the user logging into the application.
+     *  @param time The current time in UTC plus 15 minutes
+     *  @return Returns an ObservableList of type Appointments from the Appointments model that contains the appointment(s) that are within 15 minutes of the user logging into the application*/
     public static ObservableList<Appointments> getApptDataWithIn15Min(LocalDateTime time) {
         ObservableList<Appointments> apptData = FXCollections.observableArrayList();
         try {

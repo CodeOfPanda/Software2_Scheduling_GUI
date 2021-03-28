@@ -10,8 +10,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/** This class queries a database in MySQL Workbench to access the data in the WJ07K54.first_level_divisions table.*/
 public class DBFirst_Level_Divisions {
-
+    /** This is an ObservableList method that returns the data in each field in the WJ07K54.first_level_divisions table. S
+     *  This method returns the first_level_divisions data and with it creates an instance of type First_Level_Divisions from the First_Level_Divisions Model.
+     *  @return Returns an observableArrayList of Type First_Level_Divisions.*/
     public static ObservableList<First_Level_Divisions> getAllDivisions() {
         ObservableList<First_Level_Divisions> divisionsList = FXCollections.observableArrayList();
 
@@ -38,7 +41,10 @@ public class DBFirst_Level_Divisions {
         }
         return divisionsList;
     }
-
+    /** This is an ObservableList method that returns the data for a specific Division in the WJ07K54.first_level_divisions table.
+     *  This method queries the database to access the Division data that is associated with a specific Country.
+     *  @param countryName The Country's Name
+     *  @return Returns an ObservableList of Strings with each Division that is associated with the Country.*/
     public static ObservableList<String> getSpecificDivisions(String countryName) {
         ObservableList<String> divisionNames = FXCollections.observableArrayList();
 
@@ -62,7 +68,10 @@ public class DBFirst_Level_Divisions {
 
         return divisionNames;
     }
-
+    /** This is a method that returns the Division_ID that is associated with a specific Division.
+     *  This method queries the database to access the Division_ID that is associated with a specific Division.
+     *  @param name The Division's Name
+     *  @return Returns the Division_ID*/
     public static int getDivisionID(String name) {
         int divisionID = 0;
         try{
@@ -80,7 +89,10 @@ public class DBFirst_Level_Divisions {
         }
         return divisionID;
     }
-
+    /** This is a method that returns a Division that is associated with a specific Division_ID.
+     *  This method queries the database to access the Division that is associated with a specific Division_ID.
+     *  @param ID - The Division_ID
+     *  @return Returns the Division*/
     public static String getDivisionName(int ID) {
         String divisionName = null;
         try{

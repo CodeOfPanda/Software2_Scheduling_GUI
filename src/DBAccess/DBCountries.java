@@ -12,8 +12,11 @@ import java.time.LocalDateTime;
 
 // dbName: WJ07K54
 
+/** This class queries a database in MySQL Workbench to access the data in the WJ07K54.countries table.*/
 public class DBCountries {
-
+    /** This is an ObservableList method that returns the data for each field in the WJ07K54.countries table.
+     *  This method queries the database to access the data for each field and with it creates an instance of the type Countries from the Countries model
+     *  @return Returns an ObservableList of type Countries from the Countries model that contains country information.*/
     public static ObservableList<Countries> getAllCountries() {
         ObservableList<Countries> countriesList = FXCollections.observableArrayList();
 

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 
 // dbName: WJ07K54
+/** This class queries a database in MySQL Workbench to access the data in the WJ07K54.users table.*/
 public class DBUsers {
 
     public static ObservableList<Users> getAllUsers() {

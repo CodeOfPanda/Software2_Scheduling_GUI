@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/** This class queries a database in MySQL Workbench to access the data in the WJ07K54.customers table.*/
 public class DBCustomers {
 
     public static ObservableList<Customers> getAllCust() {
@@ -240,16 +241,3 @@ public class DBCustomers {
     }
 
 }
-
-
-
-//Customer_ID int(10) AI PK
-//Customer_Name varchar(50)
-//Address varchar(100)
-//Postal_Code varchar(50)
-//Phone varchar(50)
-//Create_Date datetime
-//Created_By varchar(50)
-//Last_Update timestamp
-//Last_Updated_By varchar(50)
-//Division_ID int(10)
