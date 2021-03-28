@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.DBConnection;
 
+import java.util.Locale;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage Stage) throws Exception{
+//        Locale.setDefault(new Locale("fr"));
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/Login_Scene.fxml"));
         Parent loginRoot = loader.load();

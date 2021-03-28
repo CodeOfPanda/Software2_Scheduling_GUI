@@ -1,2 +1,11 @@
 User: test attempted log-in at 2021-03-27T21:40:40.388449200 and was admitted successfully.
 User: admin attempted log-in at 2021-03-27T22:31:06.494020300 and was admitted successfully.
+User: admin attempted log-in at 2021-03-27T22:41:02.149886900 and was admitted successfully.
+ attempted log-in at 2021-03-28T00:03:53.929374800 and was not admitted.
+ attempted log-in at 2021-03-28T00:04:53.564357 and was not admitted.
+test attempted log-in at 2021-03-28T00:05:02.329420 and was not admitted.
+User: test attempted log-in at 2021-03-28T00:05:07.541795200 and was admitted successfully.
+ attempted log-in at 2021-03-28T00:05:17.060454300 and was not admitted.
+User: test attempted log-in at 2021-03-28T00:05:23.290760100 and was admitted successfully.
+User: test attempted log-in at 2021-03-28T00:06:54.945575200 and was admitted successfully.
+User: test attempted log-in at 2021-03-28T00:08:30.115523900 and was admitted successfully.

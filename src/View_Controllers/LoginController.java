@@ -19,6 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.*;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -31,9 +32,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 **/
 
 public class LoginController implements Initializable {
+
+    @FXML private Label welcomeLabel;
     @FXML private Label loginLocale;
+    @FXML private Label userNameLabel;
     @FXML private TextField userName;
+    @FXML private Label passwordLabel;
     @FXML private PasswordField password;
+    @FXML private Button signInBtnLabel;
+    @FXML private Button exitBtnLabel;
+    private String incorrectTitle;
+    private String tryAgain;
+    private String confirmExitTitle;
+    private String confirmExit;
 
     ZoneId zone = ZoneId.systemDefault();
     ZonedDateTime zdt = ZonedDateTime.now(zone);
@@ -41,6 +52,17 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("Languages/login", locale);
+        welcomeLabel.setText(rb.getString("welcome"));
+        userNameLabel.setText(rb.getString("userName"));
+        passwordLabel.setText(rb.getString("password"));
+        signInBtnLabel.setText(rb.getString("signInBtn"));
+        exitBtnLabel.setText(rb.getString("exitBtn"));
+        incorrectTitle = rb.getString("incorrectUserOrPassTitle");
+        tryAgain = rb.getString("tryAgain");
+        confirmExitTitle = rb.getString("confirmExitTitle");
+        confirmExit = rb.getString("confirmExit");
         String zoneID = String.valueOf(zone);
         loginLocale.setText(zoneID);
     }
@@ -89,6 +111,29 @@ public class LoginController implements Initializable {
             Scene allAppointmentsScene = new Scene(allAppointmentsRoot);
             allAppointmentsStage.setScene(allAppointmentsScene);
             allAppointmentsStage.show();
+            // checking to see if there is an appt with in 15 min.
+            LocalTime local = LocalTime.now();
+            LocalDateTime ldt = LocalDateTime.of(LocalDate.now(), local);
+            ZonedDateTime localZDT = ldt.atZone(ZoneId.systemDefault());
+            ZonedDateTime utcZDT = localZDT.withZoneSameInstant(ZoneId.of("UTC"));
+            LocalDateTime currentTimeUTCPlus15Min = utcZDT.plusMinutes(15).toLocalDateTime();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            if(DBAppointments.getApptsIn15Mins(currentTimeUTCPlus15Min, utcZDT.toLocalDateTime()) > 0) {
+                DBAppointments.getApptDataWithIn15Min(currentTimeUTCPlus15Min).forEach((appt) -> {
+                    // these messages are not on the login page and do not need translating
+                    alert.setTitle("Upcoming Appointment");
+                    alert.setHeaderText("Appointment_ID: " + appt.getApptID() + "\nDate: " + appt.getApptStart().toLocalDate() + "\nTime: "
+                            + appt.getApptStart().toLocalTime() + "\n\nStarts within 15 minutes.");
+                    alert.setContentText("Select OK to continue.");
+                    alert.showAndWait();
+                });
+            } else {
+                // these messages are not on the login page and do not need translating
+                alert.setTitle("Upcoming Appointments");
+                alert.setHeaderText("There are no upcoming appointments within 15 minutes.");
+                alert.setContentText("Select OK to continue");
+                alert.showAndWait();
+            }
         } else {
             // else: log-in attempts, dates, and time stamps and attempt was unsuccessful in a file named login_activity.txt.
             fileWriter.write(userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was not admitted.\n");
@@ -96,39 +141,18 @@ public class LoginController implements Initializable {
             System.out.println(fileWriter);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.NONE);
-            alert.setTitle("Incorrect UserName or Password");
-            alert.setHeaderText("Please try again.");
+            alert.setTitle(incorrectTitle);
+            alert.setHeaderText(tryAgain);
             alert.showAndWait();
         }
 
-        // checking to see if there is an appt with in 15 min.
-        LocalTime local = LocalTime.now();
-        LocalDateTime ldt = LocalDateTime.of(LocalDate.now(), local);
-        ZonedDateTime localZDT = ldt.atZone(ZoneId.systemDefault());
-        ZonedDateTime utcZDT = localZDT.withZoneSameInstant(ZoneId.of("UTC"));
-        LocalDateTime currentTimeUTCPlus15Min = utcZDT.plusMinutes(15).toLocalDateTime();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(DBAppointments.getApptsIn15Mins(currentTimeUTCPlus15Min, utcZDT.toLocalDateTime()) > 0) {
-            DBAppointments.getApptDataWithIn15Min(currentTimeUTCPlus15Min).forEach((appt) -> {
-                alert.setTitle("Upcoming Appointment");
-                alert.setHeaderText("Appointment_ID: " + appt.getApptID() + "\nDate: " + appt.getApptStart().toLocalDate() + "\nTime: "
-                        + appt.getApptStart().toLocalTime() + "\n\nStarts within 15 minutes.");
-                alert.setContentText("Select OK to continue.");
-                alert.showAndWait();
-            });
-        } else {
-            alert.setTitle("Upcoming Appointments");
-            alert.setHeaderText("There are no upcoming appointments within 15 minutes.");
-            alert.setContentText("Select OK to continue");
-            alert.showAndWait();
-        }
     }
 
     public void exitBtnClicked(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
-        alert.setTitle("Confirm Exit");
-        alert.setHeaderText("Are you sure you want to Exit?");
+        alert.setTitle(confirmExitTitle);
+        alert.setHeaderText(confirmExit);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.exit(0);

@@ -212,11 +212,11 @@ public class All_Appointments_Controller implements Initializable {
     @FXML
     public void apptLogOutBtnClicked(ActionEvent event) throws IOException {
         //when triggered this takes the user back to the Login_Scene.
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.initModality(Modality.NONE);
-        alert.setTitle("Confirm Log out");
-        alert.setHeaderText("Are you sure you want to Log out?");
-        Optional<ButtonType> result = alert.showAndWait();
+        Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
+        exit.initModality(Modality.NONE);
+        exit.setTitle("Confirm Log out");
+        exit.setHeaderText("Are you sure you want to Log out?");
+        Optional<ButtonType> result = exit.showAndWait();
         // confirms log out request
         if (result.get() == ButtonType.OK) {
             FXMLLoader loader = new FXMLLoader();
