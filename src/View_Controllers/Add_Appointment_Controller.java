@@ -189,6 +189,9 @@ public class Add_Appointment_Controller implements Initializable {
                         || newEnd.toLocalTime().isAfter(appt.getApptEnd().toLocalTime()))) {
                     valid.set(false);
                 }
+                else if (newStart.toLocalTime().isAfter(newEnd.toLocalTime()) || newStart.toLocalTime().equals(newEnd.toLocalTime())) {
+                    valid.set(false);
+                }
             }
         });
 

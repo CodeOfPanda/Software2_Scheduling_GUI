@@ -114,8 +114,6 @@ public class Update_Appointment_Scene {
             error.setHeaderText("Please make sure you have filled out each text field.");
             Optional<ButtonType> results = error.showAndWait();
         }
-
-
     }
 
     /** This method for the action event for when the cancel button is clicked.
@@ -188,6 +186,9 @@ public class Update_Appointment_Scene {
                             || newStart.toLocalTime().isBefore(appt.getApptStart().toLocalTime()))
                             & (newEnd.toLocalTime().equals(appt.getApptEnd().toLocalTime())
                             || newEnd.toLocalTime().isAfter(appt.getApptEnd().toLocalTime()))) {
+                        valid.set(false);
+                    }
+                    else if (newStart.toLocalTime().isAfter(newEnd.toLocalTime()) || newStart.toLocalTime().equals(newEnd.toLocalTime())) {
                         valid.set(false);
                     }
                 }
