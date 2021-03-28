@@ -170,7 +170,6 @@ public class Update_Appointment_Scene {
                     if ((newStart.toLocalTime().equals(appt.getApptStart().toLocalTime()) ||
                             newStart.toLocalTime().isAfter(appt.getApptStart().toLocalTime()))
                             & newStart.toLocalTime().isBefore(appt.getApptEnd().toLocalTime())) {
-                        System.out.println("Conflicted Appt - Check 1 - Appt: " + appt.getApptID());
                         valid.set(false);
                     }
 
@@ -178,7 +177,6 @@ public class Update_Appointment_Scene {
                     else if (newEnd.toLocalTime().isAfter(appt.getApptStart().toLocalTime())
                             & (newEnd.toLocalTime().equals(appt.getApptEnd().toLocalTime())
                             || newEnd.toLocalTime().isBefore(appt.getApptEnd().toLocalTime()))) {
-                        System.out.println("Conflicted Appt - Check 2 - Appt: " + appt.getApptID());
                         valid.set(false);
                     }
 
@@ -187,7 +185,6 @@ public class Update_Appointment_Scene {
                             || newStart.toLocalTime().isBefore(appt.getApptStart().toLocalTime()))
                             & (newEnd.toLocalTime().equals(appt.getApptEnd().toLocalTime())
                             || newEnd.toLocalTime().isAfter(appt.getApptEnd().toLocalTime()))) {
-                        System.out.println("Conflicted Appt - Check 3 - Appt: " + appt.getApptID());
                         valid.set(false);
                     }
                 }
