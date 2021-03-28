@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 /** This class is the controller for the Update_Appointment_Scene.fxml.*/
 public class Update_Appointment_Scene {
@@ -73,32 +74,36 @@ public class Update_Appointment_Scene {
         String appt_ID = String.valueOf(modApptID.getText());
 
         if(isValid()){
-            DBAppointments.modifyAppt(Integer.parseInt(appt_ID)
-                    , modApptTitle.getText()
-                    , modApptDescript.getText()
-                    , modApptLocale.getText()
-                    , modApptType.getValue()
-                    , LocalDateTime.of(modApptDate.getValue(), modStartTime.getValue())
-                    , LocalDateTime.of(modApptDate.getValue(), modApptEndTime.getValue())
-                    , Appointments.getCurrentDateTime()
-                    , DBUsers.getUserName(modApptUserID.getValue())
-                    , DBCustomers.getCustomerID(modApptCustName.getValue())
-                    , modApptUserID.getValue()
-                    , DBContacts.getContactID(modApptContact.getValue()));
-            Alert submit = new Alert(Alert.AlertType.INFORMATION);
-            submit.initModality(Modality.NONE);
-            submit.setTitle("Thank You!");
-            submit.setHeaderText("Your appointment has been saved.");
-            Optional<ButtonType> results = submit.showAndWait();
-            if(results.get() == ButtonType.OK) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
-                Parent submitApptRoot = loader.load();
+            if (apptTimeIsValid()) {
+                DBAppointments.modifyAppt(Integer.parseInt(appt_ID)
+                        , modApptTitle.getText()
+                        , modApptDescript.getText()
+                        , modApptLocale.getText()
+                        , modApptType.getValue()
+                        , LocalDateTime.of(modApptDate.getValue(), modStartTime.getValue())
+                        , LocalDateTime.of(modApptDate.getValue(), modApptEndTime.getValue())
+                        , Appointments.getCurrentDateTime()
+                        , DBUsers.getUserName(modApptUserID.getValue())
+                        , DBCustomers.getCustomerID(modApptCustName.getValue())
+                        , modApptUserID.getValue()
+                        , DBContacts.getContactID(modApptContact.getValue()));
+                Alert submit = new Alert(Alert.AlertType.INFORMATION);
+                submit.initModality(Modality.NONE);
+                submit.setTitle("Thank You!");
+                submit.setHeaderText("Your appointment has been saved.");
+                Optional<ButtonType> results = submit.showAndWait();
+                if(results.get() == ButtonType.OK) {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
+                    Parent submitApptRoot = loader.load();
 
-                Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene submitApptScene = new Scene(submitApptRoot);
-                submitApptStage.setScene(submitApptScene);
-                submitApptStage.show();
+                    Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene submitApptScene = new Scene(submitApptRoot);
+                    submitApptStage.setScene(submitApptScene);
+                    submitApptStage.show();
+                }
+            } else {
+                //Alert that there is conflicting appointment times
             }
         } else {
             Alert error = new Alert(Alert.AlertType.ERROR);
@@ -147,4 +152,58 @@ public class Update_Appointment_Scene {
         }
         return true;
     }
+
+    public Boolean apptTimeIsValid() {
+
+        AtomicReference<Boolean> valid = new AtomicReference<>(true);
+        DBAppointments.getSpecificCustomerAppts(modApptCustName.getValue()).forEach((appt) -> {
+            LocalDateTime newStart = LocalDateTime.of(modApptDate.getValue(), modStartTime.getValue());
+            LocalDateTime newEnd = LocalDateTime.of(modApptDate.getValue(), modApptEndTime.getValue());
+
+            //For modify: don't check against itself
+            if (Integer.parseInt(modApptID.getText()) != appt.getApptID()) {
+
+                //if the updated appointment and the appt in this loop is on the same day:
+                if (newStart.toLocalDate().isEqual(appt.getApptStart().toLocalDate())) {
+
+                    //check if newStartTime is within the appt.getApptStart and appt.getApptEnd
+                    if ((newStart.toLocalTime().equals(appt.getApptStart().toLocalTime()) ||
+                            newStart.toLocalTime().isAfter(appt.getApptStart().toLocalTime()))
+                            & newStart.toLocalTime().isBefore(appt.getApptEnd().toLocalTime())) {
+                        System.out.println("Conflicted Appt - Check 1 - Appt: " + appt.getApptID());
+                        valid.set(false);
+                    }
+
+                    //check if newEndTime is after appt.getApptStart and before appt.getApptEnd
+                    else if (newEnd.toLocalTime().isAfter(appt.getApptStart().toLocalTime())
+                            & (newEnd.toLocalTime().equals(appt.getApptEnd().toLocalTime())
+                            || newEnd.toLocalTime().isBefore(appt.getApptEnd().toLocalTime()))) {
+                        System.out.println("Conflicted Appt - Check 2 - Appt: " + appt.getApptID());
+                        valid.set(false);
+                    }
+
+                    //check for encapsulated appt
+                    else if ((newStart.toLocalTime().equals(appt.getApptStart().toLocalTime())
+                            || newStart.toLocalTime().isBefore(appt.getApptStart().toLocalTime()))
+                            & (newEnd.toLocalTime().equals(appt.getApptEnd().toLocalTime())
+                            || newEnd.toLocalTime().isAfter(appt.getApptEnd().toLocalTime()))) {
+                        System.out.println("Conflicted Appt - Check 3 - Appt: " + appt.getApptID());
+                        valid.set(false);
+                    }
+                }
+            } else {
+                //checking the same appt
+            }
+        });
+
+        if (valid.get()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }
+
+//check if newEndTime is within with appt.getApptStart and appt.getApptEnd
+//check if newStartTime is < appt.getApptStart and newEndTime is > than appt.getApptEnd

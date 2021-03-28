@@ -57,7 +57,7 @@ public class All_Appointments_Controller implements Initializable {
 
     /** This method is the action event for when the radio buttons are toggled between.
      *  This method filters the appointments by the current week, current month, or all appointments and changes the records accordingly.
-     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
+     *  <p>In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.</p>
      *  @param event When the buttons are toggles between.*/
     @FXML
     void toggleAppts(ActionEvent event) {

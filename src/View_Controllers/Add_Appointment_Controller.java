@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 /** This class is the Add_Appointment_Controller for the Add_Appointment_Scene.fxml.*/
 public class Add_Appointment_Controller implements Initializable {
@@ -61,35 +62,37 @@ public class Add_Appointment_Controller implements Initializable {
         // back to All_Appointments_Scene.
 
         if(isValid()) {
-           // inserting into database
-            DBAppointments.createAppt(addApptTitle.getText()
-                    , addApptDescript.getText()
-                    , addApptLocale.getText()
-                    , addApptType.getValue()
-                    , LocalDateTime.of(addApptDate.getValue(), addApptStartTime.getValue())
-                    , LocalDateTime.of(addApptDate.getValue(), addApptEndTime.getValue())
-                    , Appointments.getCurrentDateTime()
-                    , DBUsers.getUserName(addApptUserID.getValue())
-                    , Appointments.getCurrentDateTime()
-                    , DBUsers.getUserName(addApptUserID.getValue())
-                    , DBCustomers.getCustomerID(addApptCustName.getValue())
-                    , addApptUserID.getValue()
-                    , DBContacts.getContactID(addApptContact.getValue())
-                    );
+            if (apptTimeIsValid()) {
+                // inserting into database
+                DBAppointments.createAppt(addApptTitle.getText()
+                        , addApptDescript.getText()
+                        , addApptLocale.getText()
+                        , addApptType.getValue()
+                        , LocalDateTime.of(addApptDate.getValue(), addApptStartTime.getValue())
+                        , LocalDateTime.of(addApptDate.getValue(), addApptEndTime.getValue())
+                        , Appointments.getCurrentDateTime()
+                        , DBUsers.getUserName(addApptUserID.getValue())
+                        , Appointments.getCurrentDateTime()
+                        , DBUsers.getUserName(addApptUserID.getValue())
+                        , DBCustomers.getCustomerID(addApptCustName.getValue())
+                        , addApptUserID.getValue()
+                        , DBContacts.getContactID(addApptContact.getValue())
+                );
 
-            Alert submit = new Alert(Alert.AlertType.INFORMATION);
-            submit.initModality(Modality.NONE);
-            submit.setTitle("Thank You!");
-            submit.setHeaderText("Your appointment has been saved.");
-            Optional<ButtonType> results = submit.showAndWait();
-            if(results.get() == ButtonType.OK) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
-                Parent submitApptRoot = loader.load();
-                Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene submitApptScene = new Scene(submitApptRoot);
-                submitApptStage.setScene(submitApptScene);
-                submitApptStage.show();
+                Alert submit = new Alert(Alert.AlertType.INFORMATION);
+                submit.initModality(Modality.NONE);
+                submit.setTitle("Thank You!");
+                submit.setHeaderText("Your appointment has been saved.");
+                Optional<ButtonType> results = submit.showAndWait();
+                if(results.get() == ButtonType.OK) {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
+                    Parent submitApptRoot = loader.load();
+                    Stage submitApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene submitApptScene = new Scene(submitApptRoot);
+                    submitApptStage.setScene(submitApptScene);
+                    submitApptStage.show();
+                }
             }
         } else {
             Alert error = new Alert(Alert.AlertType.ERROR);
@@ -152,13 +155,46 @@ public class Add_Appointment_Controller implements Initializable {
 
     public Boolean apptTimeIsValid() {
 
+        AtomicReference<Boolean> valid = new AtomicReference<>(true);
         DBAppointments.getSpecificCustomerAppts(addApptCustName.getValue()).forEach((appt) -> {
-            //check if newStartTime is within the appt.getApptStart and appt.getApptEnd
-            //check if newEndTime is within with appt.getApptStart and appt.getApptEnd
-            //check if newStartTime is < appt.getApptStart and newEndTime is > than appt.getApptEnd
+            LocalDateTime newStart = LocalDateTime.of(addApptDate.getValue(), addApptStartTime.getValue());
+            LocalDateTime newEnd = LocalDateTime.of(addApptDate.getValue(), addApptEndTime.getValue());
+
+            //if the updated appointment and the appt in this loop is on the same day:
+            if (newStart.toLocalDate().isEqual(appt.getApptStart().toLocalDate())) {
+
+                //check if newStartTime is within the appt.getApptStart and appt.getApptEnd
+                if ((newStart.toLocalTime().equals(appt.getApptStart().toLocalTime())
+                        || newStart.toLocalTime().isAfter(appt.getApptStart().toLocalTime()))
+                        & newStart.toLocalTime().isBefore(appt.getApptEnd().toLocalTime())) {
+                    System.out.println("Conflicted Appt - Check 1 - Appt: " + appt.getApptID());
+                    valid.set(false);
+                }
+
+                //check if newEndTime is after appt.getApptStart and before appt.getApptEnd
+                else if (newEnd.toLocalTime().isAfter(appt.getApptStart().toLocalTime())
+                        & (newEnd.toLocalTime().equals(appt.getApptEnd().toLocalTime())
+                        || newEnd.toLocalTime().isBefore(appt.getApptEnd().toLocalTime()))) {
+                    System.out.println("Conflicted Appt - Check 2 - Appt: " + appt.getApptID());
+                    valid.set(false);
+                }
+
+                //check for encapsulated appt
+                else if ((newStart.toLocalTime().equals(appt.getApptStart().toLocalTime())
+                        || newStart.toLocalTime().isBefore(appt.getApptStart().toLocalTime()))
+                        & (newEnd.toLocalTime().equals(appt.getApptEnd().toLocalTime())
+                        || newEnd.toLocalTime().isAfter(appt.getApptEnd().toLocalTime()))) {
+                    System.out.println("Conflicted Appt - Check 3 - Appt: " + appt.getApptID());
+                    valid.set(false);
+                }
+            }
         });
 
-        return true;
+        if (valid.get()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
