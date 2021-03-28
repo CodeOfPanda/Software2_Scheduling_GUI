@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 
 /** This class queries a database in MySQL Workbench to access the data in the WJ07K54.customers table.*/
 public class DBCustomers {
-
+    /** This is an ObservableList method that returns the data for each field in the WJ07K54.customers table.
+     *  This method queries the database to access and return the data for each field in the WJ07K54.customers table.
+     *  @return Returns an ObservableList of type Customers from the Customers model that contains Customer information.*/
     public static ObservableList<Customers> getAllCust() {
         ObservableList<Customers> custList = FXCollections.observableArrayList();
 
@@ -46,7 +48,10 @@ public class DBCustomers {
         }
         return custList;
     }
-
+    /** This is an ObservableList method that returns the data for a specific Customer.
+     * This method queries the database to access and return the data for each field for a specific customer that is associated with a customer's name.
+     * @param custName The Customer's Name
+     * @return Returns an ObservableList of type Customers from the Customers model that contains the specific Customer's information.*/
     public static ObservableList<Customers> getSpecificCustomer(String custName) {
         ObservableList<Customers> custList = FXCollections.observableArrayList();
 
@@ -79,7 +84,10 @@ public class DBCustomers {
         }
         return custList;
     }
-    // method that returns a specific customer name that is associated with the customer ID that is being passed in.
+    /** This is a method that returns a specific Customer's Name that is associated with a specific Customer ID.
+     *  This method queries the database and returns a specific Customer's name that is associated with a specific Customer ID.
+     *  @param ID The Customer's ID
+     *  @return Returns the Customer's name that is associated with the Customer ID.*/
     public static String getCustomerName(int ID) {
         String customerName = null;
         try{
@@ -100,7 +108,10 @@ public class DBCustomers {
         return customerName;
     }
 
-    // method that returns a specific customer ID that is associated with the customer name that is being passed in.
+    /** This is a method that returns a specific Customer ID that is associated with a specific Customer's Name.
+     *  This method queries the database and returns a specific Customer ID that is associated with a specific Customer's Name.
+     *  @param name The Customer's Name
+     *  @return Returns the Customer ID that is associated with the Customer Name.*/
     public static int getCustomerID(String name) {
         int customerID = 0;
         try {
@@ -119,7 +130,17 @@ public class DBCustomers {
         return customerID;
     }
 
-    // method that creates a customer
+    /** This is a method that creates a new Customer in the WJ07K54.customers table.
+     *  This method creates a new customer record in the WJ07K54.customers table.
+     *  @param customerName The Customer's Name
+     *  @param address The Customer's address
+     *  @param postalCode The Customer's postal code
+     *  @param phone The Customer's phone number
+     *  @param createDate The date and time that the customer record was created
+     *  @param createdBy The user who created the new customer record
+     *  @param lastUpdate The date and time that the customer record was last updated
+     *  @param lastUpdatedBy The user who updated the customer record last
+     *  @param divisionID The Division_ID for the Customer's address*/
     public static void createCustomer(String customerName
             , String address
             , String postalCode
@@ -152,7 +173,16 @@ public class DBCustomers {
         }
     }
 
-    // method that modifies a customer
+    /** This is a method that updates an existing Customer in the WJ07K54.customers table.
+     *  This method updates an existing customer record in the WJ07K54.customers table.
+     * @param customerID the Customer ID
+     *  @param customerName The Customer's Name
+     *  @param address The Customer's address
+     *  @param postalCode The Customer's postal code
+     *  @param phone The Customer's phone number
+     *  @param lastUpdate The date and time that the customer record was last updated
+     *  @param lastUpdatedBy The user who updated the customer record last
+     *  @param divisionID The Division_ID for the Customer's address*/
     public static void modifyCustomer(int customerID
             , String customerName
             , String address
@@ -182,7 +212,9 @@ public class DBCustomers {
         }
     }
 
-    // method that deletes a customer's appointments they may have had.
+    /** This is a method that deletes a specific Customer's appointments that is associated with a specific Customer ID.
+     *  This method deletes all of the fields of a specific Customer's appointment(s) from the database.
+     *  @param ID The Customer ID*/
     public static void deleteCustomerAppts(int ID) {
         try {
             // mySQL statement
@@ -199,8 +231,9 @@ public class DBCustomers {
             e.printStackTrace();
         }
     }
-
-    // method to delete a customer after deleting their appointments
+    /** This is a method that deletes a specific Customer that is associated with a specific Customer ID.
+     *  This method deletes all of the fields of a specific Customer from the database.
+     *  @param ID The Customer ID*/
     public static void deleteCustomer(int ID) {
         try {
             // mySQL statement
@@ -215,7 +248,10 @@ public class DBCustomers {
         }
     }
 
-    // method that returns a specific country name
+    /** This is a method that returns a specific Country that is associated with a specific Customer ID.
+     *  This method queries the database and returns a specific Country that is associated with a specific Customer ID.
+     *  @param ID The Customer ID
+     *  @return Returns the Country that is associated with the Customer ID.*/
     public static String getCountryName(int ID) {
         String countryName = null;
         try{
