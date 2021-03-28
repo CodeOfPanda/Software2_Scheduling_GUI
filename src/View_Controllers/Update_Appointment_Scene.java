@@ -110,7 +110,7 @@ public class Update_Appointment_Scene {
 
     }
 
-    /** This method is the action event for when the cancel button is clicked.
+    /** This method for the action event for when the cancel button is clicked.
      *  This method asks the user for confirmation before taking them back to the All_Appointments_Scene.
      *  @param event When the button is clicked*/
     @FXML

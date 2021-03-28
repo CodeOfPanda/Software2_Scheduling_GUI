@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 
+/** This class is the controller to the Reports_Dashboards_Scene.fxml.*/
 public class Reports_Controller implements Initializable {
     // Customer Appointments
     @FXML private TableView<Report_CustomerAppointments> custApptsTable;
@@ -31,6 +32,10 @@ public class Reports_Controller implements Initializable {
     @FXML private TableColumn<Report_AppointmentsByCountry, String> apptsTypeCol;
     @FXML private TableColumn<Report_AppointmentsByCountry, Integer> apptsCountCol;
 
+    /** This is the initialize method that sets the cell values in both table views.
+     *  This method sets the initial cell values for both the Report_AppointmentsByCountry table view and the Report_CustomerAppointments table view.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Customer Appointments Table
@@ -46,7 +51,9 @@ public class Reports_Controller implements Initializable {
         apptsCountCol.setCellValueFactory(new PropertyValueFactory<>("ReportApptCount"));
     }
 
-    // log out button action event
+    /** This is the method is the action event for when the log out button is clicked.
+     *  This method confirms that the user wants to log out and does if the user confirms.
+     *  @param event When the button is clicked*/
     @FXML
     public void reportsLogOutBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to Login_Scene.
@@ -67,7 +74,9 @@ public class Reports_Controller implements Initializable {
         }
     }
 
-    // back button action event
+    /** This is the method for the action event for when the back button is clicked.
+     *  This method confirms that the user wants to go back and does if the user confirms.
+     *  @param event When the button is clicked*/
     @FXML
     public void reportsBackBtnClicked(ActionEvent event) throws IOException {
         // when triggered this takes the user to All_Appointments_Scene.

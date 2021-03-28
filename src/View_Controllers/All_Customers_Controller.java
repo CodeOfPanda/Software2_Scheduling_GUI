@@ -34,6 +34,10 @@ public class All_Customers_Controller implements Initializable {
     @FXML private TableColumn<Customers, String> allCustPostal;
     @FXML private TableColumn<Customers, String> allCustPhone;
 
+    /** This is the initialize method that sets the cell values in the table view.
+     *  This method sets the initial cell values for the Customers table view.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> newCustNames = Appointments.getCustomerNames();
@@ -49,6 +53,9 @@ public class All_Customers_Controller implements Initializable {
         allCustDivision.setCellValueFactory(new PropertyValueFactory<>("DivisionID"));
     }
 
+    /** This method is the action event for when a different customer name is selected out of the customer name combo-box.
+     *  This method filters the Customer information based off of the customer name that is selected in the customer name combo-box.
+     *  @param event When a customer name is selected.*/
     @FXML
     void changeCustName(ActionEvent event) {
         if(customerNameCombo.getValue() == "All Customers") {
@@ -128,8 +135,9 @@ public class All_Customers_Controller implements Initializable {
         deleteStage.show();
     }
 
-    // Back Button Action Event
-    @FXML
+    /** This is the method for the action event for when the back button is clicked.
+     *  This method confirms that the user wants to go back and does if the user confirms.
+     *  @param event When the button is clicked*/    @FXML
     public void allCustBackBtnClicked(ActionEvent event) throws IOException {
         // when triggered this takes the user to All_Appointments_Scene.
         FXMLLoader loader = new FXMLLoader();
@@ -142,7 +150,9 @@ public class All_Customers_Controller implements Initializable {
 
     }
 
-    // Log out Action Event
+    /** This is the method for the action event for when the log out button is clicked.
+     *  This method confirms that the user wants to log out and does if the user confirms.
+     *  @param event When the button is clicked*/
     @FXML
     public void allCustLogOutBtnClicked(ActionEvent event) throws IOException {
         // when triggered this takes the user to Login_Scene.

@@ -34,6 +34,11 @@ public class All_Appointments_Controller implements Initializable {
     @FXML private TableColumn<Appointments, LocalDateTime> allApptEndTime;
     @FXML private TableColumn<Appointments, Integer> allApptCustID;
 
+    /** This is the initialize method that sets the cell values in the table view.
+     *  This method sets the initial cell values for Appointments table view.
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allApptTable.setItems(DBAppointments.getAllAppts());
@@ -43,12 +48,16 @@ public class All_Appointments_Controller implements Initializable {
         allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
         allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
         allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
+        //lambda expression
         allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+        //lambda expression
         allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
         allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
     }
 
-    // all radio button action event
+    /** This method is the action event for when the radio buttons are toggled between.
+     *  This method filters the appointments by the current week, current month, or all appointments and changes the records accordingly.
+     *  @param event When the buttons are toggles between.*/
     @FXML
     void toggleAppts(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) apptToggleGroup.getSelectedToggle();
@@ -62,7 +71,9 @@ public class All_Appointments_Controller implements Initializable {
             allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
             allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
             allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
+            //lambda expression
             allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            //lambda expression
             allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
             allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         } else if (radioButtonText.equals("Monthly")) {
@@ -73,7 +84,9 @@ public class All_Appointments_Controller implements Initializable {
             allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
             allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
             allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
+            //lambda expression
             allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            //lambda expression
             allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
             allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         } else if (radioButtonText.equals("Weekly")) {
@@ -84,7 +97,9 @@ public class All_Appointments_Controller implements Initializable {
             allApptLocale.setCellValueFactory(new PropertyValueFactory<>("ApptLocation"));
             allApptCont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
             allApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
+            //lambda expression
             allApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            //lambda expression
             allApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
             allApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         }
@@ -135,7 +150,9 @@ public class All_Appointments_Controller implements Initializable {
         modApptStage.show();
     }
 
-    // delete appointment action event
+    /** This method is the action event for when the delete button is clicked.
+     *  This method checks to make sure an appointment is selected, then asks the user for a confirmation before deleting the appointment.
+     *  @param event When the button is clicked.*/
     @FXML
     public void deleteApptBtn(ActionEvent event) throws IOException {
         // when triggered this asks user for confirmation before deleting an appointment.
@@ -208,7 +225,9 @@ public class All_Appointments_Controller implements Initializable {
         repoDashStage.show();
     }
 
-    // log out button action event
+    /** This is the method for the action event for when the log out button is clicked.
+     *  This method confirms that the user wants to log out and does if the user confirms.
+     *  @param event When the button is clicked*/
     @FXML
     public void apptLogOutBtnClicked(ActionEvent event) throws IOException {
         //when triggered this takes the user back to the Login_Scene.

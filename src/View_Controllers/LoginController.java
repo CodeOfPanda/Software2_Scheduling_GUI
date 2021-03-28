@@ -147,7 +147,7 @@ public class LoginController implements Initializable {
         }
 
     }
-    /** This is the method is the action event for when the exit button is clicked.
+    /** This is the method for the action event for when the exit button is clicked.
      *  This method confirms that the user wants to exit the application and exits if the user confirms.
      *  @param actionEvent When the button is clicked*/
     public void exitBtnClicked(ActionEvent actionEvent) {

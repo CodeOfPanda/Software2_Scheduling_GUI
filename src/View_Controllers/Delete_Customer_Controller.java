@@ -18,18 +18,24 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** This class this the controller for the Delete_Customer_Scene.fxml.*/
 public class Delete_Customer_Controller implements Initializable {
     // customer names combobox for Delete GUI
     @FXML
     private ComboBox<String> deleteCustCombo;
 
-
+    /** This is the initialize method that sets the values in the combo-box.
+     *  This method sets the values in the combo-box to be the Customers names.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deleteCustCombo.setItems(Appointments.getCustomerNames());
     }
 
-    // Submit Button for Delete GUI
+    /** This method is an action event for when the submit button is clicked.
+     *  This method deletes the appointments that are associated with a customer, then deletes the customer.
+     *  @param event When the button is clicked*/
     @FXML
     void deleteCustSubmit(ActionEvent event) throws IOException {
         // deletes appropriate customer and their appointments
@@ -65,7 +71,9 @@ public class Delete_Customer_Controller implements Initializable {
 
     }
 
-    // Cancel Button for Delete Customer GUI
+    /** This method is the action event for when the cancel button is clicked.
+     *  This method asks the user for confirmation before taking them back to the All_Customer_Records_Scene.
+     *  @param event When the button is clicked*/
     @FXML
     public void deleteCancelBtn(ActionEvent event) throws IOException {
         // takes user back to the customer dashboard.

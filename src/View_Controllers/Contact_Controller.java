@@ -32,7 +32,11 @@ public class Contact_Controller implements Initializable {
     @FXML private TableColumn<Appointments, LocalDateTime> contactApptEndTime;
     @FXML private TableColumn<Appointments, Integer> contactApptCustID;
 
-
+    /** This is the initialize method that sets the cell values in the table view.
+     *  This method sets the initial cell values for the Contacts appointment table view.
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> newContactNames = Appointments.getContactNames();
@@ -44,7 +48,9 @@ public class Contact_Controller implements Initializable {
         contactApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
         contactApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
         contactApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
+        //lambda expression
         contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+        //lambda expression
         contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
         contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
     }
@@ -57,7 +63,9 @@ public class Contact_Controller implements Initializable {
             contactApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
             contactApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
             contactApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
+            //lambda expression
             contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            //lambda expression
             contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
             contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         } else {
@@ -66,7 +74,9 @@ public class Contact_Controller implements Initializable {
             contactApptTitle.setCellValueFactory(new PropertyValueFactory<>("ApptTitle"));
             contactApptDescript.setCellValueFactory(new PropertyValueFactory<>("ApptDescript"));
             contactApptType.setCellValueFactory(new PropertyValueFactory<>("ApptType"));
+            //lambda expression
             contactApptStrtTime.setCellValueFactory(cellData -> cellData.getValue().getStart());
+            //lambda expression
             contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
             contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         }
@@ -98,7 +108,9 @@ public class Contact_Controller implements Initializable {
         viewApptsStage.show();
     }
 
-    // Log out Button Action Event
+    /** This is the method for the action event for when the log out button is clicked.
+     *  This method confirms that the user wants to log out and does if the user confirms.
+     *  @param event When the button is clicked*/
     @FXML
     void contactLogOutBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to Login_Scene.
