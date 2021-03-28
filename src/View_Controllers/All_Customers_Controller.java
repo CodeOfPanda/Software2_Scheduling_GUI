@@ -57,7 +57,7 @@ public class All_Customers_Controller implements Initializable {
      *  This method filters the Customer information based off of the customer name that is selected in the customer name combo-box.
      *  @param event When a customer name is selected.*/
     @FXML
-    void changeCustName(ActionEvent event) {
+    public void changeCustName(ActionEvent event) {
         if(customerNameCombo.getValue() == "All Customers") {
             allCustTable.setItems(DBCustomers.getAllCust());
             allCustID.setCellValueFactory(new PropertyValueFactory<>("CustID"));

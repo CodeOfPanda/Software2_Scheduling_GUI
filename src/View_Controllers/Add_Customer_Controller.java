@@ -46,7 +46,7 @@ public class Add_Customer_Controller implements Initializable {
 
 
     @FXML
-    void changeCountry(ActionEvent event) {
+    public void changeCountry(ActionEvent event) {
         addCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(addCustCountry.getValue()));
     }
 
@@ -54,7 +54,7 @@ public class Add_Customer_Controller implements Initializable {
      *  This method calls the method to create a new Customer and takes the user to the All_Customer_Records_Scene.
      *  @param event When the button is clicked*/
     @FXML
-    void addCustSubmitBtnClicked(ActionEvent event) throws IOException {
+    public void addCustSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an informational window will pop up, indicating the information was saved,
         // then take the user to All_Customer_Records_Scene.
         if(isValid()) {
@@ -97,7 +97,7 @@ public class Add_Customer_Controller implements Initializable {
      *  This method asks the user for confirmation before taking them back to the All_Customer_Records_Scene.
      *  @param event When the button is clicked*/
     @FXML
-    void addCustCancelBtnClicked(ActionEvent event) throws IOException {
+    public void addCustCancelBtnClicked(ActionEvent event) throws IOException {
         // when triggered an alert will ask for conformation before taking them back to All_Customer_Records_Scene.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);

@@ -36,7 +36,8 @@ public class All_Appointments_Controller implements Initializable {
 
     /** This is the initialize method that sets the cell values in the table view.
      *  This method sets the initial cell values for Appointments table view.
-     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns,
+     *  this lambda expression makes it easier to populate the cell data with the class properties that I want to access.
      *  @param url The URL
      *  @param resourceBundle The ResourceBundle*/
     @Override
@@ -57,10 +58,11 @@ public class All_Appointments_Controller implements Initializable {
 
     /** This method is the action event for when the radio buttons are toggled between.
      *  This method filters the appointments by the current week, current month, or all appointments and changes the records accordingly.
-     *  <p>In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.</p>
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns,
+     *  this lambda expression makes it easier to populate the cell data with the class properties that I want to access.
      *  @param event When the buttons are toggles between.*/
     @FXML
-    void toggleAppts(ActionEvent event) {
+    public void toggleAppts(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) apptToggleGroup.getSelectedToggle();
         String radioButtonText = selectedRadioButton.getText();
         // sets table to appropriate information based off of which radio button is selected

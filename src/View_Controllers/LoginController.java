@@ -140,7 +140,7 @@ public class LoginController implements Initializable {
             }
         } else {
             // else: log-in attempts, dates, and time stamps and attempt was unsuccessful in a file named login_activity.txt.
-            fileWriter.write(userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was not admitted.\n");
+            fileWriter.write("User: " + userName.getText() + " attempted log-in at " + LocalDateTime.now() + " and was not admitted.\n");
             fileWriter.close();
             System.out.println(fileWriter);
             Alert alert = new Alert(Alert.AlertType.ERROR);

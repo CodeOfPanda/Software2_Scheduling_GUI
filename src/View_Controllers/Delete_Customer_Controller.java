@@ -37,7 +37,7 @@ public class Delete_Customer_Controller implements Initializable {
      *  This method deletes the appointments that are associated with a customer, then deletes the customer.
      *  @param event When the button is clicked*/
     @FXML
-    void deleteCustSubmit(ActionEvent event) throws IOException {
+    public void deleteCustSubmit(ActionEvent event) throws IOException {
         // deletes appropriate customer and their appointments
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         if (deleteCustCombo.getValue() != null) {

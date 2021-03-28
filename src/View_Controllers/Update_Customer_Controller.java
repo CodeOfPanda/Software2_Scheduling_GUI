@@ -48,7 +48,7 @@ public class Update_Customer_Controller{
     }
 
     @FXML
-    void changeCountry(ActionEvent event) {
+    public void changeCountry(ActionEvent event) {
         modCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(modCustCountry.getValue()));
     }
 
@@ -56,7 +56,7 @@ public class Update_Customer_Controller{
      *  This method updates a specific customer with the user's inputs and then takes the user back to the All_Customer_Records_Scene.
      *  @param event When the button is clicked.*/
     @FXML
-    void modCustSubmitBtnClicked(ActionEvent event) throws IOException {
+    public void modCustSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an informational window will pop up, indicating the information was saved,
         // then take the user to All_Customer_Records_Scene.
         String customerID = String.valueOf(modCustID.getText());
@@ -118,7 +118,7 @@ public class Update_Customer_Controller{
      *  This method asks the user for confirmation before taking them back to the All_Appointments_Scene.
      *  @param event When the button is clicked*/
     @FXML
-    void modCustCancelBtnClicked(ActionEvent event) throws IOException {
+    public void modCustCancelBtnClicked(ActionEvent event) throws IOException {
         // when triggered an alert will ask for conformation before taking them back to All_Customer_Records_Scene.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);

@@ -205,6 +205,3 @@ public class Update_Appointment_Controller {
 
     }
 }
-
-//check if newEndTime is within with appt.getApptStart and appt.getApptEnd
-//check if newStartTime is < appt.getApptStart and newEndTime is > than appt.getApptEnd

@@ -57,7 +57,7 @@ public class Add_Appointment_Controller implements Initializable {
      *  This method calls the method to create a new Appointment and takes the user to the All_Appointment_Scene.
      *  @param event When the button is clicked*/
     @FXML
-    void addApptSubmitBtnClicked(ActionEvent event) throws IOException {
+    public void addApptSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an information alert will inform the user that their changes have been saved and take them
         // back to All_Appointments_Scene.
 
@@ -111,7 +111,7 @@ public class Add_Appointment_Controller implements Initializable {
      *  This method asks the user for confirmation before taking them back to the All_Appointments_Scene.
      *  @param event When the button is clicked*/
     @FXML
-    void addApptCancelBtnClicked(ActionEvent event) throws IOException {
+    public void addApptCancelBtnClicked(ActionEvent event) throws IOException {
         // when triggered an alert will ask for conformation before taking them back to All_Appointments_Scene.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);

@@ -19,6 +19,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 /** This class is the controller class for the Contact_Dashboard_Scene.fxml.*/
 public class Contact_Controller implements Initializable {
 
@@ -34,7 +35,8 @@ public class Contact_Controller implements Initializable {
 
     /** This is the initialize method that sets the cell values in the table view.
      *  This method sets the initial cell values for the Contacts appointment table view.
-     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns,
+     *  this lambda expression makes it easier to populate the cell data with the class properties that I want to access.
      *  @param url The URL
      *  @param resourceBundle The ResourceBundle*/
     @Override
@@ -57,10 +59,11 @@ public class Contact_Controller implements Initializable {
 
     /** This method is the action event for when a contact name is selected from the Contact name combo-box.
      *  This method filters the Contact information based off of the Contact that has been selected in the combo-box.
-     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns,
+     *  this lambda expression makes it easier to populate the cell data with the class properties that I want to access.
      *  @param event When a Contact name is selected from the combo-box.*/
     @FXML
-    void changeContactName(ActionEvent event) {
+    public void changeContactName(ActionEvent event) {
         if(contactNamesCombo.getValue() == "All Contacts") {
             contactTable.setItems(DBAppointments.getAllAppts());
             contactApptID.setCellValueFactory(new PropertyValueFactory<>("ApptID"));
@@ -90,7 +93,7 @@ public class Contact_Controller implements Initializable {
      *  This method takes the user to the All_Customer_Records_Scene.
      *  @param event When the button is clicked.*/
     @FXML
-    void viewAllCustBtnClicked(ActionEvent event) throws IOException {
+    public void viewAllCustBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to All_Customer_Records_Scene.
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/All_Customer_Records_Scene.fxml"));
@@ -105,7 +108,7 @@ public class Contact_Controller implements Initializable {
      *  This method takes the user to the All_Appointments_Scene.
      *  @param event When the button is clicked.*/
     @FXML
-    void viewAllApptsBtnClicked(ActionEvent event) throws IOException {
+    public void viewAllApptsBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to All_Appointment_Records_Scene.
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/All_Appointments_Scene.fxml"));
@@ -120,7 +123,7 @@ public class Contact_Controller implements Initializable {
      *  This method confirms that the user wants to log out and does if the user confirms.
      *  @param event When the button is clicked*/
     @FXML
-    void contactLogOutBtnClicked(ActionEvent event) throws IOException {
+    public void contactLogOutBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to Login_Scene.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);

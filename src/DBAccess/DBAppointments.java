@@ -97,22 +97,6 @@ public class DBAppointments {
         return apptList;
     }
 
-    public static Boolean apptTimeValid() {
-        //check if newStartTime is within the appt.getApptStart and appt.getApptEnd
-        //check if newEndTime is within with appt.getApptStart and appt.getApptEnd
-        //check if newStartTime is < appt.getApptStart and newEndTime is > than appt.getApptEnd
-
-        try {
-            // mysql statement
-            String sql = "";
-            PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return true;
-    }
-
     /** This is an ObservableList method that returns a specific appointment that is associate with a specific contact.
      *  This method queries the database to access the data of a specific appointment or appointments that are associated with a specific contact.
      *  @param contactName The Contact's Name
