@@ -55,6 +55,9 @@ public class Contact_Controller implements Initializable {
         contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
     }
 
+    /** This method is the action event for when a contact name is selected from the Contact name combo-box.
+     *  This method filters the Contact information based off of the Contact that has been selected in the combo-box.
+     *  @param event When a Contact name is selected from the combo-box.*/
     @FXML
     void changeContactName(ActionEvent event) {
         if(contactNamesCombo.getValue() == "All Contacts") {
@@ -82,7 +85,9 @@ public class Contact_Controller implements Initializable {
         }
     }
 
-    // View All Customers Button Action Event
+    /** This method is the action event for when the View All Customer's Button is clicked.
+     *  This method takes the user to the All_Customer_Records_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     void viewAllCustBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to All_Customer_Records_Scene.
@@ -95,7 +100,9 @@ public class Contact_Controller implements Initializable {
         viewCustsStage.show();
     }
 
-    // View All Appointments Button Action Event
+    /** This method is the action event for when the View All Customer's Button is clicked.
+     *  This method takes the user to the All_Appointments_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     void viewAllApptsBtnClicked(ActionEvent event) throws IOException {
         // when triggered this will take the user to All_Appointment_Records_Scene.
