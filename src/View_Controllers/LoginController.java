@@ -111,6 +111,8 @@ public class LoginController implements Initializable {
             Scene allAppointmentsScene = new Scene(allAppointmentsRoot);
             allAppointmentsStage.setScene(allAppointmentsScene);
             allAppointmentsStage.show();
+
+
             // checking to see if there is an appt with in 15 min.
             LocalTime local = LocalTime.now();
             LocalDateTime ldt = LocalDateTime.of(LocalDate.now(), local);
@@ -119,8 +121,10 @@ public class LoginController implements Initializable {
             LocalDateTime currentTimeUTCPlus15Min = utcZDT.plusMinutes(15).toLocalDateTime();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             if(DBAppointments.getApptsIn15Mins(currentTimeUTCPlus15Min, utcZDT.toLocalDateTime()) > 0) {
-                DBAppointments.getApptDataWithIn15Min(currentTimeUTCPlus15Min).forEach((appt) -> {
-                    // these messages are not on the login page and do not need translating
+                //Returns all appt data that is within 15 mins (1st param) and the current time (2nd param)
+                DBAppointments.getApptDataWithIn15Min(currentTimeUTCPlus15Min, utcZDT.toLocalDateTime()).forEach((appt) -> {
+                    //Create an alert for each appt that gets returned to notify the user
+                    //These messages are not on the login page and do not need translating
                     alert.setTitle("Upcoming Appointment");
                     alert.setHeaderText("Appointment_ID: " + appt.getApptID() + "\nDate: " + appt.getApptStart().toLocalDate() + "\nTime: "
                             + appt.getApptStart().toLocalTime() + "\n\nStarts within 15 minutes.");

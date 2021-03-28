@@ -152,7 +152,7 @@ public class All_Appointments_Controller implements Initializable {
         Parent modApptRoot = loader.load();
         Stage modApptStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene modApptScene = new Scene(modApptRoot);
-        Update_Appointment_Scene controller = loader.getController();
+        Update_Appointment_Controller controller = loader.getController();
         controller.startApptUpdate(selectedAppt);
         modApptStage.setScene(modApptScene);
         modApptStage.show();

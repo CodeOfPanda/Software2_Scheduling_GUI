@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 /** This class is the controller for the Update_Appointment_Scene.fxml.*/
-public class Update_Appointment_Scene {
+public class Update_Appointment_Controller {
 
     @FXML private TextField modApptID;
     @FXML private TextField modApptTitle;

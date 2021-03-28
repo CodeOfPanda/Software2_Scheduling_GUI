@@ -449,15 +449,17 @@ public class DBAppointments {
     /** This is an ObservableList method that returns the appointments that are within 15 minutes of the user logging in to the application.
      *  This method queries the database to return the appointment or appointments that are within 15 minutes of the user logging into the application.
      *  @param time The current time in UTC plus 15 minutes
+     *  @param currentTime The current time in UTC
      *  @return Returns an ObservableList of type Appointments from the Appointments model that contains the appointment(s) that are within 15 minutes of the user logging into the application*/
-    public static ObservableList<Appointments> getApptDataWithIn15Min(LocalDateTime time) {
+    public static ObservableList<Appointments> getApptDataWithIn15Min(LocalDateTime time, LocalDateTime currentTime) {
         ObservableList<Appointments> apptData = FXCollections.observableArrayList();
         try {
             //mySQL statement
             String sql = "select * from WJ07K54.appointments\n" +
-                    "where Start <=?";
+                    "where Start <=? and Start >= ?";
             PreparedStatement pStmt = DBConnection.getConnection().prepareStatement(sql);
             pStmt.setObject(1, time);
+            pStmt.setObject(2, currentTime);
             ResultSet rs = pStmt.executeQuery();
             while (rs.next()) {
                 int appointmentID = rs.getInt("Appointment_ID");
