@@ -18,7 +18,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Optional;
 
-
+/** This class is the controller for the Update_Customer_Scene.fxml.*/
 public class Update_Customer_Controller{
 
     @FXML private TextField modCustID;
@@ -29,7 +29,9 @@ public class Update_Customer_Controller{
     @FXML private ComboBox<String> modCustDivision;
     @FXML private TextField modCustPostal;
 
-    // my initialize method to pre-populate the modify customer page.
+    /** This method acts as my initialize method and pre-populates the text fields and como-boxes for the update scene.
+     *  This method populates the text fields and combo-boxes with the selected customer that is being passed in as a parameter.
+     *  @param selectedCustomer The Customer that was selected to be updated*/
     @FXML
     public void updateCustomer(Customers selectedCustomer) {
         String custID = String.valueOf(selectedCustomer.getCustID());
@@ -50,7 +52,9 @@ public class Update_Customer_Controller{
         modCustDivision.setItems(DBFirst_Level_Divisions.getSpecificDivisions(modCustCountry.getValue()));
     }
 
-    // Submit Button Action Event
+    /** This method is the action event for when the submit button is clicked.
+     *  This method updates a specific customer with the user's inputs and then takes the user back to the All_Customer_Records_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     void modCustSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an informational window will pop up, indicating the information was saved,
@@ -110,7 +114,9 @@ public class Update_Customer_Controller{
         return true;
     }
 
-    // Cancel Button Action Event
+    /** This method is the action event for when the cancel button is clicked.
+     *  This method asks the user for confirmation before taking them back to the All_Appointments_Scene.
+     *  @param event When the button is clicked*/
     @FXML
     void modCustCancelBtnClicked(ActionEvent event) throws IOException {
         // when triggered an alert will ask for conformation before taking them back to All_Customer_Records_Scene.

@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
-
+/** This class is the controller for the Update_Appointment_Scene.fxml.*/
 public class Update_Appointment_Scene {
 
     @FXML private TextField modApptID;
@@ -34,6 +34,9 @@ public class Update_Appointment_Scene {
     @FXML private ComboBox<String> modApptCustName;
     @FXML private ComboBox<Integer> modApptUserID;
 
+    /** This method acts as my initialize method and pre-populates the text fields and como-boxes for the update scene.
+     *  This method populates the text fields and combo-boxes with the selected appointment that is being passed in as a parameter.
+     *  @param appt The appointment that was selected to be updated*/
     // my initialize method to pre-populate the update appointment page.
     @FXML
     public void startApptUpdate(Appointments appt) {
@@ -60,7 +63,9 @@ public class Update_Appointment_Scene {
 
     }
 
-    // Submit Button Action Event
+    /** This method is the action event for when the submit button is clicked.
+     *  This method updates a specific appointments with the user's inputs and then takes the user back to the All_Appointments_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     public void modApptSubmitBtnClicked(ActionEvent event) throws IOException {
         // when triggered an information alert will inform the user that their changes have been saved and take them
@@ -105,7 +110,9 @@ public class Update_Appointment_Scene {
 
     }
 
-    // Cancel Button Action Event
+    /** This method is the action event for when the cancel button is clicked.
+     *  This method asks the user for confirmation before taking them back to the All_Appointments_Scene.
+     *  @param event When the button is clicked*/
     @FXML
     public void modApptCancelBtnClicked(ActionEvent event) throws IOException {
             // when triggered an alert will ask for conformation before taking them back to All_Appointments_Scene.
