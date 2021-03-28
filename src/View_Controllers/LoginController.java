@@ -24,13 +24,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/*
-* displays the login form in English or French based on the user's computer language setting to translate all the text,
-*     labels, buttons, and errors on the form
-* Locale.setDefault(new Locale("fr")); for translating language
-*     put on the first line of program in main.
-**/
 
+/** This class is the controller for the Login_Scene.fxml*/
 public class LoginController implements Initializable {
 
     @FXML private Label welcomeLabel;
@@ -49,7 +44,10 @@ public class LoginController implements Initializable {
     ZoneId zone = ZoneId.systemDefault();
     ZonedDateTime zdt = ZonedDateTime.now(zone);
 
-
+    /** This is the initialize method, it sets the language and zoneID to the system default values.
+     *  This method sets the labels and error messages to the correct language based off of the system default location.
+     *  @param url The URL
+     *  @param resourceBundle The ResourceBundle*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Locale locale = Locale.getDefault();
@@ -67,7 +65,9 @@ public class LoginController implements Initializable {
         loginLocale.setText(zoneID);
     }
 
-    // sign in button action
+    /** This method this the action event for when the sign in button is clicked.
+     *  This method writes to the login_activity.txt file, validates the userName and password, and checks if there is upcoming appointment within 15 minutes.
+     *  @param actionEvent When the button is clicked*/
     public void signInBtnClicked(ActionEvent actionEvent) throws IOException {
         // when triggered this validates the user, writes the activity to the reports file, then takes the user to All_Appointments_Scene.
         // creating my login_activity file
@@ -147,7 +147,9 @@ public class LoginController implements Initializable {
         }
 
     }
-
+    /** This is the method is the action event for when the exit button is clicked.
+     *  This method confirms that the user wants to exit the application and exits if the user confirms.
+     *  @param actionEvent When the button is clicked*/
     public void exitBtnClicked(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
