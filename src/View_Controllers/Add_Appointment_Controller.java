@@ -93,6 +93,11 @@ public class Add_Appointment_Controller implements Initializable {
                     submitApptStage.setScene(submitApptScene);
                     submitApptStage.show();
                 }
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setTitle("Conflicting Appointment Times");
+                error.setHeaderText("Please make sure your appointment times do not overlap with another existing appointment on the same day");
+                Optional<ButtonType> results = error.showAndWait();
             }
         } else {
             Alert error = new Alert(Alert.AlertType.ERROR);
