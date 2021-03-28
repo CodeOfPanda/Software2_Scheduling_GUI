@@ -22,9 +22,7 @@ import java.util.ResourceBundle;
 
 public class Contact_Controller implements Initializable {
 
-    @FXML private Button contactSearchBtn;
     @FXML private ComboBox<String> contactNamesCombo;
-    @FXML private TextField contactSearchText;
     @FXML private TableView<Appointments> contactTable;
     @FXML private TableColumn<Appointments, Integer> contactApptID;
     @FXML private TableColumn<Appointments, String> contactApptTitle;
@@ -72,12 +70,6 @@ public class Contact_Controller implements Initializable {
             contactApptEndTime.setCellValueFactory(cellData -> cellData.getValue().getEnd());
             contactApptCustID.setCellValueFactory(new PropertyValueFactory<>("ApptCustomerID"));
         }
-    }
-
-    // Search Button Action Event
-    @FXML
-    void contactSearchBtnClicked(ActionEvent event) {
-
     }
 
     // View All Customers Button Action Event

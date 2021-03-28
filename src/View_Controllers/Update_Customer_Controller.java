@@ -18,12 +18,6 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Optional;
 
-/*
-* the customer data auto-populates in the form (done)
-* country and f-l division data is also auto-populated in their combo boxes. (done)
-* the f-l division data should be filtered by the user's selection of a country (when choosing u.s., filter so it only shows states) (done)
-* customerID must be disabled (done)
-*/
 
 public class Update_Customer_Controller{
 

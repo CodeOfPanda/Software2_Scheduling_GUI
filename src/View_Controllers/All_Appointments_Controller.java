@@ -19,26 +19,9 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/*
-* a contact name is assigned to an appointment using a drop-down menu or combo box. --> Contact Table
-*           query the DB to fill the drop-down. (done)
-* a custom message is displayed in the user interface with the Appointment_ID and type of appointment cancelled. --> on delete.
-* the Appointment_ID is auto-generated and disabled throughout the application --> get from the DB
-*           the database has an auto-gen section in the DB already. (done)
-*
-* write code that enables the user to adjust appt times.
-*       appt times should be stored in Coordinated Universal Time (UTC) (done)
-*       they should be automatically and consistently updated according to the local time zone set on the user's computer.
-*
-* Application must allow the date/times to be changed (done)
-*
-* NOTE: there are up to three time zones in effect. UTC, EST, and system default. (local time will be checked against
-* EST business hrs, (8 - 10) including weekends, before they are stored in the DB as UTC).
-*/
 
 public class All_Appointments_Controller implements Initializable {
 
-    @FXML private TextField allApptSearch;
     @FXML private ToggleGroup apptToggleGroup;
     @FXML private TableView<Appointments> allApptTable;
     @FXML private TableColumn<Appointments, Integer> allApptID;
@@ -108,11 +91,6 @@ public class All_Appointments_Controller implements Initializable {
 
     }
 
-    // Search Button Action Event
-    @FXML
-    public void allApptSearchBtnClicked(ActionEvent event) {
-
-    }
 
     // add appointment button action event
     @FXML

@@ -20,12 +20,6 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/*
- * all of the customer's appointments must be deleted prior to deleting a customer.
- *          use an error message indicating this need. (done)
- *
- * when deleting a customer record, a custom message should display in the user interface ("are you sure?" --> "Customer Removed") (done)
- */
 
 public class All_Customers_Controller implements Initializable {
 
