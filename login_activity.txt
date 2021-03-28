@@ -37,3 +37,5 @@ User: test attempted log-in at 2021-03-28T12:53:07.356945400 and was admitted su
 User: test attempted log-in at 2021-03-28T12:56:19.309249300 and was admitted successfully.
 User: test attempted log-in at 2021-03-28T13:02:27.260766400 and was admitted successfully.
 doggy attempted log-in at 2021-03-28T13:13:24.637420800 and was not admitted.
+User: test attempted log-in at 2021-03-28T13:46:03.346703600 and was admitted successfully.
+User: test attempted log-in at 2021-03-28T13:47:31.806488600 and was admitted successfully.

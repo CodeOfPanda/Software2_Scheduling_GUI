@@ -27,19 +27,6 @@ public class DBConnection {
             conn = DriverManager.getConnection(jdbcURL, username, password);
             System.out.println("Connection successful");
 
-//            String sql = "select * " +
-//                    "from " + dbName + ".customers as a " +
-//                    "inner join " + dbName + ".first_level_divisions as b on a.Division_ID=b.Division_ID " +
-//                    "where a.Division_ID = ?";
-//
-//            PreparedStatement pStmt = conn.prepareStatement(sql);
-
-//            pStmt.setInt(1, 29);
-//            ResultSet rs = pStmt.executeQuery();
-//
-//            while (rs.next()) {
-//                System.out.println(rs.getString("Customer_Name") + " " + rs.getString("Division"));
-//            }
         }
         catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error: not connecting!" + e.getMessage());
