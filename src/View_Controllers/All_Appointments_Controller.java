@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-
+/** This class is the controller class for the All_Appointments_Scene.fxml.*/
 public class All_Appointments_Controller implements Initializable {
 
     @FXML private ToggleGroup apptToggleGroup;
@@ -57,6 +57,7 @@ public class All_Appointments_Controller implements Initializable {
 
     /** This method is the action event for when the radio buttons are toggled between.
      *  This method filters the appointments by the current week, current month, or all appointments and changes the records accordingly.
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
      *  @param event When the buttons are toggles between.*/
     @FXML
     void toggleAppts(ActionEvent event) {
@@ -107,7 +108,9 @@ public class All_Appointments_Controller implements Initializable {
     }
 
 
-    // add appointment button action event
+    /** This method is the action event for when the add appointment button is clicked.
+     *  This method takes the user to the Add_Appointment_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     public void addApptBtn(ActionEvent event) throws IOException {
         // when triggered this takes the user to the Add_Appointment_Scene.
@@ -120,7 +123,9 @@ public class All_Appointments_Controller implements Initializable {
         addApptStage.show();
     }
 
-    // update appointment button action event
+    /** This method is the action event for when the update appointment button is clicked.
+     *  This method checks to make sure an appointment record has been selected and then passes that selected record to another method.
+     *  @param event When the button is clicked.*/
     @FXML
     public void updateApptBtn(ActionEvent event) throws IOException {
         // when triggered this method checks to make sure an appointment was selected
@@ -136,7 +141,10 @@ public class All_Appointments_Controller implements Initializable {
         }
     }
 
-    // this method makes it possible for me to pass in the selected appointment and use that data in my update appt controller.
+    /** This method takes in the selected appointment and then takes the user to the Update_Customer_Scene.
+     *  This method passes the selected appointment to the Update_Appointment_Controller to set the initial values in the text fields and combo-boxes.
+     *  @param event When the update button is clicked
+     *  @param selectedAppt The selected customer's record that needs to be updated.*/
     public void updateAppt(ActionEvent event, Appointments selectedAppt) throws IOException{
         // takes user to update appt scene
         FXMLLoader loader = new FXMLLoader();
@@ -186,7 +194,9 @@ public class All_Appointments_Controller implements Initializable {
         }
     }
 
-    // customer dashboard button action event
+    /** This method is the action event for when the Customer Dashboard Button is clicked.
+     *  This method takes the user to the All_Customer_Records_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     public void customerDashBtn(ActionEvent event) throws IOException {
         //when triggered this takes the user to All_Customer_Records_Scene.
@@ -199,7 +209,9 @@ public class All_Appointments_Controller implements Initializable {
         allCustStage.show();
     }
 
-    // contact dashboard button action event
+    /** This method is the action event for when the Contact Dashboard Button is clicked.
+     *  This method takes the user to the Contact_Dashboard_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     public void contactDashBtnClicked(ActionEvent event) throws IOException {
         //when triggered this takes the user to Contact_Dashboard_Scene.
@@ -212,7 +224,9 @@ public class All_Appointments_Controller implements Initializable {
         contDashStage.show();
     }
 
-    // reports dashboard button action event
+    /** This method is the action event for when the Reports Dashboard Button is clicked.
+     *  This method takes the user to the Reports_Dashboard_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     public void reportsDashBtnClicked(ActionEvent event) throws IOException {
         // when triggered this takes the user to the Reports_Dashboard_Scene.

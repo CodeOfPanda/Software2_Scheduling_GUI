@@ -19,7 +19,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
+/** This class is the controller class for the Contact_Dashboard_Scene.fxml.*/
 public class Contact_Controller implements Initializable {
 
     @FXML private ComboBox<String> contactNamesCombo;
@@ -57,6 +57,7 @@ public class Contact_Controller implements Initializable {
 
     /** This method is the action event for when a contact name is selected from the Contact name combo-box.
      *  This method filters the Contact information based off of the Contact that has been selected in the combo-box.
+     *  In this method I use a Lambda expression to populate the cell values for the start and end time columns, this lambda expression makes it easy to populate LocalDateTime ObjectProperties.
      *  @param event When a Contact name is selected from the combo-box.*/
     @FXML
     void changeContactName(ActionEvent event) {

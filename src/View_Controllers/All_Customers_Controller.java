@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-
+/** This class is the controller class for the All_Customer_Records_Scene.fxml.*/
 public class All_Customers_Controller implements Initializable {
 
     @FXML private ComboBox<String> customerNameCombo;
@@ -77,7 +77,9 @@ public class All_Customers_Controller implements Initializable {
         }
     }
 
-    // Add Button Action Event
+    /** This method is the action event for when the add button is clicked.
+     *  This method takes the user to the Add_Customer_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     public void allCustAddBtnClicked(ActionEvent event) throws IOException {
         // when triggered this takes the user to Add_Customer_Scene.
@@ -91,7 +93,9 @@ public class All_Customers_Controller implements Initializable {
 
     }
 
-    // Modify Button Action Event
+    /** This method is the action event for when the update button is clicked.
+     *  This method checks to make sure a customer record has been selected and then passes that selected record to another method.
+     *  @param event When the button is clicked.*/
     @FXML
     public void allCustModBtnClicked(ActionEvent event) throws IOException {
         // when triggered this checks to make sure there was a customer selected
@@ -108,6 +112,10 @@ public class All_Customers_Controller implements Initializable {
         }
     }
 
+    /** This method takes in the selected customer and then takes the user to the Update_Customer_Scene.
+     *  This method passes the selected customer to the Update_Customer_Controller to set the initial values in the text fields and combo-boxes.
+     *  @param event When the update button is clicked
+     *  @param selectedCustomer The selected customer's record that needs to be updated.*/
     public void modifyCustomer(ActionEvent event, Customers selectedCustomer) throws IOException {
         // when triggered this passes the selected customer to the method in the Update_Customer_Controller.
         // and takes the user to that scene.
@@ -122,7 +130,9 @@ public class All_Customers_Controller implements Initializable {
         modCustStage.show();
     }
 
-    // Delete Button Action Event
+    /** This method is the action event for when the delete button is clicked.
+     *  This method takes the user to the Delete_Customer_Scene.
+     *  @param event When the button is clicked.*/
     @FXML
     public void allCustDelBtnClicked(ActionEvent event) throws IOException {
         //when triggered this takes them to the delete a customer GUI
