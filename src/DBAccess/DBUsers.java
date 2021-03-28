@@ -14,12 +14,13 @@ import java.time.LocalDateTime;
 // dbName: WJ07K54
 /** This class queries a database in MySQL Workbench to access the data in the WJ07K54.users table.*/
 public class DBUsers {
-
+    /** This is an ObservableList method that accesses and returns the data for each field in the WJ07K54.users table.
+     *  This method accesses and returns the data in each field of the WJ07K54.users table.
+     *  @return Returns an ObservableList of type Users from the Users model that contains User information*/
     public static ObservableList<Users> getAllUsers() {
         ObservableList<Users> userList = FXCollections.observableArrayList();
 
         try{
-
             // mySQL statement
             String sql = "select * from WJ07K54.users;";
             PreparedStatement psUsers = DBConnection.getConnection().prepareStatement(sql);
@@ -42,7 +43,10 @@ public class DBUsers {
         }
         return userList;
     }
-
+    /** This is a method that returns a specific User's Name that is associated with a specific User ID.
+     *  This method queries the database and returns a specific User's name that is associated with a specific User ID.
+     *  @param ID The Customer's ID
+     *  @return Returns the Customer's name that is associated with the Customer ID.*/
     public static String getUserName(int ID) {
         String userNames = null;
         try {
@@ -62,7 +66,9 @@ public class DBUsers {
 
         return userNames;
     }
-
+    /** This is an ObservableList method that returns the User Names.
+     *  This method queries the database and returns an ObservableList of User Names.
+     *  @return Returns an ObservableList of Strings containing User Names*/
     public static ObservableList<String> getUserNames() {
         ObservableList<String> names = FXCollections.observableArrayList();
         try {
@@ -83,7 +89,10 @@ public class DBUsers {
 
         return names;
     }
-
+    /** This is a method that returns the password that is associated with a specific User Name.
+     *  This method queries the database and returns the password that is associated with a specific User Name.
+     * @param userName The User's Name
+     *  @return Returns a password*/
     public static String getUserPassword(String userName) {
         String userPassword = null;
         try {
@@ -103,12 +112,3 @@ public class DBUsers {
     }
 
 }
-
-
-/*User_ID int(10) AI PK
-User_Name varchar(50)
-Password text
-Create_Date datetime
-Created_By varchar(50)
-Last_Update timestamp
-Last_Updated_By*/
